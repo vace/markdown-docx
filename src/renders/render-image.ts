@@ -8,7 +8,7 @@ export function renderImage(render: MarkdownDocx, block: Tokens.Image, attr: ITe
   const image = render.findImage(block)
 
   if (!image || !image.type) {
-    return renderText(render, `[${block.text}](${block.href})`, attr)
+    return renderText(render, `[!${block.text}](${block.href})`, attr)
   }
 
   return new ImageRun({

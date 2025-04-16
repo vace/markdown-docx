@@ -3,6 +3,7 @@ import { MarkdownDocx } from "../MarkdownDocx";
 import { IBlockAttr, IBlockToken } from "../types";
 import { FileChild } from "docx";
 import { renderBlocks } from "./render-blocks";
+import { classes } from "../styles";
 
 export function renderList (render: MarkdownDocx, block: Tokens.List, attr: IBlockAttr): FileChild[] {
   const list: IBlockAttr['list'] = {
@@ -13,6 +14,7 @@ export function renderList (render: MarkdownDocx, block: Tokens.List, attr: IBlo
     const tokens = item.tokens as IBlockToken[]
     const attribute: IBlockAttr = {
       ...attr,
+      style: classes.ListItem,
       list: {
         ...list,
         task: item.task,

@@ -22,6 +22,7 @@ export function renderParagraph (render: MarkdownDocx, tokens: IInlineToken[] | 
     alignment,
     bullet,
     numbering,
+    style: attr.style
   }
 
   const children = typeof tokens === 'string' ? renderText(render, tokens, {}) : renderTokens(render, tokens, {})

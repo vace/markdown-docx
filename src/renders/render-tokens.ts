@@ -3,6 +3,7 @@ import { IInlineToken, ITextAttr } from "../types";
 import { renderText } from "./render-text";
 import { MarkdownDocx } from "../MarkdownDocx";
 import { renderImage } from "./render-image";
+import { classes } from "../styles";
 
 export function renderTokens(render: MarkdownDocx, tokens: IInlineToken[], attr: ITextAttr = {}): ParagraphChild[] {
   const children: ParagraphChild[] = []
@@ -13,7 +14,7 @@ export function renderTokens(render: MarkdownDocx, tokens: IInlineToken[], attr:
       children.push(...child)
     } else if (child) {
       children.push(child)
-    } else {
+    } else if (child == null) {
       console.warn(`Inline token is empty: ${token.type}`)
     }
   }
@@ -21,49 +22,53 @@ export function renderTokens(render: MarkdownDocx, tokens: IInlineToken[], attr:
   return children
 }
 
-function flatInlineToken(render: MarkdownDocx, token: IInlineToken, attr: ITextAttr): ParagraphChild | ParagraphChild[] | null {
+function flatInlineToken(render: MarkdownDocx, token: IInlineToken, attr: ITextAttr): ParagraphChild | ParagraphChild[] | false | null {
   switch (token.type) {
     case 'escape':
       return renderText(render, token.text, attr)
     case 'html': // tag
-      // TODO: handle html
-      return renderText(render, token.text, attr)
-      break
+      if (render.ignoreHtml) {
+        return false
+      }
+      return renderText(render, token.text, { ...attr, html: true, style: classes.Tag })
     case 'link':
       return new ExternalHyperlink({
-        children: renderTokens(render, token.tokens as IInlineToken[]),
+        children: renderTokens(
+          render,
+          token.tokens as IInlineToken[],
+          { ...attr, link: true, style: classes.Link }
+        ),
         link: token.href,
-        // tooltip: token.title,
       })
-      break
     case 'em':
       return renderTokens(
         render,
         token.tokens as IInlineToken[],
-        { ...attr, italics: true }
+        { ...attr, em: true, style: classes.Em }
       )
     case 'strong':
       return renderTokens(
         render,
         token.tokens as IInlineToken[],
-        { ...attr, bold: true }
+        { ...attr, strong: true, style: classes.Strong }
       )
     case 'codespan':
       return renderText(
         render,
-        token.text, {
-          ...attr,
-          italics: true,
-          bold: true,
-        }
+        token.text,
+        { ...attr, codespan: true, style: classes.Code }
       )
     case 'br':
-      return new TextRun({ text: '', break: 1 })
+      return renderText(
+        render,
+        '',
+        { break: 1, br: true, style: classes.Br }
+      )
     case 'del':
       return renderTokens(
         render,
         token.tokens as IInlineToken[],
-        { ...attr, strike: true }
+        { ...attr, del: true, style: classes.Del }
       )
     case 'text':
       if (token.tokens?.length) {

@@ -7,19 +7,18 @@ export function renderText (render: MarkdownDocx, text: string, attr: ITextAttr)
   const totalLine = multipleLines.length
 
   const options: IRunOptions = {
+    style: attr.style,
     italics: attr.italics,
     bold: attr.bold,
     underline: attr.underline ? {} : undefined,
     strike: attr.strike,
-    doubleStrike: attr.doubleStrike,
-    superScript: attr.superScript,
-    subScript: attr.subScript,
     break: attr.break ? (typeof attr.break === 'number' ? attr.break : 1) : undefined,
   }
 
   if (totalLine > 1) {
     const textNodes: TextRun[] = []
     textNodes.push(...multipleLines.map((line, index) => new TextRun({
+      ...options,
       text: line,
       break: index > 0 ? 1 : undefined,
     })))

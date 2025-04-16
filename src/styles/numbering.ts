@@ -1,106 +1,57 @@
-import { AlignmentType, INumberingOptions, LevelFormat } from "docx";
+import { ILevelsOptions, INumberingOptions, LevelFormat } from "docx";
 
 export const numbering: INumberingOptions = {
   config: [
     {
       reference: "numbering-points",
       levels: [
-        {
-          level: 0,
-          format: LevelFormat.DECIMAL,
-          text: "%1",
-          alignment: AlignmentType.START,
-        },
-        {
-          level: 1,
-          format: LevelFormat.DECIMAL,
-          text: "%2.",
-          alignment: AlignmentType.START,
-        },
-        {
-          level: 2,
-          format: LevelFormat.DECIMAL,
-          text: "%3)",
-          alignment: AlignmentType.START,
-        },
-        {
-          level: 3,
-          format: LevelFormat.DECIMAL,
-          text: "%4)",
-          alignment: AlignmentType.START,
-        },
-        {
-          level: 4,
-          format: LevelFormat.DECIMAL,
-          text: "%5)",
-          alignment: AlignmentType.START,
-        },
-        {
-          level: 5,
-          format: LevelFormat.DECIMAL,
-          text: "%6)",
-          alignment: AlignmentType.START,
-        },
-        {
-          level: 6,
-          format: LevelFormat.DECIMAL,
-          text: "%7)",
-          alignment: AlignmentType.START,
-        },
-        {
-          level: 7,
-          format: LevelFormat.DECIMAL,
-          text: "%8)",
-          alignment: AlignmentType.START,
-        },
-        {
-          level: 8,
-          format: LevelFormat.DECIMAL,
-          text: "%9)",
-          alignment: AlignmentType.START,
-        },
-        {
-          level: 9,
-          format: LevelFormat.DECIMAL,
-          text: "%10)",
-          alignment: AlignmentType.START,
-        }
+        makeNumbering(0),
+        makeNumbering(1),
+        makeNumbering(2),
+        makeNumbering(3),
+        makeNumbering(4),
+        makeNumbering(5),
+        makeNumbering(6),
+        makeNumbering(7),
+        makeNumbering(8),
       ],
     },
     {
       reference: "bullet-points",
       levels: [
-        {
-          level: 0,
-          format: LevelFormat.BULLET,
-          text: "\u1F60",
-          alignment: AlignmentType.LEFT,
-        },
-        {
-          level: 1,
-          format: LevelFormat.BULLET,
-          text: "\u00A5",
-          alignment: AlignmentType.LEFT,
-        },
-        {
-          level: 2,
-          format: LevelFormat.BULLET,
-          text: "\u273F",
-          alignment: AlignmentType.LEFT,
-        },
-        {
-          level: 3,
-          format: LevelFormat.BULLET,
-          text: "\u267A",
-          alignment: AlignmentType.LEFT,
-        },
-        {
-          level: 4,
-          format: LevelFormat.BULLET,
-          text: "\u2603",
-          alignment: AlignmentType.LEFT,
-        },
+        makeBullet(0, "\u2022"),
+        makeBullet(1, "\u25A0"),
+        makeBullet(2, "\u25B6"),
+        makeBullet(3, "\u25B2"),
+        makeBullet(4, "\u25C6"),
+        makeBullet(5, "\u25CF"),
+        makeBullet(6, "\u25A1"),
       ],
     },
   ],
+}
+
+function makeNumbering(level: number) {
+  // let format = ''
+  // for (let i = 1; i <= level; i++) {
+  //   format = `${format}%${i}.`
+  // }
+  
+  const opt: ILevelsOptions = {
+    level: level,
+    format: LevelFormat.DECIMAL,
+    text: level < 1 ? '%1' : level < 2 ? '%1.%2' : level < 3 ? '%1.%2.%3' : `%${level + 1})`
+  }
+
+  return opt
+}
+
+function makeBullet(level: number, charset: string) {
+  const opt: ILevelsOptions = {
+    level: level,
+    format: LevelFormat.BULLET,
+    text: charset,
+  }
+
+  return opt
 }
