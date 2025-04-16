@@ -9,7 +9,7 @@ Convert Markdown files to DOCX format with support for both browser and Node.js 
 
 ## Features
 
-[!Screenshot](https://raw.githubusercontent.com/vace/markdown-docx/main/test/screenshot.png)
+![Screenshot](./test/screenshots.png)
 
 - 📝 Convert Markdown to DOCX format with high fidelity
 - 🖼️ Support for images (with automatic downloading)
