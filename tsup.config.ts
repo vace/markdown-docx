@@ -12,7 +12,7 @@ export default defineConfig([
     platform: 'browser',
     outExtension(ctx) {
       return {
-        js: '.browser.' + (ctx.format === 'esm' ? '.mjs' : '.js'),
+        js: '.browser' + (ctx.format === 'esm' ? '.mjs' : '.js'),
       }
     },
   },
