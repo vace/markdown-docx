@@ -9,7 +9,7 @@ Convert Markdown files to DOCX format with support for both browser and Node.js 
 
 ## Features
 
-![Screenshot](./test/screenshots.png)
+![Screenshot](./tests/screenshots.png)
 
 - 📝 Convert Markdown to DOCX format with high fidelity
 - 🖼️ Support for images (with automatic downloading)
@@ -170,6 +170,7 @@ import { styles, colors, classes, numbering } from 'markdown-docx';
 
 // Example: customize link color
 styles.default.hyperlink.run.color = '#0077cc';
+styles.markdown.code.run.color = '#000000';
 ```
 
 ## Browser vs Node.js
@@ -181,7 +182,7 @@ The library automatically detects the environment and uses the appropriate image
 
 ## Examples
 
-For more examples, see the [test directory](https://github.com/vace/markdown-docx/tree/main/test) in the repository.
+For more examples, see the [tests directory](https://github.com/vace/markdown-docx/tree/main/tests) in the repository.
 
 ## License
 

@@ -1,7 +1,7 @@
 import { Tokens } from "marked";
 import { tokenize } from "./tokenize";
-import { Document, FileChild, IPropertiesOptions, Paragraph, ParagraphChild } from "docx";
-import { numbering, styles } from "./styles";
+import { Document, FileChild, IPropertiesOptions, IStylesOptions, Paragraph, ParagraphChild } from "docx";
+import { createDocumentStyle, numbering, styles } from "./styles";
 import { IBlockAttr, IBlockToken, IInlineToken, ITextAttr, MarkdownDocxOptions, MarkdownImageItem } from "./types";
 import { renderBlocks, renderTokens } from "./renders";
 import { getImageTokens } from "./utils";
@@ -11,6 +11,8 @@ export class MarkdownDocx  {
   public static defaultOptions: MarkdownDocxOptions = {
     gfm: true
   }
+
+  public styles = styles
 
   public static covert(
     markdown: string,
@@ -52,7 +54,7 @@ export class MarkdownDocx  {
     
     const doc = new Document({
       numbering,
-      styles,
+      styles: createDocumentStyle(),
       ...options,
       footnotes: this.footnotes,
       sections: [

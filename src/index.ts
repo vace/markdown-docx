@@ -1,7 +1,7 @@
 import { MarkdownDocx } from "./MarkdownDocx";
 import { MarkdownDocxOptions } from "./types";
 import { Packer } from "docx";
-import { classes, styles, colors, numbering } from "./styles";
+import { styles } from "./styles";
 
 export * from "./types"
 
@@ -32,8 +32,5 @@ export {
   Packer,
 
   // style
-  classes,
-  colors,
   styles,
-  numbering,
 }

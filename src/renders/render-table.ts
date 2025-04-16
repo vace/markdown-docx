@@ -13,9 +13,12 @@ export function renderTable(render: MarkdownDocx, block: Tokens.Table, attrs: IB
       style: isHeader ? classes.TableHeader : classes.TableCell,
     }
   }
-  return new Table({
-    style: classes.Table,
 
+  const style = render.styles.markdown
+
+  return new Table({
+    ...style.table.properties,
+    style: classes.Table,
     width: {
       size: 100,
       type: WidthType.PERCENTAGE,
@@ -28,10 +31,7 @@ export function renderTable(render: MarkdownDocx, block: Tokens.Table, attrs: IB
         children: block.header.map(cell => {
           return new TableCell({
             verticalAlign: VerticalAlign.CENTER,
-            shading: {
-              fill: colors.accent2,
-              color: colors.accent1,
-            },
+            ...style.tableHeader.properties,
             children: [
               renderParagraph(render, cell.tokens as IInlineToken[], toProps(cell, true)),
             ],
@@ -45,6 +45,7 @@ export function renderTable(render: MarkdownDocx, block: Tokens.Table, attrs: IB
           children: row.map(cell => {
             return new TableCell({
               verticalAlign: VerticalAlign.CENTER,
+              ...style.tableCell.properties,
               children: [
                 renderParagraph(render, cell.tokens as IInlineToken[], toProps(cell)),
               ]
