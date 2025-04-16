@@ -1,4 +1,3 @@
-import { Paragraph, ParagraphChild, Table, TableOfContents } from "docx";
 import { MarkedOptions, Tokens } from "marked";
 import { Footnote, FootnoteRef } from "./extensions";
 
@@ -15,6 +14,24 @@ export type MarkdownImageAdapter = (token: Tokens.Image) => Promise<null | Markd
 
 export interface MarkdownDocxOptions extends MarkedOptions {
   imageAdapter?: MarkdownImageAdapter
+
+  /**
+   * do not download image
+   * @default false
+   */
+  ignoreImage?: boolean
+
+  /**
+   * do not parse footnote
+   * @default false
+   */
+  ignoreFootnote?: boolean
+
+  /**
+   * do not parse html
+   * @default false
+   */
+  ignoreHtml?: boolean
 }
 
 export type IBlockToken =
@@ -53,14 +70,24 @@ export type IParagraphToken =
   | Tokens.Heading
 
 export type ITextAttr = {
+  style?: string
+
+  // attrs
   bold ?: boolean
   italics ?: boolean
   underline ?: boolean // with options
   strike ?: boolean
-  doubleStrike ?: boolean
-  superScript ?: boolean
-  subScript ?: boolean
   break?: boolean | number
+
+  // text style
+  html?: boolean
+  link?: boolean
+  strong?: boolean
+  em?: boolean
+  codespan?: boolean
+  del?: boolean
+  br?: boolean
+  
 }
 
 export type IBlockAttr = {
@@ -78,8 +105,12 @@ export type IBlockAttr = {
   heading?: number
   code?: boolean
 
-  align?: 'left' | 'center' | 'right'
+  align?: 'left' | 'center' | 'right' | null
 
   footnote?: boolean
 
+}
+
+export type Writeable<T> = {
+  -readonly [P in keyof T]: T[P]
 }

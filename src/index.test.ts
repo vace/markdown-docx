@@ -45,11 +45,18 @@ Strikethrough uses two tildes. ~~Scratch this.~~`)).toMatchSnapshot()
 
   it('render list special', async () => {
     expect(await renderTest(`1. First ordered list item
-2. Another item
-⋅⋅* Unordered sub-list.
-1. Actual numbers don't matter, just that it's a number
-⋅⋅1. Ordered sub-list
-4. And another item. `)).toMatchSnapshot()
+2. Another item Unordered sub-list.
+3. Actual numbers don't matter, just that it's a number Ordered sub-list
+4. And another item.
+5. Make my changes
+    1. Fix bug
+    2. Improve formatting
+        - Make the headings bigger
+6. Push my commits to GitHub
+7. Open a pull request
+    * Describe my changes
+    * Mention all the members of my team
+        * Ask for feedback`)).toMatchSnapshot()
   })
 
   it('render task list', async () => {

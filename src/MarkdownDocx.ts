@@ -1,7 +1,7 @@
 import { Tokens } from "marked";
 import { tokenize } from "./tokenize";
 import { Document, FileChild, IPropertiesOptions, Paragraph, ParagraphChild } from "docx";
-import { numbering } from "./styles/numbering";
+import { numbering, styles } from "./styles";
 import { IBlockAttr, IBlockToken, IInlineToken, ITextAttr, MarkdownDocxOptions, MarkdownImageItem } from "./types";
 import { renderBlocks, renderTokens } from "./renders";
 import { getImageTokens } from "./utils";
@@ -9,7 +9,7 @@ import { getImageTokens } from "./utils";
 export class MarkdownDocx  {
 
   public static defaultOptions: MarkdownDocxOptions = {
-    gfm: true,
+    gfm: true
   }
 
   public static covert(
@@ -33,17 +33,27 @@ export class MarkdownDocx  {
     }
   }
 
+  get ignoreImage () {
+    return !!this.options.ignoreImage
+  }
+
+  get ignoreFootnote () {
+    return !!this.options.ignoreFootnote
+  }
+
+  get ignoreHtml () {
+    return !!this.options.ignoreHtml
+  }
+
   public async toDocument(options?: Omit<IPropertiesOptions, 'sections'>) {
     this.footnotes = {}
 
     const section = await this.toSection()
     
     const doc = new Document({
+      numbering,
+      styles,
       ...options,
-      numbering: {
-        ...options?.numbering,
-        ...numbering,
-      },
       footnotes: this.footnotes,
       sections: [
         {
@@ -56,10 +66,15 @@ export class MarkdownDocx  {
 
   public async toSection () {
     const tokenList = tokenize(this.markdown, this.options)
-    const imageList = getImageTokens(tokenList)
-    if (imageList.length) {
-      await this.downloadImageList(imageList)
+
+    // parse image
+    if (!this.ignoreImage) {
+      const imageList = getImageTokens(tokenList)
+      if (imageList.length) {
+        await this.downloadImageList(imageList)
+      }
     }
+
     return this.toBlocks(tokenList)
   }
 

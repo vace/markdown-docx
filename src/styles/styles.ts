@@ -213,6 +213,18 @@ export const styles: IStylesOptions = {
       },
     },
     {
+      id: classes.TableHeader,
+      name: "MdTableHeader",
+      basedOn: "Normal",
+      next: "Normal",
+    },
+    {
+      id: classes.TableCell,
+      name: "MdTableCell",
+      basedOn: "Normal",
+      next: "Normal",
+    },
+    {
       id: classes.Heading1,
       name: "MdHeading1",
       basedOn: "Normal",
