@@ -12,8 +12,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       markdown-docx:
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^1.1.1
+        version: 1.1.1(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2))
     devDependencies:
       '@tailwindcss/typography':
         specifier: ^0.5.16
@@ -533,8 +533,8 @@ packages:
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
-  markdown-docx@1.0.0:
-    resolution: {integrity: sha512-eAskiQ9PFT2SlqbxDJPpg8IDNEs1hGto9THBZL5XnvcFf+fxhNSbnTiIJbhMcyhJLw58gmXmWst6c0y/AU8sEg==}
+  markdown-docx@1.1.1:
+    resolution: {integrity: sha512-4ylpWxUHnFjF+xpZUPHnFGi7UIQgnu7q1Zux539WO2T6P2tq1JwvHAARA7hAkMoHh30LGQceXWrYFHq7KLKQPA==}
     hasBin: true
 
   marked@15.0.8:
@@ -1018,12 +1018,15 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
-  markdown-docx@1.0.0:
+  markdown-docx@1.1.1(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2)):
     dependencies:
+      '@tailwindcss/vite': 4.1.4(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2))
       commander: 13.1.0
       docx: 9.3.0
       image-size: 2.0.2
       marked: 15.0.8
+    transitivePeerDependencies:
+      - vite
 
   marked@15.0.8: {}
 
