@@ -34,12 +34,15 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 20
-
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 10.6.5
     - name: Install dependencies and build
       working-directory: web
       run: |
-        yarn install
-        yarn run build
+        pnpm install
+        pnpm run build
 
     - name: Deploy to GH Pages
       uses: peaceiris/actions-gh-pages@v3
