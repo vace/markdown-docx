@@ -7,6 +7,10 @@ Convert Markdown files to DOCX format with support for both browser and Node.js 
 [![npm version](https://img.shields.io/npm/v/markdown-docx.svg)](https://www.npmjs.com/package/markdown-docx)
 [![License](https://img.shields.io/npm/l/markdown-docx.svg)](https://github.com/vace/markdown-docx/blob/main/LICENSE)
 
+## Online Demo
+
+[Markdown to DOCX Converter](https://md-docx.vace.me)
+
 ## Features
 
 ![Screenshot](./tests/screenshots.png)
@@ -161,6 +165,15 @@ If the output file is not specified, it will use the input filename with a `.doc
 - Footnotes
 - Task lists (checkboxes)
 
+## Image Adapter
+
+The library provides a built-in image adapter that automatically downloads images from URLs. You can also create a custom image adapter by implementing the `ImageAdapter` interface.
+The adapter should have a `getImage` method that takes an image URL and returns a Promise that resolves to an object containing the image data.
+
+```ts
+const imageAdapter: (token: Tokens.Image) => Promise<null | MarkdownImageItem>
+```
+
 ## Customization
 
 You can customize the styling of the generated DOCX by accessing the style components:
@@ -168,10 +181,16 @@ You can customize the styling of the generated DOCX by accessing the style compo
 ```javascript
 import { styles, colors, classes, numbering } from 'markdown-docx';
 
-// Example: customize link color
-styles.default.hyperlink.run.color = '#0077cc';
-styles.markdown.code.run.color = '#000000';
+// Example: customize docs link color
+styles.default.hyperlink.run.color = '0077cc';
+styles.markdown.code.run.color = '000000';
 ```
+
+You can refer to the files in `src/styles` to write your own styles.
+
+- [styles.ts](./src/styles//styles.ts) - Default styles for the document
+- [colors.ts](./src/styles/colors.ts) - Color definitions
+- [markdown.ts](./src/styles/markdown.ts) - Markdown-specific styles
 
 ## Browser vs Node.js
 
