@@ -35,7 +35,7 @@ export const initialMarkdown = initMarkdown
 export const templatesList = [
   {
     id: 0,
-    name: 'Initial Markdown',
+    name: 'Default',
     template: initMarkdown,
   },
   {
