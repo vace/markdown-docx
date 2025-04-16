@@ -1,0 +1,194 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`render > render blockquotes 1`] = `
+"<Paragraph style="MdBlockquote"><TextRun>Blockquotes are very handy in email to emulate reply text.</TextRun>
+<TextRun break="1">This line is part of the same quote.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Quote break.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdBlockquote"><TextRun>This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can </TextRun>
+<TextRun style="MdEm" italics="true">put</TextRun>
+<TextRun> </TextRun>
+<TextRun style="MdStrong" bold="true">Markdown</TextRun>
+<TextRun> into a blockquote.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdBlockquote"><TextRun>Blockquotes can also be nested...</TextRun></Paragraph>
+<Paragraph style="MdBlockquote"><TextRun>...by using additional greater-than signs right next to each other...</TextRun></Paragraph>
+<Paragraph style="MdBlockquote"><TextRun>...or with spaces between arrows.</TextRun></Paragraph>"
+`;
+
+exports[`render > render code blocks 1`] = `
+"<Paragraph style="MdCode"><TextRun>function test() {</TextRun>
+<TextRun break="1">  console.log('test');</TextRun>
+<TextRun break="1">}</TextRun></Paragraph>"
+`;
+
+exports[`render > render escape 1`] = `
+"<Paragraph style="MdParagraph"><TextRun>*</TextRun>
+<TextRun>literal asterisks</TextRun>
+<TextRun>*</TextRun></Paragraph>"
+`;
+
+exports[`render > render footnotes 1`] = `
+"<Paragraph heading="Heading1" style="MdHeading1"><ExternalHyperlink link="https://github.com/markdown-it/markdown-it-footnote"><TextRun style="MdLink">Footnotes</TextRun></ExternalHyperlink></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Footnote 1 link</TextRun>
+<FootnoteReferenceRun></FootnoteReferenceRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Footnote 2 link</TextRun>
+<FootnoteReferenceRun></FootnoteReferenceRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Inline footnote^[Text of inline footnote] definition.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Duplicated footnote reference</TextRun>
+<FootnoteReferenceRun></FootnoteReferenceRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>"
+`;
+
+exports[`render > render heading 1`] = `
+"<Paragraph heading="Heading1" style="MdHeading1"><TextRun>h1 Heading 8-)</TextRun></Paragraph>
+<Paragraph heading="Heading2" style="MdHeading2"><TextRun>h2 Heading</TextRun></Paragraph>
+<Paragraph heading="Heading3" style="MdHeading3"><TextRun>h3 Heading</TextRun></Paragraph>
+<Paragraph heading="Heading4" style="MdHeading4"><TextRun>h4 Heading</TextRun></Paragraph>
+<Paragraph heading="Heading5" style="MdHeading5"><TextRun>h5 Heading</TextRun></Paragraph>
+<Paragraph heading="Heading6" style="MdHeading6"><TextRun>h6 Heading</TextRun></Paragraph>"
+`;
+
+exports[`render > render horizontal rules 1`] = `
+"<Paragraph style="MdParagraph"><TextRun>Three or more...</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph thematicBreak="true" style="MdHr"></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Hyphens</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph thematicBreak="true" style="MdHr"></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Asterisks</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph thematicBreak="true" style="MdHr"></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Underscores</TextRun></Paragraph>"
+`;
+
+exports[`render > render images 1`] = `
+"<Paragraph style="MdParagraph"><TextRun>Inline-style:
+</TextRun>
+<ImageRun type="png" transformation-width="104" transformation-height="126" altText-title="Logo Title Text 1" altText-description="alt text" altText-name="alt text"></ImageRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Reference-style:
+</TextRun>
+<ImageRun type="png" transformation-width="104" transformation-height="126" altText-title="Logo Title Text 2" altText-description="alt text" altText-name="alt text"></ImageRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>"
+`;
+
+exports[`render > render links 1`] = `
+"<Paragraph style="MdParagraph"><ExternalHyperlink link="https://www.google.com"><TextRun style="MdLink">I'm an inline-style link</TextRun></ExternalHyperlink></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><ExternalHyperlink link="https://www.google.com"><TextRun style="MdLink">I'm an inline-style link with title</TextRun></ExternalHyperlink></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><ExternalHyperlink link="https://www.mozilla.org"><TextRun style="MdLink">I'm a reference-style link</TextRun></ExternalHyperlink></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><ExternalHyperlink link="../blob/master/LICENSE"><TextRun style="MdLink">I'm a relative reference to a repository file</TextRun></ExternalHyperlink></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>"
+`;
+
+exports[`render > render list 1`] = `
+"<Paragraph style="MdSpace"></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Make my changes</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Fix bug</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Improve formatting</TextRun></Paragraph>
+<Paragraph bullet-level="2" style="MdListItem"><TextRun>Make the headings bigger</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Push my commits to GitHub</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Open a pull request</TextRun></Paragraph>
+<Paragraph bullet-level="1" style="MdListItem"><TextRun>Describe my changes</TextRun></Paragraph>
+<Paragraph bullet-level="1" style="MdListItem"><TextRun>Mention all the members of my team</TextRun></Paragraph>
+<Paragraph bullet-level="2" style="MdListItem"><TextRun>Ask for feedback</TextRun></Paragraph>"
+`;
+
+exports[`render > render list special 1`] = `
+"<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>First ordered list item</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Another item Unordered sub-list.</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Actual numbers don't matter, just that it's a number Ordered sub-list</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>And another item.</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Make my changes</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Fix bug</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Improve formatting</TextRun></Paragraph>
+<Paragraph bullet-level="2" style="MdListItem"><TextRun>Make the headings bigger</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Push my commits to GitHub</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Open a pull request</TextRun></Paragraph>
+<Paragraph bullet-level="1" style="MdListItem"><TextRun>Describe my changes</TextRun></Paragraph>
+<Paragraph bullet-level="1" style="MdListItem"><TextRun>Mention all the members of my team</TextRun></Paragraph>
+<Paragraph bullet-level="2" style="MdListItem"><TextRun>Ask for feedback</TextRun></Paragraph>"
+`;
+
+exports[`render > render paragraph 1`] = `
+"<Paragraph style="MdParagraph"><TextRun>Emphasis, aka italics, with </TextRun>
+<TextRun style="MdEm" italics="true">asterisks</TextRun>
+<TextRun> or </TextRun>
+<TextRun style="MdEm" italics="true">underscores</TextRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Strong emphasis, aka bold, with </TextRun>
+<TextRun style="MdStrong" bold="true">asterisks</TextRun>
+<TextRun> or </TextRun>
+<TextRun style="MdStrong" bold="true">underscores</TextRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Combined emphasis with </TextRun>
+<TextRun style="MdStrong" bold="true">asterisks and </TextRun>
+<TextRun style="MdEm" italics="true" bold="true">underscores</TextRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Strikethrough uses two tildes. </TextRun>
+<TextRun style="MdDel" strike="true">Scratch this.</TextRun></Paragraph>"
+`;
+
+exports[`render > render tables 1`] = `
+"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Tables</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph alignment="center" style="MdTableHeader"><TextRun>Are</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph alignment="right" style="MdTableHeader"><TextRun>Cool</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 3 is</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>right-aligned</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="right" style="MdTableCell"><TextRun>$1600</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 2 is</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>centered</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="right" style="MdTableCell"><TextRun>$12</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>zebra stripes</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>are neat</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="right" style="MdTableCell"><TextRun>$1</TextRun></Paragraph></TableCell></TableRow>"></Table>"
+`;
+
+exports[`render > render tables special 1`] = `
+"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Markdown</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Less</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Pretty</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdEm" italics="true">Still</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdCode" >renders</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdStrong" bold="true">nicely</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>1</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>2</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>3</TextRun></Paragraph></TableCell></TableRow>"></Table>"
+`;
+
+exports[`render > render task list 1`] = `
+"<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>Finish my changes</TextRun></Paragraph>
+<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>Push my commits to GitHub</TextRun></Paragraph>
+<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>Open a pull request</TextRun></Paragraph>
+<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>@mentions, #refs, </TextRun>
+<ExternalHyperlink link=""><TextRun style="MdLink">links</TextRun></ExternalHyperlink>
+<TextRun>, </TextRun>
+<TextRun style="MdStrong" bold="true">formatting</TextRun>
+<TextRun>, and </TextRun>
+<TextRun style="MdTag"><del></TextRun>
+<TextRun>tags</TextRun>
+<TextRun style="MdTag"></del></TextRun>
+<TextRun> supported</TextRun></Paragraph>
+<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>list syntax required (any unordered or ordered list supported)</TextRun></Paragraph>
+<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>this is a complete item</TextRun></Paragraph>
+<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>this is an incomplete item</TextRun></Paragraph>"
+`;
