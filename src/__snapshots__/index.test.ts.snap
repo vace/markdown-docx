@@ -1,0 +1,187 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`render > render blockquotes 1`] = `
+"<Paragraph><TextRun>Blockquotes are very handy in email to emulate reply text.</TextRun>
+<TextRun break="1">This line is part of the same quote.</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Quote break.</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can </TextRun>
+<TextRun italics="true">put</TextRun>
+<TextRun> </TextRun>
+<TextRun bold="true">Markdown</TextRun>
+<TextRun> into a blockquote.</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Blockquotes can also be nested...</TextRun></Paragraph>
+<Paragraph><TextRun>...by using additional greater-than signs right next to each other...</TextRun></Paragraph>
+<Paragraph><TextRun>...or with spaces between arrows.</TextRun></Paragraph>"
+`;
+
+exports[`render > render code blocks 1`] = `
+"<Paragraph><TextRun>function test() {</TextRun>
+<TextRun break="1">  console.log('test');</TextRun>
+<TextRun break="1">}</TextRun></Paragraph>"
+`;
+
+exports[`render > render escape 1`] = `
+"<Paragraph><TextRun>*</TextRun>
+<TextRun>literal asterisks</TextRun>
+<TextRun>*</TextRun></Paragraph>"
+`;
+
+exports[`render > render footnotes 1`] = `
+"<Paragraph heading="Heading1"><ExternalHyperlink link="https://github.com/markdown-it/markdown-it-footnote"><TextRun>Footnotes</TextRun></ExternalHyperlink></Paragraph>
+<Paragraph><TextRun>Footnote 1 link</TextRun>
+<FootnoteReferenceRun></FootnoteReferenceRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Footnote 2 link</TextRun>
+<FootnoteReferenceRun></FootnoteReferenceRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Inline footnote^[Text of inline footnote] definition.</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Duplicated footnote reference</TextRun>
+<FootnoteReferenceRun></FootnoteReferenceRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph></Paragraph>"
+`;
+
+exports[`render > render heading 1`] = `
+"<Paragraph heading="Heading1"><TextRun>h1 Heading 8-)</TextRun></Paragraph>
+<Paragraph heading="Heading2"><TextRun>h2 Heading</TextRun></Paragraph>
+<Paragraph heading="Heading3"><TextRun>h3 Heading</TextRun></Paragraph>
+<Paragraph heading="Heading4"><TextRun>h4 Heading</TextRun></Paragraph>
+<Paragraph heading="Heading5"><TextRun>h5 Heading</TextRun></Paragraph>
+<Paragraph heading="Heading6"><TextRun>h6 Heading</TextRun></Paragraph>"
+`;
+
+exports[`render > render horizontal rules 1`] = `
+"<Paragraph><TextRun>Three or more...</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph thematicBreak="true"></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Hyphens</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph thematicBreak="true"></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Asterisks</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph thematicBreak="true"></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Underscores</TextRun></Paragraph>"
+`;
+
+exports[`render > render images 1`] = `
+"<Paragraph><TextRun>Inline-style:
+</TextRun>
+<ImageRun type="jpg" transformation-width="100" transformation-height="100" altText-title="Logo Title Text 1" altText-description="alt text" altText-name="alt text"></ImageRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Reference-style:
+</TextRun>
+<ImageRun type="jpg" transformation-width="100" transformation-height="100" altText-title="Logo Title Text 2" altText-description="alt text" altText-name="alt text"></ImageRun></Paragraph>
+<Paragraph></Paragraph>"
+`;
+
+exports[`render > render links 1`] = `
+"<Paragraph><ExternalHyperlink link="https://www.google.com"><TextRun>I'm an inline-style link</TextRun></ExternalHyperlink></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><ExternalHyperlink link="https://www.google.com"><TextRun>I'm an inline-style link with title</TextRun></ExternalHyperlink></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><ExternalHyperlink link="https://www.mozilla.org"><TextRun>I'm a reference-style link</TextRun></ExternalHyperlink></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><ExternalHyperlink link="../blob/master/LICENSE"><TextRun>I'm a relative reference to a repository file</TextRun></ExternalHyperlink></Paragraph>
+<Paragraph></Paragraph>"
+`;
+
+exports[`render > render list 1`] = `
+"<Paragraph></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points"><TextRun>Make my changes</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points"><TextRun>Fix bug</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points"><TextRun>Improve formatting</TextRun></Paragraph>
+<Paragraph bullet-level="2"><TextRun>Make the headings bigger</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points"><TextRun>Push my commits to GitHub</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points"><TextRun>Open a pull request</TextRun></Paragraph>
+<Paragraph bullet-level="1"><TextRun>Describe my changes</TextRun></Paragraph>
+<Paragraph bullet-level="1"><TextRun>Mention all the members of my team</TextRun></Paragraph>
+<Paragraph bullet-level="2"><TextRun>Ask for feedback</TextRun></Paragraph>"
+`;
+
+exports[`render > render list special 1`] = `
+"<Paragraph numbering-level="0" numbering-reference="numbering-points"><TextRun>First ordered list item</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points"><TextRun>Another item</TextRun>
+<TextRun break="1">⋅⋅* Unordered sub-list.</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points"><TextRun>Actual numbers don't matter, just that it's a number</TextRun>
+<TextRun break="1">⋅⋅1. Ordered sub-list</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points"><TextRun>And another item.</TextRun></Paragraph>"
+`;
+
+exports[`render > render paragraph 1`] = `
+"<Paragraph><TextRun>Emphasis, aka italics, with </TextRun>
+<TextRun italics="true">asterisks</TextRun>
+<TextRun> or </TextRun>
+<TextRun italics="true">underscores</TextRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Strong emphasis, aka bold, with </TextRun>
+<TextRun bold="true">asterisks</TextRun>
+<TextRun> or </TextRun>
+<TextRun bold="true">underscores</TextRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Combined emphasis with </TextRun>
+<TextRun bold="true">asterisks and </TextRun>
+<TextRun italics="true" bold="true">underscores</TextRun>
+<TextRun>.</TextRun></Paragraph>
+<Paragraph></Paragraph>
+<Paragraph><TextRun>Strikethrough uses two tildes. </TextRun>
+<TextRun strike="true">Scratch this.</TextRun></Paragraph>"
+`;
+
+exports[`render > render tables 1`] = `
+"<Table width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center"><Paragraph><TextRun>Tables</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="center"><TextRun>Are</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="right"><TextRun>Cool</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph><TextRun>col 3 is</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="center"><TextRun>right-aligned</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="right"><TextRun>$1600</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph><TextRun>col 2 is</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="center"><TextRun>centered</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="right"><TextRun>$12</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph><TextRun>zebra stripes</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="center"><TextRun>are neat</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph alignment="right"><TextRun>$1</TextRun></Paragraph></TableCell></TableRow>"></Table>"
+`;
+
+exports[`render > render tables special 1`] = `
+"<Table width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center"><Paragraph><TextRun>Markdown</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph><TextRun>Less</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph><TextRun>Pretty</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph><TextRun italics="true">Still</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph><TextRun italics="true" bold="true">renders</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph><TextRun bold="true">nicely</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph><TextRun>1</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph><TextRun>2</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph><TextRun>3</TextRun></Paragraph></TableCell></TableRow>"></Table>"
+`;
+
+exports[`render > render task list 1`] = `
+"<Paragraph bullet-level="0"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>Finish my changes</TextRun></Paragraph>
+<Paragraph bullet-level="0"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>Push my commits to GitHub</TextRun></Paragraph>
+<Paragraph bullet-level="0"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>Open a pull request</TextRun></Paragraph>
+<Paragraph bullet-level="0"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>@mentions, #refs, </TextRun>
+<ExternalHyperlink link=""><TextRun>links</TextRun></ExternalHyperlink>
+<TextRun>, </TextRun>
+<TextRun bold="true">formatting</TextRun>
+<TextRun>, and </TextRun>
+<TextRun><del></TextRun>
+<TextRun>tags</TextRun>
+<TextRun></del></TextRun>
+<TextRun> supported</TextRun></Paragraph>
+<Paragraph bullet-level="0"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>list syntax required (any unordered or ordered list supported)</TextRun></Paragraph>
+<Paragraph bullet-level="0"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>this is a complete item</TextRun></Paragraph>
+<Paragraph bullet-level="0"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<TextRun>this is an incomplete item</TextRun></Paragraph>"
+`;

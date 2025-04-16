@@ -1,0 +1,69 @@
+{
+  "name": "markdown-docx",
+  "version": "1.0.0",
+  "description": "Convert Markdown file to DOCX format",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "homepage": "https://github.com/vace/markdown-docx",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "browser": "./dist/index.browser.mjs",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "markdown-docx": "bin/markdown-docx.js"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "scripts": {
+    "dev": "tsup --stub",
+    "build": "tsup",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "markdown",
+    "docx",
+    "converter",
+    "markdown-to-docx",
+    "markdown-docx",
+    "markdown-to-word",
+    "markdown-to-doc",
+    "markdown-to-word-doc"
+  ],
+  "author": {
+    "name": "Vace",
+    "email": "ocdo@qq.com",
+    "url": "https://github.com/vace"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vace/markdown-docx.git"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@10.6.5",
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.52.3",
+    "@types/node": "^22.14.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "docx": "^9.3.0",
+    "image-size": "^2.0.2",
+    "marked": "^15.0.8"
+  }
+}
