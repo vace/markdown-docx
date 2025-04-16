@@ -36,8 +36,7 @@ pnpm add markdown-docx
 
 ```javascript
 import fs from 'node:fs/promises';
-import { Packer } from 'docx';
-import markdownDocx from 'markdown-docx';
+import markdownDocx, { Packer } from 'markdown-docx';
 
 async function convertMarkdownToDocx() {
   // Read markdown content
@@ -59,8 +58,7 @@ convertMarkdownToDocx();
 ### Browser
 
 ```javascript
-import { Packer } from 'docx';
-import markdownDocx from 'markdown-docx';
+import markdownDocx, { Packer } from 'markdown-docx';
 
 async function convertMarkdownToDocx(markdownText) {
   // Convert to docx

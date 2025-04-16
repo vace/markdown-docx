@@ -61,6 +61,7 @@
     "vitest": "^3.1.1"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.4",
     "commander": "^13.1.0",
     "docx": "^9.3.0",
     "image-size": "^2.0.2",
