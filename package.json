@@ -2,6 +2,14 @@
   "name": "markdown-docx",
   "version": "1.0.0",
   "description": "Convert Markdown file to DOCX format",
+  "scripts": {
+    "dev": "tsup --stub",
+    "build": "tsup",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "pnpm run build",
+    "release-it": "release-it"
+  },
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -25,13 +33,6 @@
     "dist",
     "bin"
   ],
-  "scripts": {
-    "dev": "tsup --stub",
-    "build": "tsup",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "prepublishOnly": "pnpm run build"
-  },
   "keywords": [
     "markdown",
     "docx",
