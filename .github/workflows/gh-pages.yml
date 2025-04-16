@@ -38,8 +38,8 @@ jobs:
     - name: Install dependencies and build
       working-directory: web
       run: |
-        npm install
-        npm run build
+        yarn install
+        yarn run build
 
     - name: Deploy to GH Pages
       uses: peaceiris/actions-gh-pages@v3
