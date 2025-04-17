@@ -21,42 +21,73 @@
     <div id="app">
       <div class="flex flex-col h-screen max-w-full">
         <!-- Header -->
-        <header class="flex justify-between items-center p-4 bg-white shadow w-full mb-2">
-          <a class="flex items-center space-x-4" target="_blank" href="https://github.com/vace/markdown-docx">
-            <img src="/icon.svg" alt="MarkdownDocx Logo" class="h-8 w-8">
-            <div class="text-xl font-bold text-indigo-600">MarkdownDocx</div>
+        <header class="flex justify-between items-center p-4 bg-white shadow w-full z-10 mb-1">
+          <div class="flex items-center space-x-4">
+            <a class="flex items-center" target="_blank" href="https://github.com/vace/markdown-docx">
+              <img src="/icon.svg" alt="MarkdownDocx Logo" class="h-8 w-8 mr-4">
+              <div class="text-xl font-bold text-indigo-600">MarkdownDocx</div>
+            </a>
             <div class="hidden sm:flex space-x-2" id="template-list">
               <!-- template place holder -->
             </div>
-          </a>
+          </div>
+
           <div class="flex items-center space-x-4">
             <button id="clear" class="px-3 py-1 text-sm rounded hover:bg-gray-100 cursor-pointer">
               
             </button>
-            <label for="upload" class="px-3 py-1 text-sm rounded bg-gray-200 hover:bg-gray-100 cursor-pointer">
+            <label for="upload" class="px-3 py-1 text-sm rounded bg-gray-200 hover:bg-gray-100 cursor-pointer flex items-center" title="Upload Markdown file">
+              <svg class="h-5 w-5 mr-2" viewBox="0 0 48 48" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <mask maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48"
+                  style="mask-type: alpha">
+                  <path d="M48 0H0V48H48V0Z" fill="currentColor" />
+                </mask>
+                <g mask="url(#icon-13c37f497f10b972)">
+                  <path d="M6 24.0083V42H42V24" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M33 15L24 6L15 15" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M23.9917 32V6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+              </svg>
               Upload
               <input id="upload" type="file" accept=".md, .markdown, .txt" class="hidden">
             </label>
-            <button id="download" class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700">Download Docx</button>
-            <a href="https://github.com/vace/markdown-docx" target="_blank" class="text-gray-700 hover:text-gray-700 mx-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+            <button id="download" class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 16l4-5h-3v-6h-2v6h-3l4 5zm-8 2v2h16v-2h-16z" />
+              </svg>
+              Download Docx
+            </button>
+
+            <a href="https://github.com/vace/markdown-docx" target="_blank" class="text-gray-700 hover:text-gray-700 flex items-center bg-gray-200 hover:bg-gray-100 rounded px-3 py-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                 <path
                   d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
               </svg>
+              <span class="hidden sm:inline-block ml-2 font-semibold">GitHub</span>
             </a>
           </div>
+
         </header>
       
+        <!-- Bilingual notice -->
+        <div class="text-center py-2 bg-green-50 text-sm">
+          <p>
+            <span class="text-green-600 font-medium">🔒 Nothing is uploaded, all processing happens locally.</span>
+            <span class="text-green-600 font-medium ml-4">内容不会上传，仅在本地处理。</span>
+          </p>
+        </div>
+        
         <!-- Main content - split view -->
         <div class="flex flex-col md:flex-row flex-1 overflow-hidden">
-          <div class="w-full md:w-1/2 p-4 overflow-auto">
+          <div class="w-full md:w-1/2 p-2 overflow-auto">
             <div class="w-full h-full border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
               <textarea id="markdown-input"
                 class="w-full h-full p-4 resize-none"
                 placeholder="Enter your Markdown here..."></textarea>
             </div>
           </div>
-          <div class="w-full md:w-1/2 p-4 bg-white">
+          <div class="w-full md:w-1/2 p-2 bg-white">
             <div class="w-full max-w-full h-full p-4 border rounded overflow-auto">
               <div id="markdown-preview" class="prose w-full max-w-full min-h-full p-4"></div>
             </div>

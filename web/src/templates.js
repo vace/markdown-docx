@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import initMarkdown from './template.md?raw'
+import initZhMarkdown from './zh-template.md?raw'
 
 export function initTemplates(service) {
 
@@ -34,32 +35,14 @@ export const initialMarkdown = initMarkdown
 
 export const templatesList = [
   {
-    id: 0,
+    id: -1,
     name: 'Default',
     template: initMarkdown,
   },
   {
     id: 1,
     name: 'Template 1',
-    template: `# Template 1: Introduction
-
-This is a simple template showing basic Markdown features.
-
-## Headers
-
-You can create headers using # symbols.
-
-## Lists
-
-- Item 1
-- Item 2
-  - Nested item
-- Item 3
-
-## Formatting
-
-You can use **bold**, *italic*, or ~~strikethrough~~ text.
-`,
+    template: initZhMarkdown,
   },
 
   {
