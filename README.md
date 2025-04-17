@@ -159,7 +159,7 @@ If the output file is not specified, it will use the input filename with a `.doc
 - Lists (ordered and unordered)
 - Links and images
 - Blockquotes
-- Code blocks with syntax highlighting
+- Code blocks
 - Tables
 - Horizontal rules
 - Footnotes
