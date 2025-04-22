@@ -56,6 +56,7 @@ export class MarkdownDocx  {
     const doc = new Document({
       numbering,
       styles: createDocumentStyle(),
+      ...this.options.document,
       ...options,
       footnotes: this.footnotes,
       sections: [

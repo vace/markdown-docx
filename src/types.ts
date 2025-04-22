@@ -1,4 +1,6 @@
-import { IParagraphStylePropertiesOptions, IRunStylePropertiesOptions, IShadingAttributesProperties } from 'docx'
+import {
+  IParagraphStylePropertiesOptions, IPropertiesOptions, IRunStylePropertiesOptions, IShadingAttributesProperties
+} from 'docx'
 import { MarkedOptions, Tokens } from 'marked'
 
 import { Footnote, FootnoteRef } from './extensions'
@@ -34,6 +36,11 @@ export interface MarkdownDocxOptions extends MarkedOptions {
    * @default false
    */
   ignoreHtml?: boolean
+
+  /**
+   * Properties for the document
+   */
+  document?: Omit<IPropertiesOptions, 'sections'>
 }
 
 export type IBlockToken =
