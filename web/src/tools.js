@@ -1,9 +1,12 @@
 import markdownDocx, { Packer } from "markdown-docx"
 
 export function initTools(service) {
-  const clearButton = document.getElementById('clear')
+  const clearButton = document.getElementById('clear-markdown')
   const downloadButton = document.getElementById('download')
   const uploadInput = document.getElementById('upload')
+  const exportDocxButton = document.getElementById('export-docx')
+  const cancelExportButton = document.getElementById('close-modal')
+  const downloadSettingModal = document.getElementById('download-setting')
 
   // Clear button
   clearButton.addEventListener('click', () => {
@@ -11,22 +14,62 @@ export function initTools(service) {
     service.markdown.updatePreview()
   })
 
-  // Download button
-  downloadButton.addEventListener('click', async () => {
-    const markdownContent = service.markdown.getMarkdown()
-    const buffer = await markdownDocx(markdownContent)
-    const blob = await Packer.toBlob(buffer);
-  
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = formatFilename()
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-
-    URL.revokeObjectURL(url)
+  // Download button - now opens the settings modal first
+  downloadButton.addEventListener('click', () => {
+    // Show the download settings modal
+    if (downloadSettingModal) {
+      downloadSettingModal.classList.remove('hidden')
+    }
   })
+
+  // Cancel export button - closes the modal
+  if (cancelExportButton) {
+    cancelExportButton.addEventListener('click', () => {
+      if (downloadSettingModal) {
+        downloadSettingModal.classList.add('hidden')
+      }
+    })
+  }
+
+  // Export DOCX button - performs the actual export
+  if (exportDocxButton) {
+    exportDocxButton.addEventListener('click', async () => {
+      const markdownContent = service.markdown.getMarkdown()
+      const getValueOf = (id) => document.getElementById(id)?.value || undefined
+      const getChecked = (id) => document.getElementById(id)?.checked || false
+      
+      // Get export options from form
+      const options = {
+        name: getValueOf('doc-name'),
+        document: {
+          title: getValueOf('doc-title'),
+          description: getValueOf('doc-description'),
+        },
+        ignoreImage: getChecked('ignore-image'),
+        ignoreFootnote: getChecked('ignore-footnote'),
+        ignoreHtml: getChecked('ignore-html')
+      }
+
+      // Use options for export
+      const buffer = await markdownDocx(markdownContent, options)
+      const blob = await Packer.toBlob(buffer);
+    
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = formatFilename(options.name)
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+  
+      URL.revokeObjectURL(url)
+      
+      // Hide the modal after export
+      if (downloadSettingModal) {
+        downloadSettingModal.classList.add('hidden')
+      }
+    })
+  }
 
   // Upload button
   uploadInput.addEventListener('change', (event) => {
@@ -44,7 +87,7 @@ export function initTools(service) {
   })
 }
 
-function formatFilename () {
+function formatFilename (name) {
   const date = new Date()
   const month = String(date.getMonth() + 1).padStart(2, '0')
   const day = String(date.getDate()).padStart(2, '0')
@@ -52,6 +95,6 @@ function formatFilename () {
   const minutes = String(date.getMinutes()).padStart(2, '0')
   const seconds = String(date.getSeconds()).padStart(2, '0')
   const dateString = `${month}${day}${hours}${minutes}${seconds}`
-  const filename = `markdown-docx-${dateString}.docx`
+  const filename = `${name || 'markdown-docx'}-${dateString}.docx`
   return filename
 }

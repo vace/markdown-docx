@@ -7,13 +7,13 @@
     <title>Markdown to DOCX Converter</title>
     <meta name="robots" content="index, follow" />
     <meta name="author" content="MarkdownDocx Team" />
-    <meta property="og:title" content="Markdown to DOCX Converter" />
-    <meta property="og:description" content="Convert Markdown files to DOCX format easily." />
+    <meta property="og:title" content="Markdown to DOCX Converter | 转换 Markdown 文件为 DOCX" />
+    <meta property="og:description" content="Convert Markdown files to DOCX format easily. | 在线转换 Markdown 文件为 DOCX 格式" />
     <meta property="og:image" content="/icon.svg" />
     <meta property="og:url" content="https://github.com/vace/markdown-docx" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Markdown to DOCX Converter" />
-    <meta name="twitter:description" content="Convert Markdown files to DOCX format easily." />
+    <meta name="twitter:title" content="Markdown to DOCX Converter | 转换 Markdown 文件为 DOCX" />
+    <meta name="twitter:description" content="Convert Markdown files to DOCX format easily. | 在线转换 Markdown 文件为 DOCX 格式" />
     <meta name="twitter:image" content="/icon.svg" />
     <meta name="description" content="Convert Markdown files to DOCX format easily." />
   </head>
@@ -33,10 +33,8 @@
           </div>
 
           <div class="flex items-center space-x-4">
-            <button id="clear" class="px-3 py-1 text-sm rounded hover:bg-gray-100 cursor-pointer">
-              
-            </button>
-            <label for="upload" class="px-3 py-1 text-sm rounded bg-gray-200 hover:bg-gray-100 cursor-pointer flex items-center" title="Upload Markdown file">
+            <button id="lang-toggle" class="px-3 py-1 text-sm rounded bg-gray-200 hover:bg-gray-100 cursor-pointer">EN</button>
+            <label for="upload" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-100 cursor-pointer flex items-center" title="Upload Markdown file">
               <svg class="h-5 w-5 mr-2" viewBox="0 0 48 48" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <mask maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48"
@@ -49,14 +47,14 @@
                   <path d="M23.9917 32V6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                 </g>
               </svg>
-              Upload
+              <span class="lang" data-lang="upload">Upload</span>
               <input id="upload" type="file" accept=".md, .markdown, .txt" class="hidden">
             </label>
             <button id="download" class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 16l4-5h-3v-6h-2v6h-3l4 5zm-8 2v2h16v-2h-16z" />
               </svg>
-              Download Docx
+              <span class="lang" data-lang="download">Download Docx</span>
             </button>
 
             <a href="https://github.com/vace/markdown-docx" target="_blank" class="text-gray-700 hover:text-gray-700 flex items-center bg-gray-200 hover:bg-gray-100 rounded px-3 py-1">
@@ -64,7 +62,7 @@
                 <path
                   d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
               </svg>
-              <span class="hidden sm:inline-block ml-2 font-semibold">GitHub</span>
+              <span data-lang="github" class="lang hidden sm:inline-block ml-2 font-semibold">GitHub</span>
             </a>
           </div>
 
@@ -80,11 +78,19 @@
         
         <!-- Main content - split view -->
         <div class="flex flex-col md:flex-row flex-1 overflow-hidden">
-          <div class="w-full md:w-1/2 p-2 overflow-auto">
+          <div class="w-full md:w-1/2 p-2 overflow-auto relative">
             <div class="w-full h-full border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
               <textarea id="markdown-input"
                 class="w-full h-full p-4 resize-none"
-                placeholder="Enter your Markdown here..."></textarea>
+                placeholder="Enter your Markdown here..."
+                data-placeholder-lang="markdown_placeholder"></textarea>
+            </div>
+            <div class="absolute top-4 right-4 z-10">
+              <button id="clear-markdown" class="p-1 rounded bg-gray-200 hover:bg-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" title="Clear text">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              </button>
             </div>
           </div>
           <div class="w-full md:w-1/2 p-2 bg-white">
@@ -95,6 +101,85 @@
         </div>
       </div>
     </div>
+
+    <div id="download-setting" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500/80 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div
+          class="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full sm:p-6">
+          <div>
+            <h3 class="text-lg leading-6 font-medium text-gray-900 flex items-center" id="modal-title">
+              <span class="lang" data-lang="modal_options">Export Options</span>
+              <span class="text-sm text-gray-500"> (MarkdownDocx v1.0)</span>
+              <!-- close -->
+              <button class="ml-auto text-gray-400 hover:text-gray-500 focus:outline-none cursor-pointer" id="close-modal">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span class="sr-only">Close</span>
+              </button>
+            </h3>
+            <div class="mt-3 text-center sm:mt-5">
+              <form class="mt-2">
+                <div class="mb-4">
+                  <label for="doc-name" class="block text-sm font-medium text-gray-700 text-left lang" data-lang="filename">Filename</label>
+                  <input type="text" id="doc-name" name="doc-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Document Name" data-placeholder-lang="document_name">
+                </div>
+
+                <div class="mb-4">
+                  <label for="doc-title" class="block text-sm font-medium text-gray-700 text-left lang" data-lang="title">Title</label>
+                  <input type="text" id="doc-title" name="doc-title" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Document Title" data-placeholder-lang="document_title">
+                </div>
+
+                <div class="mb-4">
+                  <label for="doc-description" class="block text-sm font-medium text-gray-700 text-left lang" data-lang="description">Description</label>
+                  <textarea id="doc-description" name="doc-description" rows="2" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Document Description" data-placeholder-lang="document_description"></textarea>
+                </div>
+
+                <div class="mt-4 space-y-2">
+                  <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                      <input id="ignore-image" name="ignore-image" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                    </div>
+                    <div class="ml-3 text-sm">
+                      <label for="ignore-image" class="font-medium text-gray-700 lang" data-lang="ignore_images">Ignore Images</label>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                      <input id="ignore-footnote" name="ignore-footnote" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                    </div>
+                    <div class="ml-3 text-sm">
+                      <label for="ignore-footnote" class="font-medium text-gray-700 lang" data-lang="ignore_footnotes">Ignore Footnotes</label>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                      <input id="ignore-html" name="ignore-html" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                    </div>
+                    <div class="ml-3 text-sm">
+                      <label for="ignore-html" class="font-medium text-gray-700 lang" data-lang="ignore_html">Ignore HTML</label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="mt-5 sm:mt-6">
+            <button
+              type="button"
+              id="export-docx"
+              class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+              <span class="lang" data-lang="export_to_docx">Export to DOCX</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

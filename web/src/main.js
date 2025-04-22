@@ -2,6 +2,7 @@ import './style.css'
 import { initTemplates } from './templates'
 import { initMarkdown } from './markdown'
 import { initTools } from './tools'
+import { initLanguage } from './lang.js'
 
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,6 +16,7 @@ function createApp(container) {
     markdown: null,
     templates: null,
     tools: null,
+    lang: initLanguage()
   }
 
   // Initialize the editor and preview
