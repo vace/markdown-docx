@@ -8,7 +8,7 @@ export default defineConfig([
     format: ['esm'],
     dts: false,
     external: ['node:*'],
-    env: { NODE_ENV: 'browser' },
+    env: { NODE_ENV: 'browser', VITEST: 'false' },
     platform: 'browser',
     outExtension(ctx) {
       return {
@@ -23,7 +23,7 @@ export default defineConfig([
     format: ['esm', 'cjs'],
     dts: true,
     external: [],
-    env: { NODE_ENV: 'node' },
+    env: { NODE_ENV: 'node', VITEST: 'false' },
     platform: 'node',
     clean: true,
     outExtension: ({ format }) => ({
