@@ -1,5 +1,6 @@
-import { CheckBox } from "docx";
-import { MarkdownDocx } from "../MarkdownDocx";
+import { CheckBox } from 'docx'
+
+import { MarkdownDocx } from '../MarkdownDocx'
 
 export function renderCheckbox(render: MarkdownDocx, checked?: boolean): CheckBox {
   return new CheckBox({

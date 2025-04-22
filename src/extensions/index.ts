@@ -1,6 +1,7 @@
-import { Lexer } from "marked";
-import footnote from "./footnote";
-import { IExtensionFn } from "./types";
+import { Lexer } from 'marked'
+
+import footnote from './footnote'
+import { IExtensionFn } from './types'
 
 export default function useExtensions(lexer: Lexer) {
   usePlugin(lexer, footnote)

@@ -1,6 +1,7 @@
-import { Tokens } from "marked";
-import { MarkdownImageAdapter } from "../types";
-import { getImageExtension } from "../utils";
+import { Tokens } from 'marked'
+
+import { MarkdownImageAdapter } from '../types'
+import { getImageExtension } from '../utils'
 
 export const downloadImage: MarkdownImageAdapter = async function (token: Tokens.Image) {
   const href = token.href

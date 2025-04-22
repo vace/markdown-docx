@@ -1,11 +1,12 @@
-import { FileChild, Paragraph } from "docx";
-import { IBlockAttr, IBlockToken, IInlineToken } from "../types";
-import { Tokens } from "marked";
-import { MarkdownDocx } from "../MarkdownDocx";
-import { renderParagraph } from "./render-paragraph";
-import { renderTable } from "./render-table";
-import { renderList } from "./render-list";
-import { classes } from "../styles";
+import { FileChild, Paragraph } from 'docx'
+import { Tokens } from 'marked'
+
+import { MarkdownDocx } from '../MarkdownDocx'
+import { classes } from '../styles'
+import { IBlockAttr, IBlockToken, IInlineToken } from '../types'
+import { renderList } from './render-list'
+import { renderParagraph } from './render-paragraph'
+import { renderTable } from './render-table'
 
 export function renderBlocks(render: MarkdownDocx, blocks: IBlockToken[], attr: IBlockAttr = {}): FileChild[] {
   const paragraphs: FileChild[] = []

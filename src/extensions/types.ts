@@ -1,4 +1,4 @@
-import { Lexer, Token, TokenizerExtensionFunction } from "marked"
+import { Lexer, Token, TokenizerExtensionFunction } from 'marked'
 
 export type IExtension = {
   name: string

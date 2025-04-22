@@ -1,12 +1,11 @@
-import { Tokens } from "marked";
 import imagesize, { disableTypes, imageSize } from 'image-size'
+import { Tokens } from 'marked'
+import fs from 'node:fs/promises'
 import http from 'node:http'
 import https from 'node:https'
-import fs from 'node:fs/promises'
 
-
-import { MarkdownImageAdapter } from "../types";
-import { getImageExtension, isHttp } from "../utils";
+import { MarkdownImageAdapter } from '../types'
+import { getImageExtension, isHttp } from '../utils'
 
 export const downloadImage: MarkdownImageAdapter = async function (token: Tokens.Image) {
   const src = token.href

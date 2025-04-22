@@ -1,7 +1,8 @@
-import { MarkdownDocx } from "./MarkdownDocx";
-import { MarkdownDocxOptions } from "./types";
-import { Packer } from "docx";
-import { styles } from "./styles";
+import { Packer } from 'docx'
+
+import { MarkdownDocx } from './MarkdownDocx'
+import { styles } from './styles'
+import { MarkdownDocxOptions } from './types'
 
 export * from "./types"
 

@@ -1,6 +1,7 @@
 import { Lexer, MarkedOptions } from 'marked'
-import { IBlockToken } from './types'
+
 import useExtensions from './extensions'
+import { IBlockToken } from './types'
 
 export function tokenize(markdown: string, options?: MarkedOptions) {
   const laxer = useExtensions(new Lexer(options))

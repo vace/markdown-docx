@@ -1,9 +1,10 @@
-import { ExternalHyperlink, FootnoteReferenceRun, ImageRun, ParagraphChild, TextRun } from "docx";
-import { IInlineToken, ITextAttr } from "../types";
-import { renderText } from "./render-text";
-import { MarkdownDocx } from "../MarkdownDocx";
-import { renderImage } from "./render-image";
-import { classes } from "../styles";
+import { ExternalHyperlink, FootnoteReferenceRun, ImageRun, ParagraphChild, TextRun } from 'docx'
+
+import { MarkdownDocx } from '../MarkdownDocx'
+import { classes } from '../styles'
+import { IInlineToken, ITextAttr } from '../types'
+import { renderImage } from './render-image'
+import { renderText } from './render-text'
 
 export function renderTokens(render: MarkdownDocx, tokens: IInlineToken[], attr: ITextAttr = {}): ParagraphChild[] {
   const children: ParagraphChild[] = []

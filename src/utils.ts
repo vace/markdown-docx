@@ -1,6 +1,7 @@
-import { Alignment, AlignmentType, HeadingLevel } from "docx"
-import { IBlockAttr, MarkdownImageType } from "./types"
-import { Tokens } from "marked"
+import { Alignment, AlignmentType, HeadingLevel } from 'docx'
+import { Tokens } from 'marked'
+
+import { IBlockAttr, MarkdownImageType } from './types'
 
 export function getHeadingLevel(level?: number) {
   if (level == null) {

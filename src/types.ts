@@ -1,6 +1,7 @@
-import { MarkedOptions, Tokens } from "marked";
-import { Footnote, FootnoteRef } from "./extensions";
-import { IParagraphStylePropertiesOptions, IRunStylePropertiesOptions, IShadingAttributesProperties } from "docx";
+import { IParagraphStylePropertiesOptions, IRunStylePropertiesOptions, IShadingAttributesProperties } from 'docx'
+import { MarkedOptions, Tokens } from 'marked'
+
+import { Footnote, FootnoteRef } from './extensions'
 
 export type MarkdownImageType = 'jpg' | 'png' | 'gif' | 'bmp'
 

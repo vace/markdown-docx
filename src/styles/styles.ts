@@ -2,11 +2,15 @@
  * Paragraph Style
  */
 
-import { ICharacterStyleOptions, IParagraphStyleOptions, IParagraphStylePropertiesOptions, IRunStylePropertiesOptions, IStylesOptions, UnderlineType } from "docx";
-import { classes } from "./classes";
-import { colors } from "./colors";
-import { markdown } from "./markdown";
-import { IMarkdownStyle, IMarkdownToken } from "../types";
+import {
+  ICharacterStyleOptions, IParagraphStyleOptions, IParagraphStylePropertiesOptions, IRunStylePropertiesOptions,
+  IStylesOptions, UnderlineType
+} from 'docx'
+
+import { IMarkdownStyle, IMarkdownToken } from '../types'
+import { classes } from './classes'
+import { colors } from './colors'
+import { markdown } from './markdown'
 
 export const defaultStyle: IStylesOptions['default'] = {
   document: {

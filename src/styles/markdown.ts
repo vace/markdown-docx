@@ -1,8 +1,8 @@
-import { UnderlineType } from "docx"
-import { classes } from "./classes"
-import { colors } from "./colors"
-import { IMarkdownStyle, IMarkdownToken } from "../types"
+import { UnderlineType } from 'docx'
 
+import { IMarkdownStyle, IMarkdownToken } from '../types'
+import { classes } from './classes'
+import { colors } from './colors'
 
 export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
   space: {

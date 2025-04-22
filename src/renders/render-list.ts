@@ -1,9 +1,10 @@
-import { Tokens } from "marked";
-import { MarkdownDocx } from "../MarkdownDocx";
-import { IBlockAttr, IBlockToken } from "../types";
-import { FileChild } from "docx";
-import { renderBlocks } from "./render-blocks";
-import { classes } from "../styles";
+import { FileChild } from 'docx'
+import { Tokens } from 'marked'
+
+import { MarkdownDocx } from '../MarkdownDocx'
+import { classes } from '../styles'
+import { IBlockAttr, IBlockToken } from '../types'
+import { renderBlocks } from './render-blocks'
 
 export function renderList (render: MarkdownDocx, block: Tokens.List, attr: IBlockAttr): FileChild[] {
   const list: IBlockAttr['list'] = {

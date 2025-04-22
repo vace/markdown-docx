@@ -1,10 +1,11 @@
-import { Paragraph } from "docx";
-import { MarkdownDocx } from "../MarkdownDocx";
-import { IBlockAttr, IInlineToken } from "../types";
-import { getHeadingLevel, getTextAlignment } from "../utils";
-import { renderText } from "./render-text";
-import { renderTokens } from "./render-tokens";
-import { renderCheckbox } from "./render-checkbox";
+import { Paragraph } from 'docx'
+
+import { MarkdownDocx } from '../MarkdownDocx'
+import { IBlockAttr, IInlineToken } from '../types'
+import { getHeadingLevel, getTextAlignment } from '../utils'
+import { renderCheckbox } from './render-checkbox'
+import { renderText } from './render-text'
+import { renderTokens } from './render-tokens'
 
 export function renderParagraph (render: MarkdownDocx, tokens: IInlineToken[] | string, attr: IBlockAttr) {
   const heading = getHeadingLevel(attr.heading)

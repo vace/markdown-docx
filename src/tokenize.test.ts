@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { tokenize }  from './tokenize'
+import { describe, expect, it } from 'vitest'
+
+import { tokenize } from './tokenize'
 
 describe('tokenize', () => {
 

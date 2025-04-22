@@ -1,6 +1,7 @@
-import { IRunOptions, TextRun } from "docx";
-import { ITextAttr, Writeable } from "../types";
-import { MarkdownDocx } from "../MarkdownDocx";
+import { IRunOptions, TextRun } from 'docx'
+
+import { MarkdownDocx } from '../MarkdownDocx'
+import { ITextAttr, Writeable } from '../types'
 
 export function renderText (render: MarkdownDocx, text: string, attr: ITextAttr): TextRun[] {
   const multipleLines = text.trim().split(/\n/)

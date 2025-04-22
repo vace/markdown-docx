@@ -1,10 +1,11 @@
-import { Tokens } from "marked";
-import { tokenize } from "./tokenize";
-import { Document, FileChild, IPropertiesOptions, IStylesOptions, Paragraph, ParagraphChild } from "docx";
-import { createDocumentStyle, numbering, styles } from "./styles";
-import { IBlockAttr, IBlockToken, IInlineToken, ITextAttr, MarkdownDocxOptions, MarkdownImageItem } from "./types";
-import { renderBlocks, renderTokens } from "./renders";
-import { getImageTokens } from "./utils";
+import { Document, FileChild, IPropertiesOptions, IStylesOptions, Paragraph, ParagraphChild } from 'docx'
+import { Tokens } from 'marked'
+
+import { renderBlocks, renderTokens } from './renders'
+import { createDocumentStyle, numbering, styles } from './styles'
+import { tokenize } from './tokenize'
+import { IBlockAttr, IBlockToken, IInlineToken, ITextAttr, MarkdownDocxOptions, MarkdownImageItem } from './types'
+import { getImageTokens } from './utils'
 
 export class MarkdownDocx  {
 

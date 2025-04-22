@@ -1,4 +1,4 @@
-import { ILevelsOptions, INumberingOptions, LevelFormat } from "docx";
+import { ILevelsOptions, INumberingOptions, LevelFormat } from 'docx'
 
 export const numbering: INumberingOptions = {
   config: [

@@ -1,9 +1,10 @@
-import { Table, TableCell, TableRow, VerticalAlign, WidthType } from "docx";
-import { Tokens } from "marked"
-import { MarkdownDocx } from "../MarkdownDocx"
-import { IBlockAttr, IInlineToken } from "../types"
-import { renderParagraph } from "./render-paragraph";
-import { classes, colors } from "../styles";
+import { Table, TableCell, TableRow, VerticalAlign, WidthType } from 'docx'
+import { Tokens } from 'marked'
+
+import { MarkdownDocx } from '../MarkdownDocx'
+import { classes } from '../styles'
+import { IBlockAttr, IInlineToken } from '../types'
+import { renderParagraph } from './render-paragraph'
 
 export function renderTable(render: MarkdownDocx, block: Tokens.Table, attrs: IBlockAttr): Table {
   const toProps = (token?: Tokens.TableCell, isHeader?: boolean): IBlockAttr => {

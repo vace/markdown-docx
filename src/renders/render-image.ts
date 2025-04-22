@@ -1,8 +1,9 @@
-import { Tokens } from "marked";
-import { MarkdownDocx } from "../MarkdownDocx";
-import { ITextAttr } from "../types";
-import { ImageRun } from "docx";
-import { renderText } from "./render-text";
+import { ImageRun } from 'docx'
+import { Tokens } from 'marked'
+
+import { MarkdownDocx } from '../MarkdownDocx'
+import { ITextAttr } from '../types'
+import { renderText } from './render-text'
 
 export function renderImage(render: MarkdownDocx, block: Tokens.Image, attr: ITextAttr) {
   const image = render.findImage(block)
