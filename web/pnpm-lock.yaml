@@ -12,8 +12,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       markdown-docx:
-        specifier: ^1.1.2
-        version: 1.1.2(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2))
+        specifier: ^1.2.0
+        version: 1.2.0(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2))
     devDependencies:
       '@tailwindcss/typography':
         specifier: ^0.5.16
@@ -404,8 +404,8 @@ packages:
     resolution: {integrity: sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==}
     engines: {node: '>=8'}
 
-  docx@9.4.1:
-    resolution: {integrity: sha512-N92hA8ZZ7DRlXG93gZa702snV316IFGNyp+TXD6KSJ7Wokj5NlqmpqgtOZ7/jXqkdSf03Qh35QzMfVPNWKqv3A==}
+  docx@9.5.0:
+    resolution: {integrity: sha512-WZggg9vVujFcTyyzfIVBBIxlCk51QvhLWl87wtI2zuBdz8C8C0mpRhEVwA2DZd7dXyY0AVejcEVDT9vn7Xm9FA==}
     engines: {node: '>=10'}
 
   enhanced-resolve@5.18.1:
@@ -533,8 +533,8 @@ packages:
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
-  markdown-docx@1.1.2:
-    resolution: {integrity: sha512-2cjDZwN2SxUWh1PLcp4XjxP5QtPSjsdrZkTFatAfevTnzO74EqrTeQ5YxAgCtROf2ZDzEGSfgf8AQXnShF3izQ==}
+  markdown-docx@1.2.0:
+    resolution: {integrity: sha512-w0rNFnY6/mNw66SwLDXcvbgwe9BV6L6X5tAuRwpKHsrV/yoDNIufH6n1nX2SUACec4aQr8LZTusEDr+9GeWePw==}
     hasBin: true
 
   marked@15.0.8:
@@ -890,7 +890,7 @@ snapshots:
 
   detect-libc@2.0.3: {}
 
-  docx@9.4.1:
+  docx@9.5.0:
     dependencies:
       '@types/node': 22.14.1
       hash.js: 1.1.7
@@ -1018,11 +1018,11 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
-  markdown-docx@1.1.2(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2)):
+  markdown-docx@1.2.0(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2)):
     dependencies:
       '@tailwindcss/vite': 4.1.4(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2))
       commander: 13.1.0
-      docx: 9.4.1
+      docx: 9.5.0
       image-size: 2.0.2
       marked: 15.0.8
     transitivePeerDependencies:
