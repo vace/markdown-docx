@@ -14,6 +14,7 @@
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "browser": "dist/index.browser.mjs",
   "homepage": "https://github.com/vace/markdown-docx",
   "exports": {
     ".": {
