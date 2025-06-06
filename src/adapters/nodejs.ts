@@ -24,6 +24,11 @@ export const downloadImage: MarkdownImageAdapter = async function (token: Tokens
       return null
     }
 
+    if (supportType === 'webp') {
+      console.error(`[MarkdownDocx] Webp is not supported in the nodejs environment`)
+      return null
+    }
+
     return {
       type: supportType,
       data: buffer,

@@ -23,11 +23,19 @@ export const downloadImage: MarkdownImageAdapter = async function (token: Tokens
       return null
     }
 
-    const { width, height } = await loadImageSize(blob)
+    let { width, height, image } = await loadImageSize(blob)
+    let imageData = await blob.arrayBuffer()
+    let imageType = type
+
+    if (type === 'webp') {
+      const converted = await convertWebp2Png(width, height, image)
+      imageData = converted
+      imageType = 'png'
+    }
 
     return {
-      type,
-      data: await blob.arrayBuffer(),
+      type: imageType,
+      data: imageData,
       width,
       height,
     }
@@ -38,19 +46,67 @@ export const downloadImage: MarkdownImageAdapter = async function (token: Tokens
 }
 
 async function loadImageSize (blob: Blob) {
-  return new Promise<{ width: number, height: number }>((resolve, reject) => {
-    const img = new Image()
-    img.onload = () => {
+  return new Promise<{ width: number, height: number, image: HTMLImageElement }>((resolve, reject) => {
+    const image = new Image()
+    image.onload = () => {
       resolve({
-        width: img.naturalWidth || img.width,
-        height: img.naturalHeight || img.height
+        width: image.naturalWidth || image.width,
+        height: image.naturalHeight || image.height,
+        image,
       })
-      URL.revokeObjectURL(img.src)
+      URL.revokeObjectURL(image.src)
     }
-    img.onerror = (err: any) => {
-      URL.revokeObjectURL(img.src)
+    image.onerror = (err: any) => {
+      URL.revokeObjectURL(image.src)
       reject(new Error(`Failed to load image: ${err.message || err}`))
     }
-    img.src = URL.createObjectURL(blob)
+    image.src = URL.createObjectURL(blob)
+  })
+}
+
+async function convertWebp2Png(width: number, height: number, image: HTMLImageElement): Promise<ArrayBuffer> {
+  // Try to use OffscreenCanvas for better performance (non-blocking)
+  if (typeof OffscreenCanvas !== 'undefined') {
+    return await convertWithOffscreenCanvas(width, height, image)
+  }
+  // Fallback to regular Canvas
+  return await convertWithRegularCanvas(width, height, image)
+}
+
+async function convertWithOffscreenCanvas(width: number, height: number, image: HTMLImageElement): Promise<ArrayBuffer> {
+  const canvas = new OffscreenCanvas(width, height)
+  const ctx = canvas.getContext('2d')
+  if (!ctx) {
+    throw new Error('Failed to get canvas context for WebP conversion')
+  }
+
+  ctx.drawImage(image, 0, 0, width, height)
+
+  // Convert to blob (PNG format) - this is non-blocking
+  const blob = await canvas.convertToBlob({
+    type: 'image/png',
+    quality: 1.0
+  })
+  return blob.arrayBuffer()
+}
+
+async function convertWithRegularCanvas(width: number, height: number, image: HTMLImageElement): Promise<ArrayBuffer> {
+  // Create a regular canvas element (fallback)
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
+
+  if (!ctx) {
+    throw new Error(`Failed to get canvas context for WebP conversion`)
+  }
+
+  // Set canvas dimensions
+  canvas.width = width
+  canvas.height = height
+
+  // Draw the image onto the canvas
+  ctx.drawImage(image, 0, 0, width, height)
+
+  return new Promise((resolve, reject) => {
+    return canvas.toBlob(blob => blob ? resolve(blob.arrayBuffer()) : reject(new Error('Failed to convert canvas to Blob')), 'image/png', 1.0)
   })
 }

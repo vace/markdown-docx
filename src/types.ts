@@ -5,7 +5,7 @@ import { MarkedOptions, Tokens } from 'marked'
 
 import { Footnote, FootnoteRef } from './extensions'
 
-export type MarkdownImageType = 'jpg' | 'png' | 'gif' | 'bmp'
+export type MarkdownImageType = 'jpg' | 'png' | 'gif' | 'bmp' | 'webp'
 
 export type MarkdownImageItem = {
   type: MarkdownImageType

@@ -58,7 +58,7 @@ export function getImageTokens(tokenList: any[], tokens: Tokens.Image[] = []) {
 
 
 // "jpg" | "png" | "gif" | "bmp"
-const ImageTypeWhitelist = new Set(['jpg', 'png', 'gif', 'bmp'])
+const ImageTypeWhitelist = new Set(['jpg', 'png', 'gif', 'bmp', 'webp'])
 
 export function getImageExtension(filename: string = '', mime?: string | null): MarkdownImageType | null {
   let ext = ''
@@ -92,7 +92,6 @@ export function getImageExtension(filename: string = '', mime?: string | null): 
 
   if (!ext) {
     throw new Error(`Cannot get Image extension from mime type: ${mime}`)
-    return null
   } else if (!ImageTypeWhitelist.has(ext)) {
     throw new Error(`Image extension ${ext} is not supported`)
   }
