@@ -27,6 +27,7 @@ export const downloadImage: MarkdownImageAdapter = async function (token: Tokens
     let imageData = await blob.arrayBuffer()
     let imageType = type
 
+    // @ts-ignore
     if (type === 'webp') {
       const converted = await convertWebp2Png(width, height, image)
       imageData = converted
