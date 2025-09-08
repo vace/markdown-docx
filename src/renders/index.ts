@@ -1,4 +1,5 @@
 export * from './render-blocks'
+export * from './render-code'
 export * from './render-text'
 export * from './render-tokens'
 export * from './render-paragraph'

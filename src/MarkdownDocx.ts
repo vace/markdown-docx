@@ -2,6 +2,7 @@ import { Document, FileChild, IPropertiesOptions, IStylesOptions, Paragraph, Par
 import { Tokens } from 'marked'
 
 import { renderBlocks, renderTokens } from './renders'
+import { SyntaxHighlighter } from './services/syntax-highlighter'
 import { createDocumentStyle, numbering, styles } from './styles'
 import { tokenize } from './tokenize'
 import { IBlockAttr, IBlockToken, IInlineToken, ITextAttr, MarkdownDocxOptions, MarkdownImageItem } from './types'
@@ -26,6 +27,8 @@ export class MarkdownDocx  {
 
   private footnotes:Record<string, { children: Paragraph[]}> = {}
 
+  public syntaxHighlighter: SyntaxHighlighter
+
   public constructor (
     public markdown: string,
     public options: MarkdownDocxOptions = {}
@@ -34,6 +37,9 @@ export class MarkdownDocx  {
       ...MarkdownDocx.defaultOptions,
       ...options,
     }
+    
+    // Initialize syntax highlighter with options
+    this.syntaxHighlighter = new SyntaxHighlighter(this.options.codeHighlight || {})
   }
 
   get ignoreImage () {
@@ -79,7 +85,7 @@ export class MarkdownDocx  {
       }
     }
 
-    return this.toBlocks(tokenList)
+    return await this.toBlocks(tokenList)
   }
 
   public async downloadImageList (tokens: Tokens.Image[]) {
@@ -104,8 +110,8 @@ export class MarkdownDocx  {
     return Promise.all(promises)
   }
 
-  public toBlocks(tokens: IBlockToken[], attr: IBlockAttr = {}): FileChild[] {
-    return renderBlocks(this, tokens, attr)
+  public async toBlocks(tokens: IBlockToken[], attr: IBlockAttr = {}): Promise<FileChild[]> {
+    return await renderBlocks(this, tokens, attr)
   }
 
   public toTexts(tokens: IInlineToken[], attr: ITextAttr = {}): ParagraphChild[] {

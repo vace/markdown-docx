@@ -4,6 +4,7 @@ import {
 import { MarkedOptions, Tokens } from 'marked'
 
 import { Footnote, FootnoteRef } from './extensions'
+import { CodeHighlightOptions } from './services/syntax-highlighter'
 
 export type MarkdownImageType = 'jpg' | 'png' | 'gif' | 'bmp'
 
@@ -41,6 +42,11 @@ export interface MarkdownDocxOptions extends MarkedOptions {
    * Properties for the document
    */
   document?: Omit<IPropertiesOptions, 'sections'>
+
+  /**
+   * Code highlighting options
+   */
+  codeHighlight?: CodeHighlightOptions
 }
 
 export type IBlockToken =

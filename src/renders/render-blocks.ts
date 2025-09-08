@@ -4,14 +4,15 @@ import { Tokens } from 'marked'
 import { MarkdownDocx } from '../MarkdownDocx'
 import { classes } from '../styles'
 import { IBlockAttr, IBlockToken, IInlineToken } from '../types'
+import { renderCodeBlock } from './render-code'
 import { renderList } from './render-list'
 import { renderParagraph } from './render-paragraph'
 import { renderTable } from './render-table'
 
-export function renderBlocks(render: MarkdownDocx, blocks: IBlockToken[], attr: IBlockAttr = {}): FileChild[] {
+export async function renderBlocks(render: MarkdownDocx, blocks: IBlockToken[], attr: IBlockAttr = {}): Promise<FileChild[]> {
   const paragraphs: FileChild[] = []
   for (const block of blocks) {
-    const child = renderBlock(render, block, attr)
+    const child = await renderBlock(render, block, attr)
     if (Array.isArray(child)) {
       paragraphs.push(...child)
     } else if (child) {
@@ -23,7 +24,7 @@ export function renderBlocks(render: MarkdownDocx, blocks: IBlockToken[], attr: 
   return paragraphs
 }
 
-function renderBlock(render: MarkdownDocx, block: IBlockToken, attr: IBlockAttr): FileChild | FileChild[] | false | null {
+async function renderBlock(render: MarkdownDocx, block: IBlockToken, attr: IBlockAttr): Promise<FileChild | FileChild[] | false | null> {
   switch (block.type) {
     case 'space':
       return new Paragraph({
@@ -31,7 +32,7 @@ function renderBlock(render: MarkdownDocx, block: IBlockToken, attr: IBlockAttr)
         style: classes.Space,
       })
     case 'code':
-      return renderParagraph(render, block.text, { ...attr, code: true, style: 'MdCode' })
+      return await renderCodeBlock(render, block as Tokens.Code, attr)
     case 'heading':
       return renderParagraph(render, block.tokens as IInlineToken[], {
         ...attr,
@@ -46,13 +47,13 @@ function renderBlock(render: MarkdownDocx, block: IBlockToken, attr: IBlockAttr)
         style: classes.Hr,
       })
     case 'blockquote':
-      return renderBlocks(render, block.tokens as IBlockToken[], {
+      return await renderBlocks(render, block.tokens as IBlockToken[], {
         ...attr,
         blockquote: true,
         style: classes.Blockquote,
       })
     case 'list':
-      return renderList(render, block, attr)
+      return await renderList(render, block, attr)
     case 'html':
       if (render.ignoreHtml) {
         return false
@@ -84,7 +85,7 @@ function renderBlock(render: MarkdownDocx, block: IBlockToken, attr: IBlockAttr)
       }
       return renderParagraph(render, block.text, attr)
     case 'footnote':
-      const noteList = renderBlocks(render, block.tokens as IBlockToken[], {
+      const noteList = await renderBlocks(render, block.tokens as IBlockToken[], {
         ...attr,
         style: classes.Footnote,
         footnote: true,
