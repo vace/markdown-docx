@@ -107,12 +107,12 @@ exports[`render > render list 1`] = `
 <Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Make my changes</TextRun></Paragraph>
 <Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Fix bug</TextRun></Paragraph>
 <Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Improve formatting</TextRun></Paragraph>
-<Paragraph bullet-level="2" style="MdListItem"><TextRun>Make the headings bigger</TextRun></Paragraph>
+<Paragraph numbering-level="2" numbering-reference="bullet-points" style="MdListItem"><TextRun>Make the headings bigger</TextRun></Paragraph>
 <Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Push my commits to GitHub</TextRun></Paragraph>
 <Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Open a pull request</TextRun></Paragraph>
-<Paragraph bullet-level="1" style="MdListItem"><TextRun>Describe my changes</TextRun></Paragraph>
-<Paragraph bullet-level="1" style="MdListItem"><TextRun>Mention all the members of my team</TextRun></Paragraph>
-<Paragraph bullet-level="2" style="MdListItem"><TextRun>Ask for feedback</TextRun></Paragraph>"
+<Paragraph numbering-level="1" numbering-reference="bullet-points" style="MdListItem"><TextRun>Describe my changes</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="bullet-points" style="MdListItem"><TextRun>Mention all the members of my team</TextRun></Paragraph>
+<Paragraph numbering-level="2" numbering-reference="bullet-points" style="MdListItem"><TextRun>Ask for feedback</TextRun></Paragraph>"
 `;
 
 exports[`render > render list special 1`] = `
@@ -123,12 +123,12 @@ exports[`render > render list special 1`] = `
 <Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Make my changes</TextRun></Paragraph>
 <Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Fix bug</TextRun></Paragraph>
 <Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Improve formatting</TextRun></Paragraph>
-<Paragraph bullet-level="2" style="MdListItem"><TextRun>Make the headings bigger</TextRun></Paragraph>
+<Paragraph numbering-level="2" numbering-reference="bullet-points" style="MdListItem"><TextRun>Make the headings bigger</TextRun></Paragraph>
 <Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Push my commits to GitHub</TextRun></Paragraph>
 <Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Open a pull request</TextRun></Paragraph>
-<Paragraph bullet-level="1" style="MdListItem"><TextRun>Describe my changes</TextRun></Paragraph>
-<Paragraph bullet-level="1" style="MdListItem"><TextRun>Mention all the members of my team</TextRun></Paragraph>
-<Paragraph bullet-level="2" style="MdListItem"><TextRun>Ask for feedback</TextRun></Paragraph>"
+<Paragraph numbering-level="1" numbering-reference="bullet-points" style="MdListItem"><TextRun>Describe my changes</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="bullet-points" style="MdListItem"><TextRun>Mention all the members of my team</TextRun></Paragraph>
+<Paragraph numbering-level="2" numbering-reference="bullet-points" style="MdListItem"><TextRun>Ask for feedback</TextRun></Paragraph>"
 `;
 
 exports[`render > render paragraph 1`] = `
@@ -154,35 +154,35 @@ exports[`render > render paragraph 1`] = `
 `;
 
 exports[`render > render tables 1`] = `
-"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Tables</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph alignment="center" style="MdTableHeader"><TextRun>Are</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph alignment="right" style="MdTableHeader"><TextRun>Cool</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 3 is</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>right-aligned</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center"><Paragraph alignment="right" style="MdTableCell"><TextRun>$1600</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 2 is</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>centered</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center"><Paragraph alignment="right" style="MdTableCell"><TextRun>$12</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>zebra stripes</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>are neat</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center"><Paragraph alignment="right" style="MdTableCell"><TextRun>$1</TextRun></Paragraph></TableCell></TableRow>"></Table>"
+"<Table style="MdTable" width-size="100" width-type="pct" borders-top-style="single" borders-top-size="4" borders-top-color="E1E4E8" borders-bottom-style="single" borders-bottom-size="4" borders-bottom-color="E1E4E8" borders-left-style="none" borders-right-style="none" borders-insideHorizontal-style="single" borders-insideHorizontal-size="2" borders-insideHorizontal-color="E1E4E8" borders-insideVertical-style="single" borders-insideVertical-size="2" borders-insideVertical-color="F6F8FA" rows="<TableRow tableHeader="true" cantSplit="true" height-value="720" height-rule="atLeast"><TableCell verticalAlign="center" shading-fill="F6F8FA" margins-top="100" margins-bottom="100" margins-left="120" margins-right="120" borders-left-style="none"><Paragraph style="MdTableHeader"><TextRun>Tables</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F6F8FA" margins-top="100" margins-bottom="100" margins-left="120" margins-right="120" ><Paragraph alignment="center" style="MdTableHeader"><TextRun>Are</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F6F8FA" margins-top="100" margins-bottom="100" margins-left="120" margins-right="120" borders-right-style="none"><Paragraph alignment="right" style="MdTableHeader"><TextRun>Cool</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true" height-value="576" height-rule="atLeast"><TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" borders-left-style="none"><Paragraph style="MdTableCell"><TextRun>col 3 is</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" ><Paragraph alignment="center" style="MdTableCell"><TextRun>right-aligned</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" borders-right-style="none"><Paragraph alignment="right" style="MdTableCell"><TextRun>$1600</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true" height-value="576" height-rule="atLeast"><TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" shading-fill="FAFBFC" borders-left-style="none"><Paragraph style="MdTableCell"><TextRun>col 2 is</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" shading-fill="FAFBFC" ><Paragraph alignment="center" style="MdTableCell"><TextRun>centered</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" shading-fill="FAFBFC" borders-right-style="none"><Paragraph alignment="right" style="MdTableCell"><TextRun>$12</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true" height-value="576" height-rule="atLeast"><TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" borders-left-style="none" borders-bottom-style="single" borders-bottom-size="4" borders-bottom-color="E1E4E8"><Paragraph style="MdTableCell"><TextRun>zebra stripes</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" borders-bottom-style="single" borders-bottom-size="4" borders-bottom-color="E1E4E8"><Paragraph alignment="center" style="MdTableCell"><TextRun>are neat</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" borders-right-style="none" borders-bottom-style="single" borders-bottom-size="4" borders-bottom-color="E1E4E8"><Paragraph alignment="right" style="MdTableCell"><TextRun>$1</TextRun></Paragraph></TableCell></TableRow>"></Table>"
 `;
 
 exports[`render > render tables special 1`] = `
-"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Markdown</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Less</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Pretty</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdEm" italics="true">Still</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdCode" >renders</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdStrong" bold="true">nicely</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>1</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>2</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>3</TextRun></Paragraph></TableCell></TableRow>"></Table>"
+"<Table style="MdTable" width-size="100" width-type="pct" borders-top-style="single" borders-top-size="4" borders-top-color="E1E4E8" borders-bottom-style="single" borders-bottom-size="4" borders-bottom-color="E1E4E8" borders-left-style="none" borders-right-style="none" borders-insideHorizontal-style="single" borders-insideHorizontal-size="2" borders-insideHorizontal-color="E1E4E8" borders-insideVertical-style="single" borders-insideVertical-size="2" borders-insideVertical-color="F6F8FA" rows="<TableRow tableHeader="true" cantSplit="true" height-value="720" height-rule="atLeast"><TableCell verticalAlign="center" shading-fill="F6F8FA" margins-top="100" margins-bottom="100" margins-left="120" margins-right="120" borders-left-style="none"><Paragraph style="MdTableHeader"><TextRun>Markdown</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F6F8FA" margins-top="100" margins-bottom="100" margins-left="120" margins-right="120" ><Paragraph style="MdTableHeader"><TextRun>Less</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F6F8FA" margins-top="100" margins-bottom="100" margins-left="120" margins-right="120" borders-right-style="none"><Paragraph style="MdTableHeader"><TextRun>Pretty</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true" height-value="576" height-rule="atLeast"><TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" borders-left-style="none"><Paragraph style="MdTableCell"><TextRun style="MdEm" italics="true">Still</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" ><Paragraph style="MdTableCell"><TextRun style="MdCode" >renders</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" borders-right-style="none"><Paragraph style="MdTableCell"><TextRun style="MdStrong" bold="true">nicely</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true" height-value="576" height-rule="atLeast"><TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" shading-fill="FAFBFC" borders-left-style="none" borders-bottom-style="single" borders-bottom-size="4" borders-bottom-color="E1E4E8"><Paragraph style="MdTableCell"><TextRun>1</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" shading-fill="FAFBFC" borders-bottom-style="single" borders-bottom-size="4" borders-bottom-color="E1E4E8"><Paragraph style="MdTableCell"><TextRun>2</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" margins-top="80" margins-bottom="80" margins-left="120" margins-right="120" shading-fill="FAFBFC" borders-right-style="none" borders-bottom-style="single" borders-bottom-size="4" borders-bottom-color="E1E4E8"><Paragraph style="MdTableCell"><TextRun>3</TextRun></Paragraph></TableCell></TableRow>"></Table>"
 `;
 
 exports[`render > render task list 1`] = `
-"<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+"<Paragraph numbering-level="0" numbering-reference="bullet-points" style="MdListItem"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
 <TextRun>Finish my changes</TextRun></Paragraph>
-<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<Paragraph numbering-level="0" numbering-reference="bullet-points" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
 <TextRun>Push my commits to GitHub</TextRun></Paragraph>
-<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<Paragraph numbering-level="0" numbering-reference="bullet-points" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
 <TextRun>Open a pull request</TextRun></Paragraph>
-<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<Paragraph numbering-level="0" numbering-reference="bullet-points" style="MdListItem"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
 <TextRun>@mentions, #refs, </TextRun>
 <ExternalHyperlink link=""><TextRun style="MdLink">links</TextRun></ExternalHyperlink>
 <TextRun>, </TextRun>
@@ -192,10 +192,10 @@ exports[`render > render task list 1`] = `
 <TextRun>tags</TextRun>
 <TextRun style="MdTag"></del></TextRun>
 <TextRun> supported</TextRun></Paragraph>
-<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<Paragraph numbering-level="0" numbering-reference="bullet-points" style="MdListItem"><Checkbox checked="true" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
 <TextRun>list syntax required (any unordered or ordered list supported)</TextRun></Paragraph>
-<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<Paragraph numbering-level="0" numbering-reference="bullet-points" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
 <TextRun>this is a complete item</TextRun></Paragraph>
-<Paragraph bullet-level="0" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
+<Paragraph numbering-level="0" numbering-reference="bullet-points" style="MdListItem"><Checkbox checked="false" checkedState-value="2611" checkedState-font="MS Gothic" uncheckedState-value="2610" uncheckedState-font="MS Gothic"></Checkbox>
 <TextRun>this is an incomplete item</TextRun></Paragraph>"
 `;

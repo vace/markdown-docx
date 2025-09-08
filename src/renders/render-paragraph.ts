@@ -10,18 +10,15 @@ import { renderTokens } from './render-tokens'
 export function renderParagraph (render: MarkdownDocx, tokens: IInlineToken[] | string, attr: IBlockAttr) {
   const heading = getHeadingLevel(attr.heading)
   const alignment = getTextAlignment(attr.align)
-  const bullet = attr.list?.type === 'bullet' ? {
+  // 对于无序列表，使用 numbering 配置但引用 bullet-points
+  const numbering = attr.list ? {
     level: Math.min(attr.list.level, 9),
-  } : undefined
-  const numbering = attr.list?.type === 'number' ? {
-    level: Math.min(attr.list.level, 9),
-    reference: 'numbering-points',
+    reference: attr.list.type === 'bullet' ? 'bullet-points' : 'numbering-points',
   } : undefined
 
   const options = {
     heading,
     alignment,
-    bullet,
     numbering,
     style: attr.style
   }

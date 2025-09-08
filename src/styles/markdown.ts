@@ -159,15 +159,33 @@ export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
     // special
     properties: {
       shading: {
-        fill: 'F1F2F1',
+        fill: 'F6F8FA', // Light gray background
       },
     },
     run: {
       bold: true,
-    }
+      size: 22, // Slightly larger text for headers
+      color: '24292E', // Dark gray text
+    },
+    paragraph: {
+      spacing: {
+        before: 60,
+        after: 60,
+      },
+    },
   },
   tableCell: {
     className: classes.TableCell,
+    run: {
+      size: 20, // Standard text size
+      color: '24292E', // Dark gray text
+    },
+    paragraph: {
+      spacing: {
+        before: 40,
+        after: 40,
+      },
+    },
   },
   heading1: {
     className: classes.Heading1,
