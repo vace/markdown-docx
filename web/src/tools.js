@@ -47,7 +47,13 @@ export function initTools(service) {
         },
         ignoreImage: getChecked('ignore-image'),
         ignoreFootnote: getChecked('ignore-footnote'),
-        ignoreHtml: getChecked('ignore-html')
+        ignoreHtml: getChecked('ignore-html'),
+        codeHighlight: {
+          enabled: true,
+          theme: 'github-light',
+          showLineNumbers: false,
+          showLanguage: false,
+        }
       }
 
       // Use options for export

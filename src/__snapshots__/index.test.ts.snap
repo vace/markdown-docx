@@ -18,9 +18,16 @@ exports[`render > render blockquotes 1`] = `
 `;
 
 exports[`render > render code blocks 1`] = `
-"<Paragraph style="MdCode"><TextRun>function test() {</TextRun>
-<TextRun break="1">  console.log('test');</TextRun>
-<TextRun break="1">}</TextRun></Paragraph>"
+"<Paragraph style="MdCode" spacing-before="120" spacing-after="0" spacing-line="276" indent-left="360" border-top-style="single" border-top-size="1" border-top-color="E1E4E8" border-top-space="8" border-left-style="single" border-left-size="1" border-left-color="E1E4E8" border-left-space="8" border-right-style="single" border-right-size="1" border-right-color="E1E4E8" border-right-space="8" shading-fill="F6F8FA"><TextRun font="Cascadia Code, Consolas, Courier New" size="20" color="D73A49" bold="false" italics="false">function</TextRun>
+<TextRun font="Cascadia Code, Consolas, Courier New" size="20" color="24292E" bold="false" italics="false"> </TextRun>
+<TextRun font="Cascadia Code, Consolas, Courier New" size="20" color="6F42C1" bold="false" italics="false">test</TextRun>
+<TextRun font="Cascadia Code, Consolas, Courier New" size="20" color="24292E" bold="false" italics="false">() {</TextRun></Paragraph>
+<Paragraph style="MdCode" spacing-before="0" spacing-after="0" spacing-line="276" indent-left="360" border-left-style="single" border-left-size="1" border-left-color="E1E4E8" border-left-space="8" border-right-style="single" border-right-size="1" border-right-color="E1E4E8" border-right-space="8" shading-fill="F6F8FA"><TextRun font="Cascadia Code, Consolas, Courier New" size="20" color="24292E" bold="false" italics="false">  console.</TextRun>
+<TextRun font="Cascadia Code, Consolas, Courier New" size="20" color="6F42C1" bold="false" italics="false">log</TextRun>
+<TextRun font="Cascadia Code, Consolas, Courier New" size="20" color="24292E" bold="false" italics="false">(</TextRun>
+<TextRun font="Cascadia Code, Consolas, Courier New" size="20" color="032F62" bold="false" italics="false">'test'</TextRun>
+<TextRun font="Cascadia Code, Consolas, Courier New" size="20" color="24292E" bold="false" italics="false">);</TextRun></Paragraph>
+<Paragraph style="MdCode" spacing-before="0" spacing-after="120" spacing-line="276" indent-left="360" border-bottom-style="single" border-bottom-size="1" border-bottom-color="E1E4E8" border-bottom-space="8" border-left-style="single" border-left-size="1" border-left-color="E1E4E8" border-left-space="8" border-right-style="single" border-right-size="1" border-right-color="E1E4E8" border-right-space="8" shading-fill="F6F8FA"><TextRun font="Cascadia Code, Consolas, Courier New" size="20" color="24292E" bold="false" italics="false">}</TextRun></Paragraph>"
 `;
 
 exports[`render > render escape 1`] = `
@@ -147,9 +154,9 @@ exports[`render > render paragraph 1`] = `
 `;
 
 exports[`render > render tables 1`] = `
-"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Tables</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph alignment="center" style="MdTableHeader"><TextRun>Are</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph alignment="right" style="MdTableHeader"><TextRun>Cool</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 3 is</TextRun></Paragraph></TableCell>
+"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Tables</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph alignment="center" style="MdTableHeader"><TextRun>Are</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph alignment="right" style="MdTableHeader"><TextRun>Cool</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 3 is</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>right-aligned</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph alignment="right" style="MdTableCell"><TextRun>$1600</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 2 is</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>centered</TextRun></Paragraph></TableCell>
@@ -159,9 +166,9 @@ exports[`render > render tables 1`] = `
 `;
 
 exports[`render > render tables special 1`] = `
-"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Markdown</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Less</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Pretty</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdEm" italics="true">Still</TextRun></Paragraph></TableCell>
+"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Markdown</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Less</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Pretty</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdEm" italics="true">Still</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdCode" >renders</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdStrong" bold="true">nicely</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>1</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>2</TextRun></Paragraph></TableCell>
