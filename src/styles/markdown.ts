@@ -156,16 +156,9 @@ export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
   },
   tableHeader: {
     className: classes.TableHeader,
-    // special
-    properties: {
-      shading: {
-        fill: 'F6F8FA', // Light gray background
-      },
-    },
     run: {
       bold: true,
       size: 22, // Slightly larger text for headers
-      color: '24292E', // Dark gray text
     },
     paragraph: {
       spacing: {
@@ -178,7 +171,6 @@ export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
     className: classes.TableCell,
     run: {
       size: 20, // Standard text size
-      color: '24292E', // Dark gray text
     },
     paragraph: {
       spacing: {
@@ -192,7 +184,6 @@ export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
     run: {
       size: 36, // 18pt
       bold: true,
-      color: colors.heading1,
     },
     paragraph: {
       spacing: {
@@ -208,7 +199,6 @@ export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
     run: {
       size: 32, // 16pt
       bold: true,
-      color: colors.heading2,
     },
     paragraph: {
       spacing: {
@@ -224,7 +214,6 @@ export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
     run: {
       size: 28, // 14pt
       bold: true,
-      color: colors.heading3,
     },
     paragraph: {
       spacing: {
@@ -240,7 +229,6 @@ export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
     run: {
       size: 26, // 13pt
       bold: true,
-      color: colors.heading3,
     },
     paragraph: {
       spacing: {
@@ -257,7 +245,6 @@ export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
       size: 24, // 12pt
       bold: true,
       italics: true,
-      color: colors.heading3,
     },
     paragraph: {
       spacing: {
@@ -274,7 +261,6 @@ export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
       size: 24, // 12pt
       bold: false,
       italics: true,
-      color: colors.heading3,
     },
     paragraph: {
       spacing: {
@@ -332,7 +318,6 @@ export const markdown: Record<IMarkdownToken, IMarkdownStyle> = {
     className: classes.Del,
     run: {
       strike: true,
-      color: colors.del,
     },
   },
   br: {

@@ -110,10 +110,6 @@ export function renderTable(render: MarkdownDocx, block: Tokens.Table, attrs: IB
                 left: 120,
                 right: 120,
               },
-              // Zebra striping for even rows (optional)
-              shading: rowIndex % 2 === 1 ? {
-                fill: 'FAFBFC',
-              } : undefined,
               // Add borders
               borders: {
                 ...(cellIndex === 0 && {
