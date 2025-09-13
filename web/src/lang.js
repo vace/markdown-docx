@@ -67,7 +67,7 @@ export const lang = {
 
 
 // Initialize language system
-export function initLanguage() {
+export function initLanguage(service) {
   // Get preferred language from localStorage or use browser language
   const savedLanguage = localStorage.getItem('preferred_language')
   const browserLanguage = navigator.language.startsWith('zh') ? 'zh' : 'en'
