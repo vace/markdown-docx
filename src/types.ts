@@ -1,9 +1,11 @@
 import {
-  IParagraphStylePropertiesOptions, IPropertiesOptions, IRunStylePropertiesOptions, IShadingAttributesProperties
+  FileChild, IParagraphStylePropertiesOptions, IPropertiesOptions, IRunStylePropertiesOptions,
+  IShadingAttributesProperties, ParagraphChild
 } from 'docx'
 import { MarkedOptions, Tokens } from 'marked'
 
-import { Footnote, FootnoteRef } from './extensions'
+import { BlockKatex, Footnote, FootnoteRef, InlineKatex } from './extensions'
+import { MarkdownDocx } from './MarkdownDocx'
 
 export type MarkdownImageType = 'jpg' | 'png' | 'gif' | 'bmp'
 
@@ -72,6 +74,8 @@ export type IInlineToken =
   | Tokens.Image
   // plugin
   | FootnoteRef
+  | InlineKatex
+  | BlockKatex
 
 export type IParagraphToken =
   | Tokens.Paragraph
@@ -141,3 +145,7 @@ export type IMarkdownStyle = {
   // special attributes
   properties?: any
 }
+
+export type IMarkdownRenderFunction = 
+  (render: MarkdownDocx, token: IInlineToken | IBlockToken, attr?: ITextAttr | IBlockAttr)
+    => ParagraphChild | ParagraphChild[] | FileChild | FileChild[] | false | null

@@ -1265,6 +1265,78 @@ exports[`tokenize > parse list special 1`] = `
 ]
 `;
 
+exports[`tokenize > parse math 1`] = `
+[
+  {
+    "raw": "** Inline math: ** $E=mc^2$",
+    "text": "** Inline math: ** $E=mc^2$",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "** Inline math: ** ",
+        "text": "** Inline math: ** ",
+        "type": "text",
+      },
+      {
+        "displayMode": false,
+        "raw": "$E=mc^2$",
+        "text": "E=mc^2",
+        "type": "inlineKatex",
+      },
+    ],
+    "type": "paragraph",
+  },
+  {
+    "raw": "
+
+",
+    "type": "space",
+  },
+  {
+    "raw": "** Block math: **",
+    "text": "** Block math: **",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "** Block math: **",
+        "text": "** Block math: **",
+        "type": "text",
+      },
+    ],
+    "type": "paragraph",
+  },
+  {
+    "raw": "
+
+",
+    "type": "space",
+  },
+  {
+    "displayMode": true,
+    "raw": "$$
+E=mc^2
+$$
+
+",
+    "text": "E=mc^2",
+    "type": "blockKatex",
+  },
+  {
+    "raw": "** End Math **",
+    "text": "** End Math **",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "** End Math **",
+        "text": "** End Math **",
+        "type": "text",
+      },
+    ],
+    "type": "paragraph",
+  },
+]
+`;
+
 exports[`tokenize > parse paragraph 1`] = `
 [
   {

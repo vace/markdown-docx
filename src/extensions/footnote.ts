@@ -1,4 +1,9 @@
 import type { Lexer } from 'marked'
+import { FootnoteReferenceRun, Paragraph } from 'docx'
+
+import { MarkdownDocx } from '../MarkdownDocx'
+import { classes } from '../styles'
+import { IBlockAttr, IBlockToken } from '../types'
 import { Footnote, FootnoteRef } from './types'
 
 /**
@@ -13,6 +18,7 @@ export default function footnote(lexer: Lexer) {
 
   return {
     name: 'footnote',
+    init,
     block: tokenizerBlock,
     inline: tokenizerInline,
   }
@@ -72,4 +78,23 @@ export default function footnote(lexer: Lexer) {
       return ref
     }
   }
+}
+
+function init(render: MarkdownDocx) {
+  render.addInlineRender('footnoteRef', renderInline)
+  render.addBlockRender('footnote', renderBlock)
+}
+
+function renderInline(render: MarkdownDocx, token: FootnoteRef, attr: IBlockAttr) {
+  return new FootnoteReferenceRun(token.id)
+}
+
+function renderBlock(render: MarkdownDocx, block: Footnote, attr: IBlockAttr) {
+  const noteList = render.toBlocks(block.tokens as IBlockToken[], {
+    ...attr,
+    style: classes.Footnote,
+    footnote: true,
+  })
+  render.addFootnote(block.id, noteList as Paragraph[])
+  return false
 }

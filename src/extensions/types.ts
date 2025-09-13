@@ -1,9 +1,15 @@
-import { Lexer, Token, TokenizerExtensionFunction } from 'marked'
+import { Lexer, Token, TokenizerExtensionFunction, TokenizerStartFunction } from 'marked'
+
+import { MarkdownDocx } from '../MarkdownDocx'
 
 export type IExtension = {
   name: string
+  startBlock?: TokenizerStartFunction
   block: TokenizerExtensionFunction
+  startInline?: TokenizerStartFunction
   inline: TokenizerExtensionFunction
+
+  init?: (render: MarkdownDocx) => void
 }
 
 export type IExtensionFn = (lexer: Lexer) => IExtension
@@ -30,3 +36,16 @@ export type FootnoteRef = {
   label: string
 }
 
+export type InlineKatex = {
+  type: 'inlineKatex'
+  raw: string
+  displayMode: boolean
+  text: string
+}
+
+export type BlockKatex = {
+  type: 'blockKatex'
+  raw: string
+  displayMode: boolean
+  text: string
+}

@@ -3,7 +3,7 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { Command } from 'commander'
-import markdownToDocx, { Packer } from '../dist/node/index.mjs'
+import markdownToDocx, { Packer } from '../dist/index.node.mjs'
 
 const pkg = JSON.parse(await fs.readFile(new URL('../package.json', import.meta.url), 'utf-8'))
 

@@ -1,9 +1,9 @@
-import { Lexer, MarkedOptions } from 'marked'
 
 import useExtensions from './extensions'
+import { MarkdownDocx } from './MarkdownDocx'
 import { IBlockToken } from './types'
 
-export function tokenize(markdown: string, options?: MarkedOptions) {
-  const laxer = useExtensions(new Lexer(options))
-  return laxer.lex(markdown) as IBlockToken[]
+export function tokenize(render: MarkdownDocx) {
+  const laxer = useExtensions(render)
+  return laxer.lex(render.markdown) as IBlockToken[]
 }

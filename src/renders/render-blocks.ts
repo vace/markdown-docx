@@ -83,15 +83,7 @@ function renderBlock(render: MarkdownDocx, block: IBlockToken, attr: IBlockAttr)
         })
       }
       return renderParagraph(render, block.text, attr)
-    case 'footnote':
-      const noteList = renderBlocks(render, block.tokens as IBlockToken[], {
-        ...attr,
-        style: classes.Footnote,
-        footnote: true,
-      })
-      render.addFootnote(block.id, noteList as Paragraph[])
-      return false
     default:
-      return null
+      return render.useBlockRender(block, attr)
   }
 }

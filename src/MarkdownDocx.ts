@@ -30,6 +30,7 @@ export class MarkdownDocx  {
     public markdown: string,
     public options: MarkdownDocxOptions = {}
   ) {
+
     this.options = {
       ...MarkdownDocx.defaultOptions,
       ...options,
@@ -69,7 +70,7 @@ export class MarkdownDocx  {
   }
 
   public async toSection () {
-    const tokenList = tokenize(this.markdown, this.options)
+    const tokenList = tokenize(this)
 
     // parse image
     if (!this.ignoreImage) {
@@ -124,5 +125,32 @@ export class MarkdownDocx  {
       return null
     }
     return image
+  }
+
+  public _blockRender: Map<string, Function> = new Map()
+  public _inlineRender: Map<string, Function> = new Map()
+
+  public addBlockRender(blockType: string, renderFn: Function) {
+    this._blockRender.set(blockType, renderFn)
+  }
+
+  public addInlineRender(inlineType: string, renderFn: Function) {
+    this._inlineRender.set(inlineType, renderFn)
+  }
+
+  public useBlockRender(block: IBlockToken, attr: IBlockAttr): FileChild | FileChild[] | false | null {
+    const renderFn = this._blockRender.get(block.type)
+    if (renderFn) {
+      return renderFn(this, block, attr)
+    }
+    return null
+  }
+
+  public useInlineRender(token: IInlineToken, attr: ITextAttr): ParagraphChild | ParagraphChild[] | false | null {
+    const renderFn = this._inlineRender.get(token.type)
+    if (renderFn) {
+      return renderFn(this, token, attr)
+    }
+    return null
   }
 }

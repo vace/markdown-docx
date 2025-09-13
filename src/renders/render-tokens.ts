@@ -78,9 +78,7 @@ function flatInlineToken(render: MarkdownDocx, token: IInlineToken, attr: ITextA
       return renderText(render, token.text, attr)
     case 'image':
       return renderImage(render, token, attr)
-    case 'footnoteRef':
-      return new FootnoteReferenceRun(token.id)
     default:
-      return null
+      return render.useInlineRender(token, attr)
   }
 }

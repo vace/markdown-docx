@@ -1,11 +1,17 @@
 import { describe, expect, it } from 'vitest'
 
 import { tokenize } from './tokenize'
+import { MarkdownDocx } from './MarkdownDocx'
 
 describe('tokenize', () => {
+  const render = new MarkdownDocx('')
+  const _tokenize = (md: string) => {
+    render.markdown = md
+    return tokenize(render)
+  }
 
   it('parse heading', () => {
-    expect(tokenize(`# h1 Heading 8-)
+    expect(_tokenize(`# h1 Heading 8-)
 ## h2 Heading
 ### h3 Heading
 #### h4 Heading
@@ -14,7 +20,7 @@ describe('tokenize', () => {
   })
 
   it('parse paragraph', () => {
-    expect(tokenize(`Emphasis, aka italics, with *asterisks* or _underscores_.
+    expect(_tokenize(`Emphasis, aka italics, with *asterisks* or _underscores_.
 
 Strong emphasis, aka bold, with **asterisks** or __underscores__.
 
@@ -24,7 +30,7 @@ Strikethrough uses two tildes. ~~Scratch this.~~`)).toMatchSnapshot()
   })
 
   it('parse list', () => {
-    expect(tokenize(`
+    expect(_tokenize(`
 1. Make my changes
     1. Fix bug
     2. Improve formatting
@@ -37,7 +43,7 @@ Strikethrough uses two tildes. ~~Scratch this.~~`)).toMatchSnapshot()
   })
 
   it('parse list special', () => {
-    expect(tokenize(`1. First ordered list item
+    expect(_tokenize(`1. First ordered list item
 2. Another item
 ⋅⋅* Unordered sub-list.
 1. Actual numbers don't matter, just that it's a number
@@ -46,7 +52,7 @@ Strikethrough uses two tildes. ~~Scratch this.~~`)).toMatchSnapshot()
   })
 
   it('parse task list', () => {
-    expect(tokenize(`- [x] Finish my changes
+    expect(_tokenize(`- [x] Finish my changes
 - [ ] Push my commits to GitHub
 - [ ] Open a pull request
 - [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported
@@ -56,7 +62,7 @@ Strikethrough uses two tildes. ~~Scratch this.~~`)).toMatchSnapshot()
   })
 
   it('parse links', () => {
-    expect(tokenize(`[I'm an inline-style link](https://www.google.com)
+    expect(_tokenize(`[I'm an inline-style link](https://www.google.com)
 
 [I'm an inline-style link with title](https://www.google.com "Google's Homepage")
 
@@ -68,7 +74,7 @@ Strikethrough uses two tildes. ~~Scratch this.~~`)).toMatchSnapshot()
   })
 
   it('parse images', () => {
-    expect(tokenize(`Inline-style:
+    expect(_tokenize(`Inline-style:
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 Reference-style:
@@ -78,7 +84,7 @@ Reference-style:
   })
 
   it('parse blockquotes', () => {
-    expect(tokenize(`> Blockquotes are very handy in email to emulate reply text.
+    expect(_tokenize(`> Blockquotes are very handy in email to emulate reply text.
 > This line is part of the same quote.
 
 Quote break.
@@ -91,7 +97,7 @@ Quote break.
   })
 
   it('parse tables', () => {
-    expect(tokenize(`| Tables        | Are           | Cool  |
+    expect(_tokenize(`| Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
 | col 3 is      | right-aligned | $1600 |
 | col 2 is      | centered      |   $12 |
@@ -99,7 +105,7 @@ Quote break.
   })
 
   it('parse tables special', () => {
-    expect(tokenize(`Markdown | Less | Pretty
+    expect(_tokenize(`Markdown | Less | Pretty
 --- | --- | ---
 *Still* | \`renders\` | **nicely**
 1 | 2 | 3`)).toMatchSnapshot()
@@ -107,11 +113,11 @@ Quote break.
 
 
   it('parse code blocks', () => {
-    expect(tokenize("```javascript\nfunction test() {\n  console.log('test');\n}\n```")).toMatchSnapshot()
+    expect(_tokenize("```javascript\nfunction test() {\n  console.log('test');\n}\n```")).toMatchSnapshot()
   })
 
   it('parse horizontal rules', () => {
-    expect(tokenize(`Three or more...
+    expect(_tokenize(`Three or more...
 
 ---
 
@@ -127,7 +133,7 @@ Underscores`)).toMatchSnapshot()
   })
 
   it('parse footnotes', () => {
-    expect(tokenize(`# [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
+    expect(_tokenize(`# [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
 
 Footnote 1 link[^first].
 
@@ -145,6 +151,19 @@ Duplicated footnote reference[^second].
   })
 
   it('parse escape', () => {
-    expect(tokenize(`\\*literal asterisks\\*`)).toMatchSnapshot()
+    expect(_tokenize(`\\*literal asterisks\\*`)).toMatchSnapshot()
+  })
+
+  // parse math
+  it('parse math', () => {
+    expect(_tokenize(`** Inline math: ** $E=mc^2$
+
+** Block math: **
+
+$$
+E=mc^2
+$$
+
+** End Math **`)).toMatchSnapshot()
   })
 })
