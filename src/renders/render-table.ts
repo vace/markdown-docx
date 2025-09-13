@@ -16,14 +16,16 @@ export function renderTable(render: MarkdownDocx, block: Tokens.Table, attrs: IB
   }
 
   const style = render.styles.markdown
+  const defaultColumnWidth = 100 / block.header.length * 100 // auto adjust
 
   return new Table({
     ...style.table.properties,
     style: classes.Table,
     width: {
-      size: 100,
+      size: '100%',
       type: WidthType.PERCENTAGE,
     },
+    columnWidths: block.header.map(() => defaultColumnWidth),
     rows: [
       // headers
       new TableRow({
