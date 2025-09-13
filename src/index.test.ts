@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
-import markdownToDocx, { MarkdownDocx } from './index'
+import markdownToDocx, { MarkdownDocx } from './entry-node'
 
 vi.mock('docx')
 
@@ -161,5 +161,13 @@ Duplicated footnote reference[^second].
 
   it('render escape', async () => {
     expect(await renderTest(`\\*literal asterisks\\*`)).toMatchSnapshot()
+  })
+
+  // table dev
+  it('render table dev', async () => {
+    expect(await renderTest(`
+| id | date | image |
+|------|----------|----------|
+| 1 | 2025-09-01 | ![图片](https://img.alicdn.com/imgextra/i3/O1CN012ZjB2y1xHUf6OzZ8C_!!6000000006418-2-tps-104-126.png "标题文字") |`)).toMatchSnapshot()
   })
 })

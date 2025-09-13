@@ -47,10 +47,26 @@ export function getTextAlignment(align: IBlockAttr['align']) {
 export function getImageTokens(tokenList: any[], tokens: Tokens.Image[] = []) {
   for (const token of tokenList) {
     if (!token) continue
-    if (token.type === 'image') {
-      tokens.push(token)
-    } else if (token.tokens?.length) {
-      getImageTokens(token.tokens, tokens)
+
+    switch (token.type) {
+      case 'image':
+        tokens.push(token)
+        break;
+      case 'table':
+        if (token.header?.length) {
+          getImageTokens(token.header, tokens)
+        }
+        if (token.rows?.length) {
+          for (const row of token.rows) {
+            getImageTokens(row, tokens)
+          }
+        }
+        break;
+      default:
+        if (token.tokens?.length) {
+          getImageTokens(token.tokens, tokens)
+        }
+        break;
     }
   }
   return tokens

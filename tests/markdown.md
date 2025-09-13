@@ -236,6 +236,7 @@ Markdown | Less | Pretty
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
+| Image Cell  | ![alt text](https://img.alicdn.com/imgextra/i3/O1CN012ZjB2y1xHUf6OzZ8C_!!6000000006418-2-tps-104-126.png "Logo Title Text 1") |
 
 ------
 

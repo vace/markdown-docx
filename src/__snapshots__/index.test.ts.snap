@@ -146,10 +146,19 @@ exports[`render > render paragraph 1`] = `
 <TextRun style="MdDel" strike="true">Scratch this.</TextRun></Paragraph>"
 `;
 
+exports[`render > render table dev 1`] = `
+"<Paragraph style="MdSpace"></Paragraph>
+<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>id</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>date</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>image</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>1</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>2025-09-01</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><ImageRun type="png" transformation-width="104" transformation-height="126" altText-title="标题文字" altText-description="图片" altText-name="图片"></ImageRun></Paragraph></TableCell></TableRow>"></Table>"
+`;
+
 exports[`render > render tables 1`] = `
-"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Tables</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph alignment="center" style="MdTableHeader"><TextRun>Are</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph alignment="right" style="MdTableHeader"><TextRun>Cool</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 3 is</TextRun></Paragraph></TableCell>
+"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Tables</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph alignment="center" style="MdTableHeader"><TextRun>Are</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph alignment="right" style="MdTableHeader"><TextRun>Cool</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 3 is</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>right-aligned</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph alignment="right" style="MdTableCell"><TextRun>$1600</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 2 is</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>centered</TextRun></Paragraph></TableCell>
@@ -159,9 +168,9 @@ exports[`render > render tables 1`] = `
 `;
 
 exports[`render > render tables special 1`] = `
-"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Markdown</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Less</TextRun></Paragraph></TableCell>
-<TableCell verticalAlign="center" shading-fill="A5A5A5" shading-color="ED7D31"><Paragraph style="MdTableHeader"><TextRun>Pretty</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdEm" italics="true">Still</TextRun></Paragraph></TableCell>
+"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Markdown</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Less</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Pretty</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdEm" italics="true">Still</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdCode" >renders</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdStrong" bold="true">nicely</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>1</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>2</TextRun></Paragraph></TableCell>
