@@ -22,6 +22,18 @@ export interface MarkdownDocxOptions extends MarkedOptions {
   imageAdapter?: MarkdownImageAdapter
 
   /**
+   * Math engine configuration
+   * builtin: simple unicode mapping
+   * katex: KaTeX -> MathML -> docx Math
+   */
+  math?: {
+    engine?: 'builtin' | 'katex' // future: 'mathjax'
+    katexOptions?: Record<string, any>
+    /** Prefer constructs that are broadly supported by LibreOffice (e.g., avoid true OMML matrices and n-ary) */
+    libreOfficeCompat?: boolean
+  }
+
+  /**
    * do not download image
    * @default false
    */
@@ -86,10 +98,10 @@ export type ITextAttr = {
   style?: string
 
   // attrs
-  bold ?: boolean
-  italics ?: boolean
-  underline ?: boolean // with options
-  strike ?: boolean
+  bold?: boolean
+  italics?: boolean
+  underline?: boolean // with options
+  strike?: boolean
   break?: boolean | number
 
   // text style
@@ -100,14 +112,14 @@ export type ITextAttr = {
   codespan?: boolean
   del?: boolean
   br?: boolean
-  
+
 }
 
 export type IBlockAttr = {
   style?: string
 
   blockquote?: boolean
-  
+
   list?: {
     task?: boolean
     checked?: boolean
@@ -128,8 +140,8 @@ export type Writeable<T> = {
   -readonly [P in keyof T]: T[P]
 }
 
-export type IMarkdownToken = 
-  |'space' | 'code' | 'hr'| 'blockquote'| 'html'| 'def'| 'paragraph'| 'text'| 'footnote'| 'listItem'| 'table'| 'tableHeader'| 'tableCell'| 'heading1'| 'heading2'| 'heading3'| 'heading4'| 'heading5'| 'heading6'
+export type IMarkdownToken =
+  | 'space' | 'code' | 'hr' | 'blockquote' | 'html' | 'def' | 'paragraph' | 'text' | 'footnote' | 'listItem' | 'table' | 'tableHeader' | 'tableCell' | 'heading1' | 'heading2' | 'heading3' | 'heading4' | 'heading5' | 'heading6'
   | 'tag' | 'link' | 'strong' | 'em' | 'codespan' | 'del' | 'br'
 
 export type IMarkdownStyle = {
@@ -146,6 +158,6 @@ export type IMarkdownStyle = {
   properties?: any
 }
 
-export type IMarkdownRenderFunction = 
+export type IMarkdownRenderFunction =
   (render: MarkdownDocx, token: IInlineToken | IBlockToken, attr?: ITextAttr | IBlockAttr)
     => ParagraphChild | ParagraphChild[] | FileChild | FileChild[] | false | null

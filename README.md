@@ -19,6 +19,7 @@ Convert Markdown files to DOCX format with support for both browser and Node.js 
 - 🖼️ Support for images (with automatic downloading)
 - 📋 Support for tables, lists, code blocks, and other Markdown elements
 - 🔗 Hyperlinks and footnotes support
+- 🧮 **Mathematical equations support (LaTeX syntax)**
 - 💅 Customizable styling options
 - 🌐 Works in both browser and Node.js environments
 - 🖥️ Command-line interface available
@@ -164,6 +165,58 @@ If the output file is not specified, it will use the input filename with a `.doc
 - Horizontal rules
 - Footnotes
 - Task lists (checkboxes)
+- **Mathematical equations (LaTeX)** - inline and block equations
+
+## Mathematical Equations
+
+The library supports LaTeX-style mathematical equations using the `$` delimiter for inline math and `$$` for block equations.
+
+### Inline Math
+
+Use single dollar signs for inline equations:
+
+```markdown
+Einstein's famous equation is $E=mc^2$.
+The Pythagorean theorem: $a^2 + b^2 = c^2$.
+```
+
+### Block Math
+
+Use double dollar signs for display equations:
+
+```markdown
+$$
+E=mc^2
+$$
+
+$$
+\alpha + \beta + \gamma = \pi
+$$
+```
+
+### Supported Features
+
+- **Superscripts**: `$x^2$`, `$e^{10}$`
+- **Subscripts**: `$x_1$`, `$a_{10}$`
+- **Greek letters**: `$\alpha$`, `$\beta$`, `$\gamma$`, `$\pi$`, `$\omega$`, etc.
+- **Operators**: `$\times$`, `$\div$`, `$\pm$`, `$\mp$`
+- **Relations**: `$\leq$`, `$\geq$`, `$\neq$`, `$\approx$`, `$\equiv$`
+- **Special symbols**: `$\infty$`, `$\in$`, `$\notin$`
+
+By default, equations are rendered via KaTeX (LaTeX → MathML → native Word math/OMML) for broad coverage.
+
+You can opt out to the lightweight builtin renderer (LaTeX → Unicode) if you prefer minimal output:
+
+```ts
+import markdownDocx, { Packer } from 'markdown-docx'
+
+// Fallback to builtin (simple text) renderer
+const doc = await markdownDocx(markdown, {
+  math: { engine: 'builtin' }
+})
+```
+
+With KaTeX (default), structures like `\frac{a}{b}`, `x^{2}`, `x_{i}`, `\sqrt{x}`, `\sum`/`\int` with limits, and basic matrices render as native Word math.
 
 ## Image Adapter
 

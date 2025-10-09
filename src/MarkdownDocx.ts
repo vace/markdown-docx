@@ -7,10 +7,11 @@ import { tokenize } from './tokenize'
 import { IBlockAttr, IBlockToken, IInlineToken, ITextAttr, MarkdownDocxOptions, MarkdownImageItem } from './types'
 import { getImageTokens } from './utils'
 
-export class MarkdownDocx  {
+export class MarkdownDocx {
 
   public static defaultOptions: MarkdownDocxOptions = {
-    gfm: true
+    gfm: true,
+    math: { engine: 'katex' },
   }
 
   public styles = styles
@@ -24,9 +25,9 @@ export class MarkdownDocx  {
 
   protected _imageStore = new Map<string, MarkdownImageItem>()
 
-  private footnotes:Record<string, { children: Paragraph[]}> = {}
+  private footnotes: Record<string, { children: Paragraph[] }> = {}
 
-  public constructor (
+  public constructor(
     public markdown: string,
     public options: MarkdownDocxOptions = {}
   ) {
@@ -37,15 +38,15 @@ export class MarkdownDocx  {
     }
   }
 
-  get ignoreImage () {
+  get ignoreImage() {
     return !!this.options.ignoreImage
   }
 
-  get ignoreFootnote () {
+  get ignoreFootnote() {
     return !!this.options.ignoreFootnote
   }
 
-  get ignoreHtml () {
+  get ignoreHtml() {
     return !!this.options.ignoreHtml
   }
 
@@ -53,7 +54,7 @@ export class MarkdownDocx  {
     this.footnotes = {}
 
     const section = await this.toSection()
-    
+
     const doc = new Document({
       numbering,
       styles: createDocumentStyle(),
@@ -69,7 +70,7 @@ export class MarkdownDocx  {
     return doc
   }
 
-  public async toSection () {
+  public async toSection() {
     const tokenList = tokenize(this)
 
     // parse image
@@ -83,7 +84,7 @@ export class MarkdownDocx  {
     return this.toBlocks(tokenList)
   }
 
-  public async downloadImageList (tokens: Tokens.Image[]) {
+  public async downloadImageList(tokens: Tokens.Image[]) {
     const imageAdapter = this.options.imageAdapter
     if (typeof imageAdapter !== 'function') {
       throw new Error('MarkdownDocx.imageAdapter is not a function')

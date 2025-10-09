@@ -2,14 +2,13 @@ import { Lexer } from 'marked'
 
 import { MarkdownDocx } from '../MarkdownDocx'
 import footnote from './footnote'
-// import latex from './latex'
+import latex from './latex'
 import { IExtensionFn } from './types'
 
 export default function useExtensions(render: MarkdownDocx) {
   const lexer = new Lexer(render.options)
   usePlugin(render, lexer, footnote)
-  // TODO latex extension currently has some issues
-  // usePlugin(render, lexer, latex)
+  usePlugin(render, lexer, latex)
   return lexer
 }
 
