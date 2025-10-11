@@ -75,6 +75,23 @@ const buffer = await Packer.toBuffer(doc);
   <dd>*不*能完美支持 **所有** 语法，请使用 HTML <em>标签</em></dd>
 </dl>
 
+## 数学公式
+
+### 行内公式
+
+您可以直接在文本中编写行内公式，例如 $E=mc^2$。以下是更多示例：
+
+- Einstein's mass-energy equivalence: $E=mc^2$
+- Pythagorean theorem: $a^2 + b^2 = c^2$
+- Quadratic formula: $x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$
+- Greek letters: $\alpha$, $\beta$, $\gamma$, $\delta$, $\pi$, $\omega$
+
+### 块级公式
+
+$$
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = -\frac{\hbar^2}{2m}\nabla^2\Psi(\mathbf{r},t) + V(\mathbf{r})\Psi(\mathbf{r},t)
+$$
+
 ---
 
 祝您使用愉快！

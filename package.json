@@ -21,13 +21,11 @@
     ".": {
       "import": {
         "node": "./dist/index.node.mjs",
-        "default": "./dist/index.mjs",
-        "types": "./dist/index.d.ts"
+        "default": "./dist/index.mjs"
       },
       "require": {
         "node": "./dist/index.node.cjs",
-        "default": "./dist/index.cjs",
-        "types": "./dist/index.d.ts"
+        "default": "./dist/index.cjs"
       }
     },
     "./package.json": "./package.json"

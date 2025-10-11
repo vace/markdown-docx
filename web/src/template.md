@@ -77,6 +77,52 @@ const buffer = await Packer.toBuffer(doc);
   <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
 </dl>
 
+
+## Math Equations
+
+## Inline Math
+
+You can write inline equations like $E=mc^2$ directly in your text. Here are more examples:
+
+- Einstein's mass-energy equivalence: $E=mc^2$
+- Pythagorean theorem: $a^2 + b^2 = c^2$
+- Quadratic formula: $x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$
+- Greek letters: $\alpha$, $\beta$, $\gamma$, $\delta$, $\pi$, $\omega$
+
+## Block Math
+
+For display equations, use double dollar signs:
+
+$$
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = -\frac{\hbar^2}{2m}\nabla^2\Psi(\mathbf{r},t) + V(\mathbf{r})\Psi(\mathbf{r},t)
+$$
+
+### More Examples
+
+The Pythagorean theorem:
+
+$$
+a^2 + b^2 = c^2
+$$
+
+Sum of Greek letters:
+
+$$
+\alpha + \beta + \gamma = \pi
+$$
+
+Inequality:
+
+$$
+x \leq y
+$$
+
+Mathematical operations:
+
+$$
+a \times b \div c \pm d
+$$
+
 ---
 
 Enjoy!
