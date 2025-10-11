@@ -70,7 +70,9 @@
   "dependencies": {
     "commander": "^13.1.0",
     "docx": "^9.5.1",
+    "fast-xml-parser": "^5.3.0",
     "image-size": "^2.0.2",
+    "katex": "^0.16.23",
     "marked": "^15.0.8"
   }
 }
