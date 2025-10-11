@@ -8,7 +8,7 @@ import { IBlockAttr, IBlockToken, IInlineToken } from '../types'
 import { renderList } from './render-list'
 import { renderParagraph } from './render-paragraph'
 import { renderTable } from './render-table'
-import { mathmlToDocxChildren } from '../mathml-to-docx'
+import { mathmlToDocxChildren } from '../extensions/mathml-to-docx'
 
 export function renderBlocks(render: MarkdownDocx, blocks: IBlockToken[], attr: IBlockAttr = {}): FileChild[] {
   const paragraphs: FileChild[] = []

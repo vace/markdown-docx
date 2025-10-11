@@ -1,8 +1,8 @@
-import { Math, MathRun, Paragraph, ParagraphChild, FileChild, TextRun, MathFraction, MathRadical, MathSuperScript, MathSubScript, MathSubSuperScript } from 'docx'
+import { Math, MathRun, Paragraph, ParagraphChild, FileChild, TextRun } from 'docx'
 import katex from 'katex'
-import { mathmlToDocxChildren } from '../mathml-to-docx'
 import { Lexer } from 'marked'
 
+import { mathmlToDocxChildren } from './mathml-to-docx'
 import { MarkdownDocx } from '../MarkdownDocx'
 import { BlockKatex, IExtension, InlineKatex } from './types'
 
@@ -16,15 +16,11 @@ const blockRule = /^(\${1,2})\n((?:\\[^]|[^\\])+?)\n\1(?:\n|$)/;
  */
 
 
-const kQueueKey: unique symbol = Symbol.for('markdown-docx/latexQueue') as unknown as unique symbol
+const kQueueKey = Symbol.for('markdown-docx/latexQueue')
 
 export default function latex(lexer: Lexer): IExtension {
   const nonStandard = false // lexer.options.nonStandard;
   const ruleReg = nonStandard ? inlineRuleNonStandard : inlineRule;
-
-  // Per-render queues to reliably pass content from tokenizer to renderer
-  const inlineQueue: string[] = []
-  const blockQueue: string[] = []
 
   return {
     name: 'latex',
@@ -51,43 +47,38 @@ export default function latex(lexer: Lexer): IExtension {
     },
     inline: (src, tokens) => {
       const match = src.match(ruleReg);
-      if (match) {
-        const content = match[2].trim();
-
-        inlineQueue.push(content)
-        return {
-          type: 'inlineKatex',
-          raw: match[0],
-          text: '',
-          displayMode: match[1].length === 2,
-        } as any;
+      if (!match) {
+        return
       }
+      const inlineKatex: InlineKatex = {
+        type: 'inlineKatex',
+        raw: match[0],
+        text: match[2].trim(),
+        displayMode: match[1].length === 2,
+      }
+      return inlineKatex
     },
     block: (src, tokens) => {
       const match = src.match(blockRule);
-      if (match) {
-        const content = match[2].trim();
-
-        blockQueue.push(content)
-        return {
-          type: 'blockKatex',
-          raw: match[0],
-          text: '',
-          displayMode: match[1].length === 2,
-        } as any;
+      if (!match) {
+        return
       }
+      const blockKatex: BlockKatex = {
+        type: 'blockKatex',
+        raw: match[0],
+        text: match[2].trim(),
+        displayMode: match[1].length === 2,
+      }
+      return blockKatex
     },
     init: (render: MarkdownDocx) => {
-      // Attach queues to this render instance for use in renderers
-      ; (render as any)[kQueueKey] = { inlineQueue, blockQueue }
-      // Register inline and block renderers
       render.addInlineRender('inlineKatex', renderInline)
       render.addBlockRender('blockKatex', renderBlock)
     }
   }
 }
 
-const keepSet = new Set(['{', '}', '#', '$', '%', '&']);
+// const keepSet = new Set(['{', '}', '#', '$', '%', '&']);
 
 const macroMap = new Map<string, string>([
   ['alpha', 'α'],
@@ -206,14 +197,7 @@ function extractLatex(raw: string = ''): string {
 }
 
 function renderInline(render: MarkdownDocx, token: InlineKatex): ParagraphChild {
-  // For now, use a simple text representation
-  // TODO: Implement full LaTeX to OMML conversion
-  const raw = (token as any).raw as string | undefined
-  const queues = (render as any)[kQueueKey] as { inlineQueue?: string[] } | undefined
-  const queued = queues?.inlineQueue?.shift()
-  const content = (token as any).content as string | undefined
-  const nested = (token as any).tokens?.[0]?.text as string | undefined
-  const text = queued || (token.text && token.text.trim()) || (nested && nested.trim()) || (content && content.trim()) || extractLatex(raw)
+  const text = token.text
   // KaTeX engine path
   if (render.options?.math?.engine === 'katex') {
     try {
@@ -229,19 +213,13 @@ function renderInline(render: MarkdownDocx, token: InlineKatex): ParagraphChild 
   if (!parsedText) parsedText = text
 
   // Fallback: if still empty, render as plain text so users see something
-  if (!parsedText) return new TextRun(text || raw || '')
+  if (!parsedText) return new TextRun(text || '')
 
   return new Math({ children: [new MathRun(parsedText)] })
 }
 
 function renderBlock(render: MarkdownDocx, token: BlockKatex): FileChild {
-  // For block equations, render as a paragraph containing the Math element
-  const raw = (token as any).raw as string | undefined
-  const queues = (render as any)[kQueueKey] as { blockQueue?: string[] } | undefined
-  const queued = queues?.blockQueue?.shift()
-  const content = (token as any).content as string | undefined
-  const nested = (token as any).tokens?.[0]?.text as string | undefined
-  const text = queued || (token.text && token.text.trim()) || (nested && nested.trim()) || (content && content.trim()) || extractLatex(raw)
+  const text = token.text
   // KaTeX engine path
   if (render.options?.math?.engine === 'katex') {
     try {
@@ -257,7 +235,7 @@ function renderBlock(render: MarkdownDocx, token: BlockKatex): FileChild {
   if (!parsedText) parsedText = text
 
   // Fallback: if still empty, render as plain text paragraph
-  if (!parsedText) return new Paragraph({ children: [new TextRun(text || raw || '')] })
+  if (!parsedText) return new Paragraph({ children: [new TextRun(text || '')] })
 
   return new Paragraph({ children: [new Math({ children: [new MathRun(parsedText)] })] })
 }

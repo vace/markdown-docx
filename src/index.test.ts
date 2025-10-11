@@ -170,4 +170,51 @@ Duplicated footnote reference[^second].
 |------|----------|----------|
 | 1 | 2025-09-01 | ![图片](https://img.alicdn.com/imgextra/i3/O1CN012ZjB2y1xHUf6OzZ8C_!!6000000006418-2-tps-104-126.png "标题文字") |`)).toMatchSnapshot()
   })
+
+  // math
+  it('render katex', async () => {
+    expect(await renderTest(`# Math Equation Test
+
+## Inline Math
+
+Here is an inline equation: $E=mc^2$ which is Einstein's famous formula.
+
+Another example: $a^2 + b^2 = c^2$ is the Pythagorean theorem.
+
+Greek letters: $\\alpha + \\beta = \\gamma$
+
+## Block Math
+
+Here is a block equation:
+
+$$
+E=mc^2
+$$
+
+Another block equation:
+
+$$
+x^2 + y^2 = z^2
+$$
+
+With Greek letters:
+
+$$
+\\alpha + \\beta + \\gamma = \\pi
+$$
+
+## End of Test
+
+This document tests basic LaTeX math rendering.`)).toMatchSnapshot()
+  })
+
+  it('render math', async () => {
+    expect(await renderTest(`** Inline math: ** $E=mc^2$
+
+** Block math: **
+
+$$
+E=mc^2
+$$`)).toMatchSnapshot()
+  })
 })

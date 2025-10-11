@@ -1,25 +1,26 @@
-import { MathRun, MathFraction, MathRadical, MathSuperScript, MathSubScript, MathSubSuperScript, ParagraphChild, MathSum, MathIntegral, XmlComponent } from 'docx'
+import { MathRun, MathFraction, MathRadical, MathSuperScript, MathSubScript, MathSubSuperScript, MathSum, MathIntegral, XmlComponent, MathComponent } from 'docx'
 import { XMLParser } from 'fast-xml-parser'
-
 
 let LO_COMPAT = false
 
 
 // OMML Matrix helpers
 class MathMatrixElement extends XmlComponent {
-  constructor(children: ParagraphChild[]) {
+  constructor(children: MathComponent[]) {
     super('m:e')
     for (const child of children) this.root.push(child as any)
   }
 }
+
 class MathMatrixRow extends XmlComponent {
-  constructor(cells: ParagraphChild[][]) {
+  constructor(cells: MathComponent[][]) {
     super('m:mr')
     for (const cell of cells) this.root.push(new MathMatrixElement(cell))
   }
 }
+
 class MathMatrix extends XmlComponent {
-  constructor(rows: ParagraphChild[][][]) {
+  constructor(rows: MathComponent[][][]) {
     super('m:m')
     // m:mPr could be added for alignment/spacing in the future
     for (const row of rows) this.root.push(new MathMatrixRow(row))
@@ -28,7 +29,7 @@ class MathMatrix extends XmlComponent {
 
 // Convert KaTeX MathML string to docx Math children
 // Minimal mapper covering core elements; can be expanded over time.
-export function mathmlToDocxChildren(mathml: string, opts?: { libreOfficeCompat?: boolean }): ParagraphChild[] {
+export function mathmlToDocxChildren(mathml: string, opts?: { libreOfficeCompat?: boolean }): MathComponent[] {
   const parser = new XMLParser({
     ignoreAttributes: false,
     attributeNamePrefix: '',
@@ -48,8 +49,8 @@ export function mathmlToDocxChildren(mathml: string, opts?: { libreOfficeCompat?
   return walkChildren(childrenOf(root))
 }
 
-function walkChildren(nodes: any[]): ParagraphChild[] {
-  let out: ParagraphChild[] = []
+function walkChildren(nodes: any[]): MathComponent[] {
+  let out: MathComponent[] = []
   for (let i = 0; i < nodes.length; i++) {
     const n = nodes[i]
     const tag = tagName(n)
@@ -100,7 +101,7 @@ function walkChildren(nodes: any[]): ParagraphChild[] {
   return out
 }
 
-function walkNode(node: any): ParagraphChild[] {
+function walkNode(node: any): MathComponent[] {
   const tag = tagName(node)
   if (!tag) {
     const t = node.text?.toString() || ''
@@ -143,7 +144,7 @@ function walkNode(node: any): ParagraphChild[] {
       const rows = kids.filter((k) => tagName(k) === 'mtr')
       if (LO_COMPAT) {
         // LibreOffice-friendly fallback: bracketed representation [row1; row2; ...]
-        const parts: ParagraphChild[] = []
+        const parts: MathComponent[] = []
         parts.push(new MathRun('['))
         rows.forEach((row, ri) => {
           if (ri > 0) parts.push(new MathRun('; '))
@@ -157,7 +158,7 @@ function walkNode(node: any): ParagraphChild[] {
         return parts
       }
       // Default: True OMML matrix using m:m (rows m:mr, elements m:e)
-      const rowsCells: ParagraphChild[][][] = rows.map((row) => {
+      const rowsCells: MathComponent[][][] = rows.map((row) => {
         const cells = childrenOf(row).filter((c) => tagName(c) === 'mtd')
         return cells.map((cell) => walkChildren(childrenOf(cell)))
       })
@@ -193,7 +194,7 @@ function childrenOf(node: any): any[] {
   return Array.isArray(val) ? val : (val ? [val] : [])
 }
 
-function textFrom(nodes: any[]): ParagraphChild[] {
+function textFrom(nodes: any[]): MathComponent[] {
   const texts = nodes.map((n) => (n.text ?? '').toString()).join('')
   return texts ? [new MathRun(texts)] : []
 }
@@ -202,7 +203,7 @@ function directText(nodes: any[]): string {
   return nodes.map((n) => (n.text ?? '').toString()).join('')
 }
 
-function naryAsSubSup(op: string, lower: ParagraphChild[], upper: ParagraphChild[], body: ParagraphChild[]): ParagraphChild[] {
+function naryAsSubSup(op: string, lower: MathComponent[], upper: MathComponent[], body: MathComponent[]): MathComponent[] {
   return [new MathSubSuperScript({ children: [new MathRun(op)], subScript: lower, superScript: upper }), ...body]
 }
 

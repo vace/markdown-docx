@@ -84,6 +84,58 @@ exports[`render > render images 1`] = `
 <Paragraph style="MdSpace"></Paragraph>"
 `;
 
+exports[`render > render katex 1`] = `
+"<Paragraph heading="Heading1" style="MdHeading1"><TextRun>Math Equation Test</TextRun></Paragraph>
+<Paragraph heading="Heading2" style="MdHeading2"><TextRun>Inline Math</TextRun></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Here is an inline equation: </TextRun>
+<Math><MathRun 0="E"></MathRun>
+<MathRun 0="="></MathRun>
+<MathRun 0="m"></MathRun>
+<MathSuperScript superScript="<MathRun 0="2"></MathRun>"><MathRun 0="c"></MathRun></MathSuperScript></Math>
+<TextRun> which is Einstein's famous formula.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Another example: </TextRun>
+<Math><MathSuperScript superScript="<MathRun 0="2"></MathRun>"><MathRun 0="a"></MathRun></MathSuperScript>
+<MathRun 0="+"></MathRun>
+<MathSuperScript superScript="<MathRun 0="2"></MathRun>"><MathRun 0="b"></MathRun></MathSuperScript>
+<MathRun 0="="></MathRun>
+<MathSuperScript superScript="<MathRun 0="2"></MathRun>"><MathRun 0="c"></MathRun></MathSuperScript></Math>
+<TextRun> is the Pythagorean theorem.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Greek letters: </TextRun>
+<Math><MathRun 0="α"></MathRun>
+<MathRun 0="+"></MathRun>
+<MathRun 0="β"></MathRun>
+<MathRun 0="="></MathRun>
+<MathRun 0="γ"></MathRun></Math></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph heading="Heading2" style="MdHeading2"><TextRun>Block Math</TextRun></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Here is a block equation:</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph><Math><MathRun 0="E"></MathRun>
+<MathRun 0="="></MathRun>
+<MathRun 0="m"></MathRun>
+<MathSuperScript superScript="<MathRun 0="2"></MathRun>"><MathRun 0="c"></MathRun></MathSuperScript></Math></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Another block equation:</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph><Math><MathSuperScript superScript="<MathRun 0="2"></MathRun>"><MathRun 0="x"></MathRun></MathSuperScript>
+<MathRun 0="+"></MathRun>
+<MathSuperScript superScript="<MathRun 0="2"></MathRun>"><MathRun 0="y"></MathRun></MathSuperScript>
+<MathRun 0="="></MathRun>
+<MathSuperScript superScript="<MathRun 0="2"></MathRun>"><MathRun 0="z"></MathRun></MathSuperScript></Math></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>With Greek letters:</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph><Math><MathRun 0="α"></MathRun>
+<MathRun 0="+"></MathRun>
+<MathRun 0="β"></MathRun>
+<MathRun 0="+"></MathRun>
+<MathRun 0="γ"></MathRun>
+<MathRun 0="="></MathRun>
+<MathRun 0="π"></MathRun></Math></Paragraph>
+<Paragraph heading="Heading2" style="MdHeading2"><TextRun>End of Test</TextRun></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>This document tests basic LaTeX math rendering.</TextRun></Paragraph>"
+`;
+
 exports[`render > render links 1`] = `
 "<Paragraph style="MdParagraph"><ExternalHyperlink link="https://www.google.com"><TextRun style="MdLink">I'm an inline-style link</TextRun></ExternalHyperlink></Paragraph>
 <Paragraph style="MdSpace"></Paragraph>
@@ -122,6 +174,21 @@ exports[`render > render list special 1`] = `
 <Paragraph bullet-level="1" style="MdListItem"><TextRun>Describe my changes</TextRun></Paragraph>
 <Paragraph bullet-level="1" style="MdListItem"><TextRun>Mention all the members of my team</TextRun></Paragraph>
 <Paragraph bullet-level="2" style="MdListItem"><TextRun>Ask for feedback</TextRun></Paragraph>"
+`;
+
+exports[`render > render math 1`] = `
+"<Paragraph style="MdParagraph"><TextRun>** Inline math: ** </TextRun>
+<Math><MathRun 0="E"></MathRun>
+<MathRun 0="="></MathRun>
+<MathRun 0="m"></MathRun>
+<MathSuperScript superScript="<MathRun 0="2"></MathRun>"><MathRun 0="c"></MathRun></MathSuperScript></Math></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>** Block math: **</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph><Math><MathRun 0="E"></MathRun>
+<MathRun 0="="></MathRun>
+<MathRun 0="m"></MathRun>
+<MathSuperScript superScript="<MathRun 0="2"></MathRun>"><MathRun 0="c"></MathRun></MathSuperScript></Math></Paragraph>"
 `;
 
 exports[`render > render paragraph 1`] = `

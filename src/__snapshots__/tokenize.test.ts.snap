@@ -721,6 +721,262 @@ exports[`tokenize > parse images 1`] = `
 ]
 `;
 
+exports[`tokenize > parse katex 1`] = `
+[
+  {
+    "depth": 1,
+    "raw": "# Math Equation Test
+
+",
+    "text": "Math Equation Test",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "Math Equation Test",
+        "text": "Math Equation Test",
+        "type": "text",
+      },
+    ],
+    "type": "heading",
+  },
+  {
+    "depth": 2,
+    "raw": "## Inline Math
+
+",
+    "text": "Inline Math",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "Inline Math",
+        "text": "Inline Math",
+        "type": "text",
+      },
+    ],
+    "type": "heading",
+  },
+  {
+    "raw": "Here is an inline equation: $E=mc^2$ which is Einstein's famous formula.",
+    "text": "Here is an inline equation: $E=mc^2$ which is Einstein's famous formula.",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "Here is an inline equation: ",
+        "text": "Here is an inline equation: ",
+        "type": "text",
+      },
+      {
+        "displayMode": false,
+        "raw": "$E=mc^2$",
+        "text": "",
+        "type": "inlineKatex",
+      },
+      {
+        "escaped": false,
+        "raw": " which is Einstein's famous formula.",
+        "text": " which is Einstein's famous formula.",
+        "type": "text",
+      },
+    ],
+    "type": "paragraph",
+  },
+  {
+    "raw": "
+
+",
+    "type": "space",
+  },
+  {
+    "raw": "Another example: $a^2 + b^2 = c^2$ is the Pythagorean theorem.",
+    "text": "Another example: $a^2 + b^2 = c^2$ is the Pythagorean theorem.",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "Another example: ",
+        "text": "Another example: ",
+        "type": "text",
+      },
+      {
+        "displayMode": false,
+        "raw": "$a^2 + b^2 = c^2$",
+        "text": "",
+        "type": "inlineKatex",
+      },
+      {
+        "escaped": false,
+        "raw": " is the Pythagorean theorem.",
+        "text": " is the Pythagorean theorem.",
+        "type": "text",
+      },
+    ],
+    "type": "paragraph",
+  },
+  {
+    "raw": "
+
+",
+    "type": "space",
+  },
+  {
+    "raw": "Greek letters: $\\alpha + \\beta = \\gamma$",
+    "text": "Greek letters: $\\alpha + \\beta = \\gamma$",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "Greek letters: ",
+        "text": "Greek letters: ",
+        "type": "text",
+      },
+      {
+        "displayMode": false,
+        "raw": "$\\alpha + \\beta = \\gamma$",
+        "text": "",
+        "type": "inlineKatex",
+      },
+    ],
+    "type": "paragraph",
+  },
+  {
+    "raw": "
+
+",
+    "type": "space",
+  },
+  {
+    "depth": 2,
+    "raw": "## Block Math
+
+",
+    "text": "Block Math",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "Block Math",
+        "text": "Block Math",
+        "type": "text",
+      },
+    ],
+    "type": "heading",
+  },
+  {
+    "raw": "Here is a block equation:",
+    "text": "Here is a block equation:",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "Here is a block equation:",
+        "text": "Here is a block equation:",
+        "type": "text",
+      },
+    ],
+    "type": "paragraph",
+  },
+  {
+    "raw": "
+
+",
+    "type": "space",
+  },
+  {
+    "displayMode": true,
+    "raw": "$$
+E=mc^2
+$$
+
+",
+    "text": "",
+    "type": "blockKatex",
+  },
+  {
+    "raw": "Another block equation:",
+    "text": "Another block equation:",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "Another block equation:",
+        "text": "Another block equation:",
+        "type": "text",
+      },
+    ],
+    "type": "paragraph",
+  },
+  {
+    "raw": "
+
+",
+    "type": "space",
+  },
+  {
+    "displayMode": true,
+    "raw": "$$
+x^2 + y^2 = z^2
+$$
+
+",
+    "text": "",
+    "type": "blockKatex",
+  },
+  {
+    "raw": "With Greek letters:",
+    "text": "With Greek letters:",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "With Greek letters:",
+        "text": "With Greek letters:",
+        "type": "text",
+      },
+    ],
+    "type": "paragraph",
+  },
+  {
+    "raw": "
+
+",
+    "type": "space",
+  },
+  {
+    "displayMode": true,
+    "raw": "$$
+\\alpha + \\beta + \\gamma = \\pi
+$$
+
+",
+    "text": "",
+    "type": "blockKatex",
+  },
+  {
+    "depth": 2,
+    "raw": "## End of Test
+
+",
+    "text": "End of Test",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "End of Test",
+        "text": "End of Test",
+        "type": "text",
+      },
+    ],
+    "type": "heading",
+  },
+  {
+    "raw": "This document tests basic LaTeX math rendering.",
+    "text": "This document tests basic LaTeX math rendering.",
+    "tokens": [
+      {
+        "escaped": false,
+        "raw": "This document tests basic LaTeX math rendering.",
+        "text": "This document tests basic LaTeX math rendering.",
+        "type": "text",
+      },
+    ],
+    "type": "paragraph",
+  },
+]
+`;
+
 exports[`tokenize > parse links 1`] = `
 [
   {
@@ -1280,7 +1536,7 @@ exports[`tokenize > parse math 1`] = `
       {
         "displayMode": false,
         "raw": "$E=mc^2$",
-        "text": "E=mc^2",
+        "text": "",
         "type": "inlineKatex",
       },
     ],
@@ -1318,7 +1574,7 @@ E=mc^2
 $$
 
 ",
-    "text": "E=mc^2",
+    "text": "",
     "type": "blockKatex",
   },
   {

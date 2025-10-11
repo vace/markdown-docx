@@ -107,3 +107,79 @@ export class FileChild extends BaseNode {
 export class Run extends BaseNode {
   type = 'Run'
 }
+
+export class Math extends BaseNode {
+  type = 'Math'
+}
+
+export class MathRun extends BaseNode {
+  type = 'MathRun'
+}
+
+export class Equation extends BaseNode {
+  type = 'Equation'
+}
+
+export class Document extends BaseNode {
+  type = 'Document'
+}
+
+export class Header extends BaseNode {
+  type = 'Header'
+}
+
+export class Footer extends BaseNode {
+  type = 'Footer'
+}
+
+export class Footnote extends BaseNode {
+  type = 'Footnote'
+}
+
+export class Endnote extends BaseNode {
+  type = 'Endnote'
+}
+
+export class Comment extends BaseNode {
+  type = 'Comment'
+}
+
+export class CommentRangeStart extends BaseNode {
+  type = 'CommentRangeStart'
+}
+
+export class CommentRangeEnd extends BaseNode {
+  type = 'CommentRangeEnd'
+}
+
+export class HyperlinkRef extends BaseNode {
+  type = 'HyperlinkRef'
+}
+
+export class MathFraction extends BaseNode {
+  type = 'MathFraction'
+}
+export class MathRadical extends BaseNode {
+  type = 'MathRadical'
+}
+export class MathSuperScript extends BaseNode {
+  type = 'MathSuperScript'
+}
+export class MathSubScript extends BaseNode {
+  type = 'MathSubScript'
+}
+export class MathSubSuperScript extends BaseNode {
+  type = 'MathSubSuperScript'
+}
+export class MathSum extends BaseNode {
+  type = 'MathSum'
+}
+export class MathIntegral extends BaseNode {
+  type = 'MathIntegral'
+}
+export class XmlComponent extends BaseNode {
+  type = 'XmlComponent'
+}
+export class MathComponent extends BaseNode {
+  type = 'MathComponent'
+}
