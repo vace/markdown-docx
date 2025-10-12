@@ -16,6 +16,8 @@ export class MarkdownDocx {
 
   public styles = styles
 
+  public store = new Map<Symbol, any>()
+
   public static covert(
     markdown: string,
     _options: MarkdownDocxOptions = {}

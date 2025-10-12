@@ -40,4 +40,17 @@ describe('markdown-docx', () => {
     // check file exists
     expect(fs.existsSync(getFile('./markdown.docx'))).toBe(true)
   })
+
+  it('List Numbering', async () => {
+    const md = getFile('./list-number-restart.md')
+    const file = getFile('./list-number-restart.docx')
+    const docx = new MarkdownDocx(getText(md))
+    const buffer = await docx.toDocument()
+    const docxBuffer = await Packer.toBuffer(buffer)
+    // buffer not empty
+    expect(docxBuffer.length).greaterThan(0)
+    fs.writeFileSync(file, docxBuffer)
+    // check file exists
+    expect(fs.existsSync(file)).toBe(true)
+  })
 })

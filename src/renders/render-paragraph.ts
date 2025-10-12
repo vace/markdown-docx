@@ -16,6 +16,7 @@ export function renderParagraph (render: MarkdownDocx, tokens: IInlineToken[] | 
   const numbering = attr.list?.type === 'number' ? {
     level: Math.min(attr.list.level, 9),
     reference: 'numbering-points',
+    instance: attr.list.instance,
   } : undefined
 
   const options = {

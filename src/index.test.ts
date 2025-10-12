@@ -217,4 +217,18 @@ $$
 E=mc^2
 $$`)).toMatchSnapshot()
   })
+
+  // list number restart
+  it('render list number restart', async () => {
+    expect(await renderTest(`1. First item
+2. Second item
+      1. First subitem
+      2. Second subitem
+3. Third item
+
+Some intervening text.
+
+1. First item again
+2. Second item again`)).toMatchSnapshot()
+  })
 })

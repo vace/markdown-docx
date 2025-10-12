@@ -125,6 +125,11 @@ export type IBlockAttr = {
     checked?: boolean
     level: number
     type?: 'number' | 'bullet'
+    /**
+     * @link https://github.com/dolanmiu/docx/pull/816
+     * @link https://github.com/dolanmiu/docx/issues/3037#issuecomment-3164253396
+     */
+    instance?: number // numbering instance
   }
 
   heading?: number

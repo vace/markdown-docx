@@ -160,6 +160,19 @@ exports[`render > render list 1`] = `
 <Paragraph bullet-level="2" style="MdListItem"><TextRun>Ask for feedback</TextRun></Paragraph>"
 `;
 
+exports[`render > render list number restart 1`] = `
+"<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>First item</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>Second item</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points" numbering-instance="2" style="MdListItem"><TextRun>First subitem</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points" numbering-instance="2" style="MdListItem"><TextRun>Second subitem</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>Third item</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdParagraph"><TextRun>Some intervening text.</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="3" style="MdListItem"><TextRun>First item again</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="3" style="MdListItem"><TextRun>Second item again</TextRun></Paragraph>"
+`;
+
 exports[`render > render list special 1`] = `
 "<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>First ordered list item</TextRun></Paragraph>
 <Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Another item Unordered sub-list.</TextRun></Paragraph>
