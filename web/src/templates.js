@@ -71,6 +71,13 @@ export const templatesList = [
 - [ ] John to prepare the quarterly report
 - [ ] Jane to coordinate with the design team
 - [ ] Bob to update the project timeline
+
+## Notes
+1. Next meeting scheduled for April 30, 2025
+2. Follow-up on action items in the next meeting
+
+> Remember to send out meeting minutes to all attendees.
+
 `
   },
   {
