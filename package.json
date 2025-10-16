@@ -20,10 +20,12 @@
   "exports": {
     ".": {
       "import": {
+        "types": "./dist/index.d.ts",
         "node": "./dist/index.node.mjs",
         "default": "./dist/index.mjs"
       },
       "require": {
+        "types": "./dist/index.d.ts",
         "node": "./dist/index.node.cjs",
         "default": "./dist/index.cjs"
       }
