@@ -12,8 +12,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       markdown-docx:
-        specifier: ^1.4.1
-        version: 1.4.1
+        specifier: ^1.4.3
+        version: 1.4.3
     devDependencies:
       '@tailwindcss/typography':
         specifier: ^0.5.16
@@ -465,8 +465,8 @@ packages:
   jszip@3.10.1:
     resolution: {integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==}
 
-  katex@0.16.23:
-    resolution: {integrity: sha512-7VlC1hsEEolL9xNO05v9VjrvWZePkCVBJqj8ruICxYjZfHaHbaU53AlP+PODyFIXEnaEIEWi3wJy7FPZ95JAVg==}
+  katex@0.16.25:
+    resolution: {integrity: sha512-woHRUZ/iF23GBP1dkDQMh1QBad9dmr8/PAwNA54VrSOVYgI12MAcE14TqnDdQOdzyEonGzMepYnqBMYdsoAr8Q==}
     hasBin: true
 
   lie@3.3.0:
@@ -545,8 +545,8 @@ packages:
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
-  markdown-docx@1.4.1:
-    resolution: {integrity: sha512-cJIkxZBQidzWtWcykuukh+IcpNTWKRug1OsCaibT/PknQOxd62S9DNZkevoV1TOCUxjRjImZJrhkMJdJDaC7CA==}
+  markdown-docx@1.4.3:
+    resolution: {integrity: sha512-AT6JOvUsFtWg8FL1Y8HtLC06wR8hreke9huakUGNWHEQ8m8lVJI7bLSfCsqdlMHHEjPgmDBWVlLmlXIDVUocIQ==}
     hasBin: true
 
   marked@15.0.8:
@@ -984,7 +984,7 @@ snapshots:
       readable-stream: 2.3.8
       setimmediate: 1.0.5
 
-  katex@0.16.23:
+  katex@0.16.25:
     dependencies:
       commander: 8.3.0
 
@@ -1043,13 +1043,13 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
-  markdown-docx@1.4.1:
+  markdown-docx@1.4.3:
     dependencies:
       commander: 13.1.0
       docx: 9.5.1
       fast-xml-parser: 5.3.0
       image-size: 2.0.2
-      katex: 0.16.23
+      katex: 0.16.25
       marked: 15.0.8
 
   marked@15.0.8: {}
