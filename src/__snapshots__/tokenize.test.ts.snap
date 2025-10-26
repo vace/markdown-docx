@@ -768,7 +768,7 @@ exports[`tokenize > parse katex 1`] = `
       {
         "displayMode": false,
         "raw": "$E=mc^2$",
-        "text": "",
+        "text": "E=mc^2",
         "type": "inlineKatex",
       },
       {
@@ -799,7 +799,7 @@ exports[`tokenize > parse katex 1`] = `
       {
         "displayMode": false,
         "raw": "$a^2 + b^2 = c^2$",
-        "text": "",
+        "text": "a^2 + b^2 = c^2",
         "type": "inlineKatex",
       },
       {
@@ -830,7 +830,7 @@ exports[`tokenize > parse katex 1`] = `
       {
         "displayMode": false,
         "raw": "$\\alpha + \\beta = \\gamma$",
-        "text": "",
+        "text": "\\alpha + \\beta = \\gamma",
         "type": "inlineKatex",
       },
     ],
@@ -884,7 +884,7 @@ E=mc^2
 $$
 
 ",
-    "text": "",
+    "text": "E=mc^2",
     "type": "blockKatex",
   },
   {
@@ -913,7 +913,7 @@ x^2 + y^2 = z^2
 $$
 
 ",
-    "text": "",
+    "text": "x^2 + y^2 = z^2",
     "type": "blockKatex",
   },
   {
@@ -942,7 +942,7 @@ $$
 $$
 
 ",
-    "text": "",
+    "text": "\\alpha + \\beta + \\gamma = \\pi",
     "type": "blockKatex",
   },
   {
@@ -1536,7 +1536,7 @@ exports[`tokenize > parse math 1`] = `
       {
         "displayMode": false,
         "raw": "$E=mc^2$",
-        "text": "",
+        "text": "E=mc^2",
         "type": "inlineKatex",
       },
     ],
@@ -1574,7 +1574,7 @@ E=mc^2
 $$
 
 ",
-    "text": "",
+    "text": "E=mc^2",
     "type": "blockKatex",
   },
   {
