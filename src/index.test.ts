@@ -231,4 +231,34 @@ Some intervening text.
 1. First item again
 2. Second item again`)).toMatchSnapshot()
   })
+
+  // list number with table
+  it('render list number with table', async () => {
+    expect(await renderTest(`# 测试用 Markdown 文本
+1. 有序列表项一 — 基本说明
+
+   * 这是一个子无序项，包含行内代码示例：\`console.log('hello')\`。
+
+   * 下面插入一个表格用于测试表格渲染：
+
+    | 名称     | 类型     | 说明               |
+    | ------ | ------ | ---------------- |
+    | id     | int    | 主键，自增            |
+    | name   | string | 用户姓名             |
+    | active | bool   | 是否激活（true/false） |
+
+    * 再嵌入一段多行代码（JavaScript）：
+    \`\`\`javascript
+    console.log(greet('测试用户'));
+    \`\`\`
+    * 引用示例：
+
+    > 这是一个引用块，用于测试在列表中嵌套引用的渲染效果。
+
+2. 有序列表项二 — 嵌套有序与无序混合
+
+    * 行内强调：*斜体*、**粗体**、\`代码\`。
+
+`)).toMatchSnapshot()
+  })
 })

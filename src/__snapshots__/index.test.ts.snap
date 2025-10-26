@@ -149,12 +149,12 @@ exports[`render > render links 1`] = `
 
 exports[`render > render list 1`] = `
 "<Paragraph style="MdSpace"></Paragraph>
-<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Make my changes</TextRun></Paragraph>
-<Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Fix bug</TextRun></Paragraph>
-<Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Improve formatting</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>Make my changes</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points" numbering-instance="2" style="MdListItem"><TextRun>Fix bug</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points" numbering-instance="2" style="MdListItem"><TextRun>Improve formatting</TextRun></Paragraph>
 <Paragraph bullet-level="2" style="MdListItem"><TextRun>Make the headings bigger</TextRun></Paragraph>
-<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Push my commits to GitHub</TextRun></Paragraph>
-<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Open a pull request</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>Push my commits to GitHub</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>Open a pull request</TextRun></Paragraph>
 <Paragraph bullet-level="1" style="MdListItem"><TextRun>Describe my changes</TextRun></Paragraph>
 <Paragraph bullet-level="1" style="MdListItem"><TextRun>Mention all the members of my team</TextRun></Paragraph>
 <Paragraph bullet-level="2" style="MdListItem"><TextRun>Ask for feedback</TextRun></Paragraph>"
@@ -173,17 +173,52 @@ exports[`render > render list number restart 1`] = `
 <Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="3" style="MdListItem"><TextRun>Second item again</TextRun></Paragraph>"
 `;
 
+exports[`render > render list number with table 1`] = `
+"<Paragraph heading="Heading1" style="MdHeading1"><TextRun>测试用 Markdown 文本</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>有序列表项一 — 基本说明</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph bullet-level="1" style="MdListItem"><TextRun>这是一个子无序项，包含行内代码示例：</TextRun>
+<TextRun style="MdCode" >console.log('hello')</TextRun>
+<TextRun>。</TextRun></Paragraph>
+<Paragraph bullet-level="1" style="MdListItem"><TextRun>下面插入一个表格用于测试表格渲染：</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Table style="MdTable" width-size="100%" width-type="pct" columnWidths="3333.3333333333335,3333.3333333333335,3333.3333333333335" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>名称</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>类型</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>说明</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>id</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>int</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>主键，自增</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>name</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>string</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>用户姓名</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>active</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>bool</TextRun></Paragraph></TableCell>
+<TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>是否激活（true/false）</TextRun></Paragraph></TableCell></TableRow>"></Table>
+<Paragraph bullet-level="1" style="MdListItem"><TextRun>再嵌入一段多行代码（JavaScript）：</TextRun></Paragraph>
+<Paragraph style="MdCode"><TextRun>console.log(greet('测试用户'));</TextRun></Paragraph>
+<Paragraph bullet-level="1" style="MdListItem"><TextRun>引用示例：</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph style="MdBlockquote"><TextRun>这是一个引用块，用于测试在列表中嵌套引用的渲染效果。</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>有序列表项二 — 嵌套有序与无序混合</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>
+<Paragraph bullet-level="1" style="MdListItem"><TextRun>行内强调：</TextRun>
+<TextRun style="MdEm" italics="true">斜体</TextRun>
+<TextRun>、</TextRun>
+<TextRun style="MdStrong" bold="true">粗体</TextRun>
+<TextRun>、</TextRun>
+<TextRun style="MdCode" >代码</TextRun>
+<TextRun>。</TextRun></Paragraph>
+<Paragraph style="MdSpace"></Paragraph>"
+`;
+
 exports[`render > render list special 1`] = `
-"<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>First ordered list item</TextRun></Paragraph>
-<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Another item Unordered sub-list.</TextRun></Paragraph>
-<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Actual numbers don't matter, just that it's a number Ordered sub-list</TextRun></Paragraph>
-<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>And another item.</TextRun></Paragraph>
-<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Make my changes</TextRun></Paragraph>
-<Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Fix bug</TextRun></Paragraph>
-<Paragraph numbering-level="1" numbering-reference="numbering-points" style="MdListItem"><TextRun>Improve formatting</TextRun></Paragraph>
+"<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>First ordered list item</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>Another item Unordered sub-list.</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>Actual numbers don't matter, just that it's a number Ordered sub-list</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>And another item.</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>Make my changes</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points" numbering-instance="2" style="MdListItem"><TextRun>Fix bug</TextRun></Paragraph>
+<Paragraph numbering-level="1" numbering-reference="numbering-points" numbering-instance="2" style="MdListItem"><TextRun>Improve formatting</TextRun></Paragraph>
 <Paragraph bullet-level="2" style="MdListItem"><TextRun>Make the headings bigger</TextRun></Paragraph>
-<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Push my commits to GitHub</TextRun></Paragraph>
-<Paragraph numbering-level="0" numbering-reference="numbering-points" style="MdListItem"><TextRun>Open a pull request</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>Push my commits to GitHub</TextRun></Paragraph>
+<Paragraph numbering-level="0" numbering-reference="numbering-points" numbering-instance="1" style="MdListItem"><TextRun>Open a pull request</TextRun></Paragraph>
 <Paragraph bullet-level="1" style="MdListItem"><TextRun>Describe my changes</TextRun></Paragraph>
 <Paragraph bullet-level="1" style="MdListItem"><TextRun>Mention all the members of my team</TextRun></Paragraph>
 <Paragraph bullet-level="2" style="MdListItem"><TextRun>Ask for feedback</TextRun></Paragraph>"
@@ -228,7 +263,7 @@ exports[`render > render paragraph 1`] = `
 
 exports[`render > render table dev 1`] = `
 "<Paragraph style="MdSpace"></Paragraph>
-<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>id</TextRun></Paragraph></TableCell>
+<Table style="MdTable" width-size="100%" width-type="pct" columnWidths="3333.3333333333335,3333.3333333333335,3333.3333333333335" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>id</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>date</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>image</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>1</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>2025-09-01</TextRun></Paragraph></TableCell>
@@ -236,7 +271,7 @@ exports[`render > render table dev 1`] = `
 `;
 
 exports[`render > render tables 1`] = `
-"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Tables</TextRun></Paragraph></TableCell>
+"<Table style="MdTable" width-size="100%" width-type="pct" columnWidths="3333.3333333333335,3333.3333333333335,3333.3333333333335" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Tables</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph alignment="center" style="MdTableHeader"><TextRun>Are</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph alignment="right" style="MdTableHeader"><TextRun>Cool</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun>col 3 is</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph alignment="center" style="MdTableCell"><TextRun>right-aligned</TextRun></Paragraph></TableCell>
@@ -248,7 +283,7 @@ exports[`render > render tables 1`] = `
 `;
 
 exports[`render > render tables special 1`] = `
-"<Table style="MdTable" width-size="100" width-type="pct" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Markdown</TextRun></Paragraph></TableCell>
+"<Table style="MdTable" width-size="100%" width-type="pct" columnWidths="3333.3333333333335,3333.3333333333335,3333.3333333333335" rows="<TableRow tableHeader="true" cantSplit="true"><TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Markdown</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Less</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center" shading-fill="F1F2F1"><Paragraph style="MdTableHeader"><TextRun>Pretty</TextRun></Paragraph></TableCell></TableRow>,<TableRow cantSplit="true"><TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdEm" italics="true">Still</TextRun></Paragraph></TableCell>
 <TableCell verticalAlign="center"><Paragraph style="MdTableCell"><TextRun style="MdCode" >renders</TextRun></Paragraph></TableCell>

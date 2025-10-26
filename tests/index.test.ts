@@ -53,4 +53,17 @@ describe('markdown-docx', () => {
     // check file exists
     expect(fs.existsSync(file)).toBe(true)
   })
+
+  it('List Complex', async () => {
+    const md = getFile('./list-complex.md')
+    const file = getFile('./list-complex.docx')
+    const docx = new MarkdownDocx(getText(md))
+    const buffer = await docx.toDocument()
+    const docxBuffer = await Packer.toBuffer(buffer)
+    // buffer not empty
+    expect(docxBuffer.length).greaterThan(0)
+    fs.writeFileSync(file, docxBuffer)
+    // check file exists
+    expect(fs.existsSync(file)).toBe(true)
+  })
 })

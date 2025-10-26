@@ -52,9 +52,9 @@ function renderBlock(render: MarkdownDocx, block: IBlockToken, attr: IBlockAttr)
           } catch { }
         }
         // Fallback to code paragraph if KaTeX disabled or failed
-        return renderParagraph(render, tex, { ...attr, code: true, style: 'MdCode' })
+        return renderParagraph(render, tex, { ...attr, code: true, style: 'MdCode', listNone: true })
       }
-      return renderParagraph(render, block.text, { ...attr, code: true, style: 'MdCode' })
+      return renderParagraph(render, block.text, { ...attr, code: true, style: 'MdCode', listNone: true })
     }
     case 'heading':
       return renderParagraph(render, block.tokens as IInlineToken[], {
@@ -72,6 +72,7 @@ function renderBlock(render: MarkdownDocx, block: IBlockToken, attr: IBlockAttr)
     case 'blockquote':
       return renderBlocks(render, block.tokens as IBlockToken[], {
         ...attr,
+        listNone: true,
         blockquote: true,
         style: classes.Blockquote,
       })
@@ -93,7 +94,7 @@ function renderBlock(render: MarkdownDocx, block: IBlockToken, attr: IBlockAttr)
         style: classes.Def,
       })
     case 'table':
-      return renderTable(render, block as Tokens.Table, attr)
+      return renderTable(render, block as Tokens.Table, { ...attr, listNone: true })
     case 'paragraph':
       return renderParagraph(render, block.tokens as IInlineToken[], {
         style: classes.Paragraph, // can be overridden by attr

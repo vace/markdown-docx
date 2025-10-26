@@ -1,4 +1,4 @@
-import { Paragraph } from 'docx'
+import { type IParagraphOptions, Paragraph } from 'docx'
 
 import { MarkdownDocx } from '../MarkdownDocx'
 import { IBlockAttr, IInlineToken } from '../types'
@@ -10,20 +10,18 @@ import { renderTokens } from './render-tokens'
 export function renderParagraph (render: MarkdownDocx, tokens: IInlineToken[] | string, attr: IBlockAttr) {
   const heading = getHeadingLevel(attr.heading)
   const alignment = getTextAlignment(attr.align)
-  const bullet = attr.list?.type === 'bullet' ? {
-    level: Math.min(attr.list.level, 9),
-  } : undefined
-  const numbering = attr.list?.type === 'number' ? {
-    level: Math.min(attr.list.level, 9),
-    reference: 'numbering-points',
-    instance: attr.list.instance,
-  } : undefined
 
-  const options = {
+  const hasList = !attr.listNone && attr.list
+
+  const options: IParagraphOptions = {
     heading,
     alignment,
-    bullet,
-    numbering,
+    bullet: hasList && attr.list?.type === 'bullet' ? { level: Math.min(attr.list.level, 9) } : undefined,
+    numbering: hasList && attr.list?.type === 'number' ? {
+      level: Math.min(attr.list.level, 9),
+      reference: 'numbering-points',
+      instance: attr.list.instance,
+    } : undefined,
     style: attr.style
   }
 

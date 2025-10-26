@@ -132,6 +132,8 @@ export type IBlockAttr = {
     instance?: number // numbering instance
   }
 
+  listNone?: boolean
+
   heading?: number
   code?: boolean
 
