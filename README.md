@@ -132,6 +132,7 @@ The `MarkdownDocx` constructor and `markdownDocx` function accept an options obj
 | `ignoreFootnote` | Boolean | `false` | When set to `true`, footnotes will be ignored |
 | `ignoreHtml` | Boolean | `false` | When set to `true`, inline HTML will be ignored |
 | `gfm` | Boolean | `true` | Enable GitHub Flavored Markdown support |
+| `theme` | Object | Default theme | Custom theme configuration for colors and sizes |
 
 Additional options from the [marked](https://marked.js.org/using_advanced) library are also supported.
 
@@ -156,6 +157,38 @@ const doc = await markdownDocx(markdown, {
   }
 })
 ```
+
+### Theme options
+
+You can customize the appearance of the generated document by providing a theme configuration:
+
+Example:
+
+```ts
+const docx = await markdownToDocx(markdownText, {
+  theme: {
+    // interface IMarkdownTheme Colors (hex values without #)
+    heading1: "5B21B6",
+    heading2: "7C3AED",
+    heading3: "8B5CF6",
+    heading4: "374151",
+    heading5: "374151",
+    heading6: "374151",
+    link: "00fb0a",
+    code: "EC4899",
+    blockquote: "6B7280",
+    del: "EF4444",
+    heading1Size: 66,
+    heading2Size: 52,
+    heading3Size: 42,
+    spaceSize: 18,
+    codeSize: 20,
+    linkUnderline: false,
+  }
+})
+```
+
+All theme properties are optional - you can override only the properties you want to customize.
 
 
 ## Command Line Interface

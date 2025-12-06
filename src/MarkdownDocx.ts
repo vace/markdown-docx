@@ -56,10 +56,9 @@ export class MarkdownDocx {
     this.footnotes = {}
 
     const section = await this.toSection()
-
     const doc = new Document({
       numbering,
-      styles: createDocumentStyle(),
+      styles: createDocumentStyle({ theme: this.options.theme}),
       ...this.options.document,
       ...options,
       footnotes: this.footnotes,

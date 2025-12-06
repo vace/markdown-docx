@@ -3,14 +3,11 @@
  */
 
 import {
-  ICharacterStyleOptions, IParagraphStyleOptions, IParagraphStylePropertiesOptions, IRunStylePropertiesOptions,
-  IStylesOptions, UnderlineType
+  ICharacterStyleOptions, IParagraphStyleOptions, IStylesOptions, UnderlineType
 } from 'docx'
 
-import { IMarkdownStyle, IMarkdownToken } from '../types'
-import { classes } from './classes'
-import { colors } from './colors'
-import { markdown } from './markdown'
+import { IMarkdownToken, IMarkdownTheme } from '../types'
+import { createMarkdownStyle, markdown } from './markdown'
 
 export const defaultStyle: IStylesOptions['default'] = {
   document: {
@@ -21,15 +18,7 @@ export const defaultStyle: IStylesOptions['default'] = {
       spacing: { lineRule: "auto" }
     }
   },
-  hyperlink: {
-    run: {
-      color: colors.link,
-      underline: {
-        type: UnderlineType.SINGLE,
-        color: colors.link,
-      }
-    }
-  },
+  hyperlink: {},
   heading1: {},
   heading2: {},
   heading3: {},
@@ -44,12 +33,18 @@ export const defaultStyle: IStylesOptions['default'] = {
   title: {}
 }
 
-export function createDocumentStyle(options?: IStylesOptions): IStylesOptions {
+type CreateDocumentStyleOptions = {
+  theme?: Partial<IMarkdownTheme>
+}
+
+export function createDocumentStyle({ theme }: CreateDocumentStyleOptions): IStylesOptions {
   const paragraphStyles: IParagraphStyleOptions[] = []
   const characterStyles: ICharacterStyleOptions[] = []
-  const keys = Object.keys(markdown) as IMarkdownToken[]
+  const markdownTheme = theme ? createMarkdownStyle(theme) : markdown
+  const keys = Object.keys(markdownTheme) as IMarkdownToken[]
+  const styles = { ...defaultStyle }
   for (const key of keys) {
-    const style = markdown[key]
+    const style = markdownTheme[key]
     if (!style) continue
     const { className, run, inline, paragraph, basedOn = 'Normal', next = 'Normal', quickFormat = true } = style
     if (inline) {
@@ -57,12 +52,14 @@ export function createDocumentStyle(options?: IStylesOptions): IStylesOptions {
     } else {
       paragraphStyles.push({ id: className, name: className, basedOn, next, quickFormat, run, paragraph })
     }
+    if (key in styles) {
+      // @ts-ignore
+      styles[key] = { ...styles[key], ...style}
+    }
   }
   return {
-    default: defaultStyle,
+    default: styles,
     paragraphStyles: paragraphStyles,
     characterStyles: characterStyles,
-    ...options,
   }
 }
-

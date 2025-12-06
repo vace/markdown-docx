@@ -55,6 +55,11 @@ export interface MarkdownDocxOptions extends MarkedOptions {
    * Properties for the document
    */
   document?: Omit<IPropertiesOptions, 'sections'>
+
+  /**
+   * colors theme
+   */
+  theme?: Partial<IMarkdownTheme>
 }
 
 export type IBlockToken =
@@ -168,3 +173,39 @@ export type IMarkdownStyle = {
 export type IMarkdownRenderFunction =
   (render: MarkdownDocx, token: IInlineToken | IBlockToken, attr?: ITextAttr | IBlockAttr)
     => ParagraphChild | ParagraphChild[] | FileChild | FileChild[] | false | null
+
+// color themes
+export type IMarkdownTheme = {
+  heading1: string
+  heading2: string
+  heading3: string
+  heading4: string
+  heading5: string
+  heading6: string
+  link: string
+  code: string
+  tag: string
+  border: string
+  codespan: string
+  codeBackground: string
+  blockquote: string
+  blockquoteBackground: string
+  del: string
+  hr: string
+  html: string
+  tableHeaderBackground: string
+
+  /**
+   * size of heading fonts
+   */
+  heading1Size: number
+  heading2Size: number
+  heading3Size: number
+  heading4Size: number
+  heading5Size: number
+  heading6Size: number
+  spaceSize: number
+  codeSize: number
+  linkUnderline: boolean
+
+}

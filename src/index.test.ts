@@ -261,4 +261,53 @@ Some intervening text.
 
 `)).toMatchSnapshot()
   })
+
+  // parse math
+  it('parse katex', async () => {
+    expect(await renderTest(`# Math Equation Test
+
+## Inline Math
+
+Here is an inline equation: $E=mc^2$ which is Einstein's famous formula.
+
+Another example: $a^2 + b^2 = c^2$ is the Pythagorean theorem.
+
+Greek letters: $\\alpha + \\beta = \\gamma$
+
+## Block Math
+
+Here is a block equation:
+
+$$
+E=mc^2
+$$
+
+Another block equation:
+
+$$
+x^2 + y^2 = z^2
+$$
+
+With Greek letters:
+
+$$
+\\alpha + \\beta + \\gamma = \\pi
+$$
+
+## End of Test
+
+This document tests basic LaTeX math rendering.`)).toMatchSnapshot()
+  })
+
+  it('parse math', async () => {
+    expect(await renderTest(`** Inline math: ** $E=mc^2$
+
+** Block math: **
+
+$$
+E=mc^2
+$$
+
+** End Math **`)).toMatchSnapshot()
+  })
 })

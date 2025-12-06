@@ -130,8 +130,41 @@ async function convertWithOptions() {
 | `ignoreFootnote` | 布尔值 | `false` | 是否忽略脚注 |
 | `ignoreHtml` | 布尔值 | `false` | 是否忽略内联 HTML |
 | `gfm` | 布尔值 | `true` | 启用 GitHub 风格 Markdown |
+| `theme` | 对象 | 默认主题 | 自定义颜色和大小的主题配置 |
 
 同时支持 [marked](https://marked.js.org/using_advanced) 库的额外配置选项。
+
+### 主题配置
+
+你可以通过提供主题配置来自定义生成文档的外观：
+
+示例：
+
+```ts
+const docx = await markdownToDocx(markdownText, {
+  theme: {
+    // 颜色（十六进制值，不含 #）
+    heading1: "5B21B6",
+    heading2: "7C3AED",
+    heading3: "8B5CF6",
+    heading4: "374151",
+    heading5: "374151",
+    heading6: "374151",
+    link: "00fb0a",
+    code: "EC4899",
+    blockquote: "6B7280",
+    del: "EF4444",
+    heading1Size: 66,
+    heading2Size: 52,
+    heading3Size: 42,
+    spaceSize: 18,
+    codeSize: 20,
+    linkUnderline: false,
+  }
+})
+```
+
+所有主题属性都是可选的 - 你可以只覆盖想要自定义的属性。
 
 ## 命令行工具
 

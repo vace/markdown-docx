@@ -30,6 +30,39 @@ describe('markdown-docx', () => {
     expect(fs.existsSync(getFile('./markdown.docx'))).toBe(true)
   })
 
+  it('markdownToDocx() with themes', async () => {
+    const docx = await markdownToDocx(getText('./markdown.md'), {
+      theme: {
+        heading1: "5B21B6",
+        heading2: "7C3AED",
+        heading3: "8B5CF6",
+        heading4: "374151",
+        heading5: "374151",
+        heading6: "374151",
+        link: "00fb0a",
+        code: "EC4899",
+        blockquote: "6B7280",
+        del: "EF4444",
+        heading1Size: 66,
+        heading2Size: 52,
+        heading3Size: 42,
+        spaceSize: 18,
+        codeSize: 20,
+        linkUnderline: false,
+      }
+    })
+
+    const buffer = await Packer.toBuffer(docx)
+
+    // buffer not empty
+    expect(buffer.length).greaterThan(0)
+
+    fs.writeFileSync(getFile('./markdown.docx'), buffer)
+
+    // check file exists
+    expect(fs.existsSync(getFile('./markdown.docx'))).toBe(true)
+  })
+
   it('new MarkdownToDocx()', async () => {
     const docx = new MarkdownDocx(getText('./markdown.md'))
     const buffer = await docx.toDocument()

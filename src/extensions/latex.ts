@@ -16,7 +16,7 @@ const blockRule = /^(\${1,2})\n((?:\\[^]|[^\\])+?)\n\1(?:\n|$)/;
  */
 
 
-const kQueueKey = Symbol.for('markdown-docx/latexQueue')
+// const kQueueKey = Symbol.for('markdown-docx/latexQueue')
 
 export default function latex(lexer: Lexer): IExtension {
   const nonStandard = false // lexer.options.nonStandard;
@@ -77,8 +77,6 @@ export default function latex(lexer: Lexer): IExtension {
     }
   }
 }
-
-// const keepSet = new Set(['{', '}', '#', '$', '%', '&']);
 
 const macroMap = new Map<string, string>([
   ['alpha', 'α'],
@@ -182,18 +180,6 @@ function parseLatexToText(latex: string): string {
   text = text.replace(/[{}]/g, '')
 
   return text
-}
-
-function extractLatex(raw: string = ''): string {
-  // Remove starting and ending $ or $$ with optional surrounding spaces/newlines
-  const trimmed = raw.trim();
-  if (trimmed.startsWith('$$') && trimmed.endsWith('$$')) {
-    return trimmed.slice(2, -2).trim();
-  }
-  if (trimmed.startsWith('$') && trimmed.endsWith('$')) {
-    return trimmed.slice(1, -1).trim();
-  }
-  return trimmed;
 }
 
 function renderInline(render: MarkdownDocx, token: InlineKatex): ParagraphChild {
