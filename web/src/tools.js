@@ -1,4 +1,5 @@
-import markdownDocx, { Packer } from "markdown-docx"
+import markdownDocx, { styles, Packer } from "markdown-docx"
+import { ThemeManager } from './theme-manager.js'
 
 export function initTools(service) {
   const clearButton = document.getElementById('clear-markdown')
@@ -37,7 +38,10 @@ export function initTools(service) {
       const markdownContent = service.markdown.getMarkdown()
       const getValueOf = (id) => document.getElementById(id)?.value || undefined
       const getChecked = (id) => document.getElementById(id)?.checked || false
-      
+
+
+      const selectedTheme = ThemeManager.themeConfigs[getValueOf('doc-theme') || 'default']
+
       // Get export options from form
       const options = {
         name: getValueOf('doc-name'),
@@ -47,9 +51,9 @@ export function initTools(service) {
         },
         ignoreImage: getChecked('ignore-image'),
         ignoreFootnote: getChecked('ignore-footnote'),
-        ignoreHtml: getChecked('ignore-html')
+        ignoreHtml: getChecked('ignore-html'),
+        theme: selectedTheme?.theme,
       }
-
       // Use options for export
       const buffer = await markdownDocx(markdownContent, options)
       const blob = await Packer.toBlob(buffer);

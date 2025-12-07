@@ -1,2 +1,97 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+/* 主题相关的CSS变量和样式 */
+#markdown-preview {
+  --theme-primary: #4472C4;
+  --theme-heading1: #2F5597;
+  --theme-heading2: #5B9BD5;
+  --theme-link: #0563C1;
+  --theme-code: #C7254E;
+}
+
+/* 为预览区域应用主题样式 */
+#markdown-preview h1 {
+  color: var(--theme-heading1) !important;
+}
+
+#markdown-preview h2 {
+  color: var(--theme-heading2) !important;
+}
+
+#markdown-preview h3,
+#markdown-preview h4,
+#markdown-preview h5,
+#markdown-preview h6 {
+  color: var(--theme-primary) !important;
+}
+
+#markdown-preview a {
+  color: var(--theme-link) !important;
+}
+
+#markdown-preview code {
+  color: var(--theme-code) !important;
+}
+
+#markdown-preview pre {
+  border-left: 4px solid var(--theme-primary) !important;
+}
+
+#markdown-preview blockquote {
+  border-left: 4px solid var(--theme-primary) !important;
+  background-color: rgba(68, 114, 196, 0.05) !important;
+}
+
+/* 主题下拉菜单增强样式 */
+.theme-option:hover {
+  background: linear-gradient(90deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+.theme-option[data-theme="default"]:hover {
+  background: linear-gradient(90deg, rgba(68, 114, 196, 0.1) 0%, rgba(68, 114, 196, 0.05) 100%);
+}
+
+.theme-option[data-theme="elegant"]:hover {
+  background: linear-gradient(90deg, rgba(26, 54, 93, 0.1) 0%, rgba(26, 54, 93, 0.05) 100%);
+}
+
+.theme-option[data-theme="academic"]:hover {
+  background: linear-gradient(90deg, rgba(30, 64, 175, 0.1) 0%, rgba(30, 64, 175, 0.05) 100%);
+}
+
+.theme-option[data-theme="modern"]:hover {
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+}
+
+/* 在主题按钮中添加小色块指示器 */
+#theme-toggle::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--theme-primary);
+  margin-right: 4px;
+}
+
+/* 主题切换动画效果 */
+#markdown-preview {
+  transition: all 0.3s ease;
+}
+
+#markdown-preview h1,
+#markdown-preview h2,
+#markdown-preview h3,
+#markdown-preview h4,
+#markdown-preview h5,
+#markdown-preview h6,
+#markdown-preview a,
+#markdown-preview code {
+  transition: color 0.3s ease;
+}
+
+#markdown-preview blockquote,
+#markdown-preview pre {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}

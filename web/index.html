@@ -33,6 +33,40 @@
           </div>
 
           <div class="flex items-center space-x-4">
+            <!-- Theme Selector -->
+            <div class="relative">
+              <button id="theme-toggle" class="px-3 py-1 text-sm rounded bg-gray-200 hover:bg-gray-100 cursor-pointer flex items-center">
+                <svg class="h-3.5 w-3.5 mr-1"  width="24" height="24" viewBox="0 0 48 48" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M24 40.9444C26.123 42.8446 28.9266 44 32 44C38.6274 44 44 38.6274 44 32C44 26.4085 40.1757 21.7102 35 20.3781"
+                    stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+                  <path
+                    d="M13 20.3781C7.82432 21.7102 4 26.4085 4 32C4 38.6274 9.37258 44 16 44C22.6274 44 28 38.6274 28 32C28 30.4506 27.7063 28.9697 27.1716 27.6101"
+                    stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+                  <path
+                    d="M24 28C30.6274 28 36 22.6274 36 16C36 9.37258 30.6274 4 24 4C17.3726 4 12 9.37258 12 16C12 22.6274 17.3726 28 24 28Z"
+                    fill="none" stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+                </svg>
+                <span class="lang" data-lang="theme">Theme</span>
+              </button>
+              <div id="theme-dropdown" class="hidden absolute right-0 mt-1 w-40 bg-white border border-gray-300 rounded-md shadow-lg z-20">
+                <div class="py-1">
+                  <button class="theme-option block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left" data-theme="default">
+                    <span class="lang" data-lang="theme_default">Default</span>
+                  </button>
+                  <button class="theme-option block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left" data-theme="elegant">
+                    <span class="lang" data-lang="theme_elegant">Elegant</span>
+                  </button>
+                  <button class="theme-option block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left" data-theme="academic">
+                    <span class="lang" data-lang="theme_academic">Academic</span>
+                  </button>
+                  <button class="theme-option block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left" data-theme="modern">
+                    <span class="lang" data-lang="theme_modern">Modern</span>
+                  </button>
+                </div>
+              </div>
+            </div>
             <button id="lang-toggle" class="px-3 py-1 text-sm rounded bg-gray-200 hover:bg-gray-100 cursor-pointer">EN</button>
             <label for="upload" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-100 cursor-pointer flex items-center" title="Upload Markdown file">
               <svg class="h-5 w-5 mr-2" viewBox="0 0 48 48" fill="none"
@@ -123,6 +157,16 @@
             <div class="mt-3 text-center sm:mt-5">
               <form class="mt-2">
                 <div class="mb-4">
+                  <label for="doc-theme" class="block text-sm font-medium text-gray-700 text-left lang" data-lang="theme">Theme</label>
+                  <select id="doc-theme" name="doc-theme" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="default" class="lang" data-lang="theme_default">Default</option>
+                    <option value="elegant" class="lang" data-lang="theme_elegant">Elegant</option>
+                    <option value="academic" class="lang" data-lang="theme_academic">Academic</option>
+                    <option value="modern" class="lang" data-lang="theme_modern">Modern</option>
+                  </select>
+                </div>
+
+                <div class="mb-4">
                   <label for="doc-name" class="block text-sm font-medium text-gray-700 text-left lang" data-lang="filename">Filename</label>
                   <input type="text" id="doc-name" name="doc-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Document Name" data-placeholder-lang="document_name">
                 </div>
@@ -179,7 +223,6 @@
         </div>
       </div>
     </div>
-
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
