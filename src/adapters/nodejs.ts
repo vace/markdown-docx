@@ -5,7 +5,7 @@ import http from 'node:http'
 import https from 'node:https'
 
 import { MarkdownImageAdapter } from '../types'
-import { getImageExtension, isHttp } from '../utils'
+import { getImageExtension, isHttp, parseImageSizeFromTitle } from '../utils'
 
 export const downloadImage: MarkdownImageAdapter = async function (token: Tokens.Image) {
   const src = token.href
@@ -30,11 +30,14 @@ export const downloadImage: MarkdownImageAdapter = async function (token: Tokens
       return null
     }
 
+    // Parse custom size from title if provided (e.g., "600x400")
+    const [customWidth, customHeight] = parseImageSizeFromTitle(token.title)
+
     return {
       type: supportType,
       data: buffer,
-      width,
-      height,
+      width: customWidth ?? width,
+      height: customHeight ?? height,
     }
   } catch (error) {
     console.error(`[MarkdownDocx] downloadImageError`, error)
