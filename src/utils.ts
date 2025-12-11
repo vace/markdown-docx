@@ -119,3 +119,20 @@ export function getImageExtension(filename: string = '', mime?: string | null): 
 export function isHttp (src: string) {
   return /^https?:\/\//.test(src)
 }
+
+/**
+ * Parse image size from token title
+ * Supports format like "600x400" in title attribute
+ * @param title - The title string from image token
+ * @returns Tuple of [width, height] as numbers, or [null, null] if not found
+ */
+export function parseImageSizeFromTitle(title?: string | null): [number | null, number | null] {
+  if (!title) {
+    return [null, null]
+  }
+  const match = title.match(/(\d+)x(\d+)/)
+  if (match) {
+    return [parseInt(match[1], 10), parseInt(match[2], 10)]
+  }
+  return [null, null]
+}
