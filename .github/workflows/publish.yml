@@ -34,4 +34,4 @@ jobs:
       - name: Install dependencies and publish package
         run: |
           pnpm i
-          pnpm publish
+          pnpm publish --no-git-checks
