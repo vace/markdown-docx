@@ -46,14 +46,14 @@ import markdownDocx, { Packer } from 'markdown-docx';
 async function convertMarkdownToDocx() {
   // 读取 Markdown 内容
   const markdown = await fs.readFile('input.md', 'utf-8');
-  
+
   // 转换为 DOCX
   const doc = await markdownDocx(markdown);
-  
+
   // 保存文件
   const buffer = await Packer.toBuffer(doc);
   await fs.writeFile('output.docx', buffer);
-  
+
   console.log('转换完成！');
 }
 
@@ -68,17 +68,17 @@ import markdownDocx, { Packer } from 'markdown-docx';
 async function convertMarkdownToDocx(markdownText) {
   // 转换为 DOCX
   const doc = await markdownDocx(markdownText);
-  
+
   // 生成下载文件
   const blob = await Packer.toBlob(doc);
-  
+
   // 创建下载链接
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
   a.download = 'document.docx';
   a.click();
-  
+
   // 清理资源
   URL.revokeObjectURL(url);
 }
@@ -102,17 +102,17 @@ import fs from 'node:fs/promises';
 
 async function convertWithOptions() {
   const markdown = await fs.readFile('input.md', 'utf-8');
-  
+
   // 创建带配置的转换器
   const converter = new MarkdownDocx(markdown)
-  
+
   // 生成文档
   const doc = await converter.toDocument({
     title: '我的文档',
     creator: 'markdown-docx',
     description: '由 Markdown 生成'
   });
-  
+
   // 保存文件
   const buffer = await Packer.toBuffer(doc);
   await fs.writeFile('output.docx', buffer);
@@ -206,6 +206,16 @@ markdown-docx -i input.md -o output.docx
 ```ts
 const imageAdapter: (token: Tokens.Image) => Promise<null | MarkdownImageItem>
 ```
+
+### 自定义图片尺寸
+
+您可以在 Markdown 图片的 title 属性中指定自定义尺寸，格式为 `宽度x高度`（例如 `600x400`）。这将覆盖图片的原始尺寸，在生成的 DOCX 文档中使用自定义尺寸渲染图片。这对于控制图片大小和避免超出 Word 的最大宽度限制非常有用。
+
+```markdown
+![Alt text](image.png "600x400")
+```
+
+自定义尺寸将应用于生成的 DOCX 文件中的图片，而原始图片数据保持不变。
 
 ## 样式定制
 
