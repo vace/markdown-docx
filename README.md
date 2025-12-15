@@ -318,10 +318,11 @@ const imageAdapter: (token: Tokens.Image) => Promise<null | MarkdownImageItem>
 
 ### Custom Image Size
 
-You can specify custom image dimensions in the Markdown image title attribute using the format `widthxheight` (e.g., `600x400`). This will override the original image dimensions when rendering in the DOCX document, which is useful for controlling image size and avoiding Word's maximum width constraints.
+You can specify custom image dimensions in the Markdown image title attribute using the format `widthxheight` (e.g., `600x400` or `30%x30%`). This will override the original image dimensions when rendering in the DOCX document, which is useful for controlling image size and avoiding Word's maximum width constraints.
 
 ```markdown
 ![Alt text](image.png "600x400")
+![Alt text](image.png "30%x30%")
 ```
 
 The custom dimensions will be applied to the image in the generated DOCX file, while the original image data remains unchanged.

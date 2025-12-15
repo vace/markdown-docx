@@ -34,10 +34,14 @@ Welcome to the Markdown to DOCX converter! This tool allows you to:
 - [ ] this is an incomplete item
 
 ## Images
+Images are fully supported, including specifying dimensions (e.g., `64x64`), scaling percentages (e.g., `30%x30%`), and WebP format.
 
-Here's our logo (hover to see the title text):
+Here are some examples:
 
-![alt text](https://img.alicdn.com/imgextra/i3/O1CN012ZjB2y1xHUf6OzZ8C_!!6000000006418-2-tps-104-126.png "Logo Title Text 1")
+![alt text](pull-shark.png "64x64")
+
+![alt text](starstruck.png "30%x30%")
+
 ![webp Support](./webp.webp "Logo Title Text 1")
 
 

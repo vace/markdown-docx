@@ -209,10 +209,11 @@ const imageAdapter: (token: Tokens.Image) => Promise<null | MarkdownImageItem>
 
 ### 自定义图片尺寸
 
-您可以在 Markdown 图片的 title 属性中指定自定义尺寸，格式为 `宽度x高度`（例如 `600x400`）。这将覆盖图片的原始尺寸，在生成的 DOCX 文档中使用自定义尺寸渲染图片。这对于控制图片大小和避免超出 Word 的最大宽度限制非常有用。
+您可以在 Markdown 图片的 title 属性中指定自定义尺寸，格式为 `宽度x高度`（例如 `600x400`, `30%x30%`）。这将覆盖图片的原始尺寸，在生成的 DOCX 文档中使用自定义尺寸渲染图片。这对于控制图片大小和避免超出 Word 的最大宽度限制非常有用。
 
 ```markdown
 ![Alt text](image.png "600x400")
+![Alt text](image.png "30%x30%")
 ```
 
 自定义尺寸将应用于生成的 DOCX 文件中的图片，而原始图片数据保持不变。

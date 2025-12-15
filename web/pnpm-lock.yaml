@@ -12,8 +12,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       markdown-docx:
-        specifier: ^1.5.0
-        version: 1.5.0
+        specifier: ^1.5.1
+        version: 1.5.1
     devDependencies:
       '@tailwindcss/typography':
         specifier: ^0.5.16
@@ -545,8 +545,8 @@ packages:
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
-  markdown-docx@1.5.0:
-    resolution: {integrity: sha512-GnxG0KMUv3/HKW5nwPYbYL37fnQN1TxeTKsMBxniAXHji+8UdsSWjBiCktI3qRc4ZSQSpRmYUGw/LDfnpq0/VQ==}
+  markdown-docx@1.5.1:
+    resolution: {integrity: sha512-4mCZ/yVNiles3Yp5211OFLqctMywoGkfMcSxaes6u2zTMaa/N2DwAJPpidt0DxDA+mekD5oo0Zk8QooY8VVkLA==}
     hasBin: true
 
   marked@15.0.8:
@@ -1043,7 +1043,7 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
-  markdown-docx@1.5.0:
+  markdown-docx@1.5.1:
     dependencies:
       commander: 13.1.0
       docx: 9.5.1
