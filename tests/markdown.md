@@ -153,6 +153,11 @@ With a reference later in the document defining the URL location:
 
 [id]: https://img.alicdn.com/imgextra/i2/O1CN01UgRM601YeyuCHbtHP_!!6000000003085-2-tps-112-112.png  "The Dojocat"
 
+**Image size:**
+
+![Alt text](https://img.alicdn.com/imgextra/i3/O1CN012ZjB2y1xHUf6OzZ8C_!!6000000006418-2-tps-104-126.png "50x50")
+
+![Alt text](https://img.alicdn.com/imgextra/i3/O1CN012ZjB2y1xHUf6OzZ8C_!!6000000006418-2-tps-104-126.png "20%x20%")
 ------
 
 # [Footnotes](https://github.com/markdown-it/markdown-it-footnote)

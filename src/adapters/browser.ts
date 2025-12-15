@@ -1,7 +1,7 @@
 import { Tokens } from 'marked'
 
 import { MarkdownImageAdapter } from '../types'
-import { getImageExtension, parseImageSizeFromTitle } from '../utils'
+import { getImageExtension } from '../utils'
 
 export const downloadImage: MarkdownImageAdapter = async function (token: Tokens.Image) {
   const href = token.href
@@ -34,14 +34,11 @@ export const downloadImage: MarkdownImageAdapter = async function (token: Tokens
       imageType = 'png'
     }
 
-    // Parse custom size from title if provided (e.g., "600x400")
-    const [customWidth, customHeight] = parseImageSizeFromTitle(token.title)
-
     return {
       type: imageType,
       data: imageData,
-      width: customWidth ?? width,
-      height: customHeight ?? height,
+      width: width,
+      height: height,
     }
   } catch (error) {
     console.error(`[MarkdownDocx] downloadImageError`, error)

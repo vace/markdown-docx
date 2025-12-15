@@ -203,4 +203,11 @@ $$
 
 ** End Math **`)).toMatchSnapshot()
   })
+
+
+  // image size: ![Alt text](image.png "600x400") or ![Alt text](image.png "50%x50%")
+  it('render image size', async () => {
+    expect(_tokenize(`![Alt text](image.png "600x400")`)).toMatchSnapshot()
+    expect(_tokenize(`![Alt text](image.png "50%x50%")`)).toMatchSnapshot()
+  })
 })

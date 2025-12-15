@@ -2382,3 +2382,41 @@ exports[`tokenize > parse task list 1`] = `
   },
 ]
 `;
+
+exports[`tokenize > render image size 1`] = `
+[
+  {
+    "raw": "![Alt text](image.png "600x400")",
+    "text": "![Alt text](image.png "600x400")",
+    "tokens": [
+      {
+        "href": "image.png",
+        "raw": "![Alt text](image.png "600x400")",
+        "text": "Alt text",
+        "title": "600x400",
+        "type": "image",
+      },
+    ],
+    "type": "paragraph",
+  },
+]
+`;
+
+exports[`tokenize > render image size 2`] = `
+[
+  {
+    "raw": "![Alt text](image.png "50%x50%")",
+    "text": "![Alt text](image.png "50%x50%")",
+    "tokens": [
+      {
+        "href": "image.png",
+        "raw": "![Alt text](image.png "50%x50%")",
+        "text": "Alt text",
+        "title": "50%x50%",
+        "type": "image",
+      },
+    ],
+    "type": "paragraph",
+  },
+]
+`;

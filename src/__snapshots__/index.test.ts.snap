@@ -141,6 +141,10 @@ exports[`render > render horizontal rules 1`] = `
 <Paragraph style="MdParagraph"><TextRun>Underscores</TextRun></Paragraph>"
 `;
 
+exports[`render > render image size 1`] = `"<Paragraph style="MdParagraph"><ImageRun type="png" transformation-width="300" transformation-height="300" altText-title="Alt text" altText-description="Alt text" altText-name="Alt text"></ImageRun></Paragraph>"`;
+
+exports[`render > render image size 2`] = `"<Paragraph style="MdParagraph"><ImageRun type="png" transformation-width="148" transformation-height="148" altText-title="Alt text" altText-description="Alt text" altText-name="Alt text"></ImageRun></Paragraph>"`;
+
 exports[`render > render images 1`] = `
 "<Paragraph style="MdParagraph"><TextRun>Inline-style:
 </TextRun>

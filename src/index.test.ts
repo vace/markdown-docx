@@ -310,4 +310,10 @@ $$
 
 ** End Math **`)).toMatchSnapshot()
   })
+
+  // image size
+  it('render image size', async () => {
+    expect(await renderTest(`![Alt text](https://github.githubassets.com/assets/pull-shark-default-498c279a747d.png "300x300")`)).toMatchSnapshot()
+    expect(await renderTest(`![Alt text](https://github.githubassets.com/assets/pull-shark-default-498c279a747d.png "50%x50%")`)).toMatchSnapshot()
+  })
 })
