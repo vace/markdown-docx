@@ -57,7 +57,7 @@ function flatInlineToken(render: MarkdownDocx, token: IInlineToken, attr: ITextA
       return renderText(
         render,
         token.text,
-        { ...attr, codespan: true, style: classes.Code }
+        { ...attr, codespan: true, style: classes.Codespan }
       )
     case 'br':
       return renderText(
