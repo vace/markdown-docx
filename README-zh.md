@@ -90,6 +90,15 @@ document.getElementById('convert-btn').addEventListener('click', () => {
 });
 ```
 
+### Skills
+
+```sh
+npx skills add vace/markdown-docx
+```
+
+此技能提供无缝的 Markdown 文件转换为 Microsoft Word DOCX 格式。
+非常适合将文档、笔记和报告转换为专业的 Word 文档。
+
 ## 高级用法
 
 ### 使用 MarkdownDocx 类

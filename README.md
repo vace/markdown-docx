@@ -92,6 +92,15 @@ document.getElementById('convert-btn').addEventListener('click', () => {
 });
 ```
 
+### Skills
+
+```sh
+npx skills add vace/markdown-docx
+```
+
+This skill provides seamless conversion of Markdown files to Microsoft Word DOCX format.
+Perfect for transforming documentation, notes, and reports into professional Word documents.
+
 ## Advanced Usage
 
 ### Using the MarkdownDocx Class
