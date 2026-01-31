@@ -1,6 +1,6 @@
 ---
 name: markdown-to-docx
-description: Convert Markdown files (.md, .markdown) to DOCX format using the markdown-docx npm package. Use when users need to convert markdown documents to Microsoft Word format for: (1) Single file conversion, (2) Batch conversion of multiple markdown files, (3) Creating Word documents from markdown content. Automatically handles output naming and supports both individual and bulk conversions.
+description: Converts Markdown files (.md, .markdown) to DOCX using the markdown-docx npm package. Supports single and batch conversions, automatically generates output filenames, and creates Microsoft Word documents from Markdown content.
 ---
 
 # Markdown to DOCX Converter
