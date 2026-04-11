@@ -56,6 +56,18 @@ Currently supported LaTeX features:
 5. **Relations**: $\leq$, $\geq$, $\neq$, $\approx$, $\equiv$
 6. **Special symbols**: $\infty$, $\in$, $\notin$
 
+### Adjacent punctuation
+
+- Formula before closing parenthesis: ($a^2 + b^2 = c^2$)
+- Formula before semicolon: $x_1$; $x_2$; $x_3$
+- Formula before en-dash range: $a \approx 1$–200 nm
+- Formula between two ranges: $\rho \approx 10^{10}$–$10^{12}$
+- Compound term with hyphen: $L_2$-regularization
+
+### Non-space prefix
+
+- Unit with superscript: $km^2$, $10^{-3}$, MPa·$m^{1/2}$
+
 ## Limitations
 
 This is a basic implementation that converts LaTeX to Unicode text representation. For more complex equations with fractions, matrices, integrals, etc., a more sophisticated LaTeX-to-OMML converter would be needed.
