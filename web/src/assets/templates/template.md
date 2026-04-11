@@ -92,6 +92,9 @@ You can write inline equations like $E=mc^2$ directly in your text. Here are mor
 - Pythagorean theorem: $a^2 + b^2 = c^2$
 - Quadratic formula: $x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$
 - Greek letters: $\alpha$, $\beta$, $\gamma$, $\delta$, $\pi$, $\omega$
+- Formula before closing parenthesis: ($a^2 + b^2 = c^2$)
+- Formula before semicolon: $x_1$; $x_2$; $x_3$
+- Formula before en-dash range: $a \approx 1$–200 nm
 
 ## Block Math
 

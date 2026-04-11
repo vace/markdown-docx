@@ -15,8 +15,8 @@ importers:
         specifier: ^0.16.27
         version: 0.16.27
       markdown-docx:
-        specifier: ^1.5.1
-        version: 1.5.1
+        specifier: ^1.5.2
+        version: 1.5.2
       marked-katex-extension:
         specifier: ^5.1.6
         version: 5.1.6(katex@0.16.27)(marked@15.0.8)
@@ -629,8 +629,8 @@ packages:
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
-  markdown-docx@1.5.1:
-    resolution: {integrity: sha512-4mCZ/yVNiles3Yp5211OFLqctMywoGkfMcSxaes6u2zTMaa/N2DwAJPpidt0DxDA+mekD5oo0Zk8QooY8VVkLA==}
+  markdown-docx@1.5.2:
+    resolution: {integrity: sha512-RODTGlv37OWD4ccPdO5Ba4f4cVr4xjOwHoR776J5m2mF2d0zlprLMaE8oBqu4OB9FDDsPab78F4DCum2GcgbOw==}
     hasBin: true
 
   marked-katex-extension@5.1.6:
@@ -1232,7 +1232,7 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  markdown-docx@1.5.1:
+  markdown-docx@1.5.2:
     dependencies:
       commander: 13.1.0
       docx: 9.5.1
