@@ -217,6 +217,45 @@ markdown-docx -i input.md -o output.docx
 
 If the output file is not specified, it will use the input filename with a `.docx` extension.
 
+### Customizing Output via CLI
+
+**Theme overrides** (inline JSON via `-t`):
+
+```bash
+# Hex color values WITHOUT the # prefix; sizes in points
+markdown-docx -i input.md -t '{"heading1":"2F5597","bodySize":14,"lineSpacing":1.5}'
+```
+
+**Config file** (`-c`) for full control:
+
+```bash
+markdown-docx -i input.md -c my-config.json
+```
+
+Example `my-config.json`:
+
+```json
+{
+  "ignoreImage": false,
+  "math": { "engine": "katex", "libreOfficeCompat": false },
+  "theme": {
+    "heading1": "2F5597",
+    "bodySize": 14,
+    "lineSpacing": 1.5,
+    "linkUnderline": false
+  }
+}
+```
+
+See [`examples/sample-config.json`](./examples/sample-config.json) for a complete list of all configurable properties with their defaults.
+
+For a full property reference from the terminal:
+
+```bash
+markdown-docx help theme    # all theme color/size properties and defaults
+markdown-docx help config   # all config file options and defaults
+```
+
 ## Supported Markdown Features
 
 - Headings (H1-H6)

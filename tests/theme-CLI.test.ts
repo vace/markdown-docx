@@ -100,3 +100,53 @@ describe('CLI precedence: --theme overrides --config', () => {
     fs.unlinkSync(configFile)
   })
 })
+
+describe('CLI help subcommand', () => {
+  it('markdown-docx help theme outputs theme property names', () => {
+    const output = execSync('node bin/markdown-docx.mjs help theme', {
+      cwd: '/home/tsehla/projects/other/markdown-docx',
+      encoding: 'utf-8'
+    })
+    expect(output).toContain('heading1')
+    expect(output).toContain('2F5597')
+    expect(output).toContain('bodySize')
+    expect(output).toContain('linkUnderline')
+    expect(output).toContain('sample-config.json')
+  })
+
+  it('markdown-docx help config outputs config field names', () => {
+    const output = execSync('node bin/markdown-docx.mjs help config', {
+      cwd: '/home/tsehla/projects/other/markdown-docx',
+      encoding: 'utf-8'
+    })
+    expect(output).toContain('ignoreImage')
+    expect(output).toContain('ignoreFootnote')
+    expect(output).toContain('math.engine')
+    expect(output).toContain('libreOfficeCompat')
+    expect(output).toContain('sample-config.json')
+  })
+
+  it('markdown-docx help with no topic lists available topics', () => {
+    const output = execSync('node bin/markdown-docx.mjs help', {
+      cwd: '/home/tsehla/projects/other/markdown-docx',
+      encoding: 'utf-8'
+    })
+    expect(output).toContain('theme')
+    expect(output).toContain('config')
+  })
+
+  it('markdown-docx help with unknown topic exits non-zero', () => {
+    let stderr = ''
+    try {
+      execSync('node bin/markdown-docx.mjs help unknown-topic', {
+        cwd: '/home/tsehla/projects/other/markdown-docx',
+        stdio: ['pipe', 'pipe', 'pipe'],
+        encoding: 'utf-8'
+      })
+      throw new Error('Expected non-zero exit')
+    } catch (err: any) {
+      stderr = (err as any).stderr ?? ''
+    }
+    expect(stderr).toContain('Unknown help topic')
+  })
+})

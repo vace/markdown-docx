@@ -1,0 +1,42 @@
+{
+  "_note": "All values shown are defaults. Remove or omit any property to use the default. Run 'markdown-docx help theme' or 'markdown-docx help config' for a full reference.",
+  "ignoreImage": false,
+  "ignoreFootnote": false,
+  "ignoreHtml": false,
+  "gfm": true,
+  "math": {
+    "engine": "katex",
+    "libreOfficeCompat": false
+  },
+  "theme": {
+    "heading1": "2F5597",
+    "heading2": "5B9BD5",
+    "heading3": "44546A",
+    "heading4": "44546A",
+    "heading5": "44546A",
+    "heading6": "44546A",
+    "link": "0563C1",
+    "code": "032F62",
+    "codespan": "70AD47",
+    "codeBackground": "f6f6f7",
+    "blockquote": "666666",
+    "blockquoteBackground": "F9F9F9",
+    "del": "FF0000",
+    "hr": "D9D9D9",
+    "html": "4472C4",
+    "tag": "ED7D31",
+    "border": "A5A5A5",
+    "tableHeaderBackground": "F2F2F2",
+    "heading1Size": 18,
+    "heading2Size": 16,
+    "heading3Size": 14,
+    "heading4Size": 13,
+    "heading5Size": 12,
+    "heading6Size": 12,
+    "bodySize": 12,
+    "codeSize": 11,
+    "spaceSize": 6,
+    "lineSpacing": 1.0,
+    "linkUnderline": true
+  }
+}
