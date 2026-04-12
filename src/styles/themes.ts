@@ -26,13 +26,15 @@ export const defaultTheme: IMarkdownTheme = {
   /**
    * Theme Patterns
    */
-  heading1Size: 36,
-  heading2Size: 32,
-  heading3Size: 28,
-  heading4Size: 26,
-  heading5Size: 24,
-  heading6Size: 24,
-  spaceSize: 12,
-  codeSize: 22,
+  heading1Size: 18,
+  heading2Size: 16,
+  heading3Size: 14,
+  heading4Size: 13,
+  heading5Size: 12,
+  heading6Size: 12,
+  bodySize: 12,
+  lineSpacing: 1.0,
+  spaceSize: 6,
+  codeSize: 11,
   linkUnderline: true,
 }

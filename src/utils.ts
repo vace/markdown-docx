@@ -1,4 +1,4 @@
-import { Alignment, AlignmentType, HeadingLevel } from 'docx'
+import { AlignmentType, HeadingLevel } from 'docx'
 import { Tokens } from 'marked'
 
 import { IBlockAttr, MarkdownImageType } from './types'

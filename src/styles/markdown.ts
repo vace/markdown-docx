@@ -11,7 +11,7 @@ export const createMarkdownStyle = (_theme: Partial<IMarkdownTheme>): Record<IMa
     space: {
       className: classes.Space,
       run: {
-        size: theme.spaceSize, // 6pt - small space
+        size: theme.spaceSize * 2, // convert pt to half-points
       },
       paragraph: {
         spacing: {
@@ -24,7 +24,7 @@ export const createMarkdownStyle = (_theme: Partial<IMarkdownTheme>): Record<IMa
       className: classes.Code,
       run: {
         font: "Courier New",
-        size: theme.codeSize, // 11pt
+        size: theme.codeSize * 2, // convert pt to half-points
         color: theme.code,
       },
       paragraph: {
@@ -181,7 +181,7 @@ export const createMarkdownStyle = (_theme: Partial<IMarkdownTheme>): Record<IMa
     heading1: {
       className: classes.Heading1,
       run: {
-        size: theme.heading1Size, // 18pt
+        size: theme.heading1Size * 2, // convert pt to half-points
         bold: true,
         color: theme.heading1,
       },
@@ -197,7 +197,7 @@ export const createMarkdownStyle = (_theme: Partial<IMarkdownTheme>): Record<IMa
     heading2: {
       className: classes.Heading2,
       run: {
-        size: theme.heading2Size, // 16pt
+        size: theme.heading2Size * 2, // convert pt to half-points
         bold: true,
         color: theme.heading2,
       },
@@ -213,7 +213,7 @@ export const createMarkdownStyle = (_theme: Partial<IMarkdownTheme>): Record<IMa
     heading3: {
       className: classes.Heading3,
       run: {
-        size: theme.heading3Size, // 14pt
+        size: theme.heading3Size * 2, // convert pt to half-points
         bold: true,
         color: theme.heading3,
       },
@@ -229,7 +229,7 @@ export const createMarkdownStyle = (_theme: Partial<IMarkdownTheme>): Record<IMa
     heading4: {
       className: classes.Heading4,
       run: {
-        size: theme.heading4Size, // 13pt
+        size: theme.heading4Size * 2, // convert pt to half-points
         bold: true,
         color: theme.heading4,
       },
@@ -245,7 +245,7 @@ export const createMarkdownStyle = (_theme: Partial<IMarkdownTheme>): Record<IMa
     heading5: {
       className: classes.Heading5,
       run: {
-        size: theme.heading5Size, // 12pt
+        size: theme.heading5Size * 2, // convert pt to half-points
         bold: true,
         italics: true,
         color: theme.heading5,
@@ -262,7 +262,7 @@ export const createMarkdownStyle = (_theme: Partial<IMarkdownTheme>): Record<IMa
     heading6: {
       className: classes.Heading6,
       run: {
-        size: theme.heading6Size, // 12pt
+        size: theme.heading6Size * 2, // convert pt to half-points
         bold: false,
         italics: true,
         color: theme.heading6,

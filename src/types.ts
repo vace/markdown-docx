@@ -208,4 +208,10 @@ export type IMarkdownTheme = {
   codeSize: number
   linkUnderline: boolean
 
+  /**
+   * Body typography customization
+   */
+  bodySize?: number        // Font size in points (e.g., 14 for 14pt). Optional, uses library default if omitted.
+  lineSpacing?: number     // Line spacing multiplier (e.g., 1.5 for 150%). Optional, uses library default if omitted.
+
 }

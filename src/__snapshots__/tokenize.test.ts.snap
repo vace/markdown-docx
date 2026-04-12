@@ -677,6 +677,14 @@ exports[`tokenize > parse images 1`] = `
         "raw": "![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")",
         "text": "alt text",
         "title": "Logo Title Text 1",
+        "tokens": [
+          {
+            "escaped": false,
+            "raw": "alt text",
+            "text": "alt text",
+            "type": "text",
+          },
+        ],
         "type": "image",
       },
     ],
@@ -707,6 +715,14 @@ exports[`tokenize > parse images 1`] = `
         "raw": "![alt text][logo]",
         "text": "alt text",
         "title": "Logo Title Text 2",
+        "tokens": [
+          {
+            "escaped": false,
+            "raw": "alt text",
+            "text": "alt text",
+            "type": "text",
+          },
+        ],
         "type": "image",
       },
     ],
@@ -2394,6 +2410,14 @@ exports[`tokenize > render image size 1`] = `
         "raw": "![Alt text](image.png "600x400")",
         "text": "Alt text",
         "title": "600x400",
+        "tokens": [
+          {
+            "escaped": false,
+            "raw": "Alt text",
+            "text": "Alt text",
+            "type": "text",
+          },
+        ],
         "type": "image",
       },
     ],
@@ -2413,6 +2437,14 @@ exports[`tokenize > render image size 2`] = `
         "raw": "![Alt text](image.png "50%x50%")",
         "text": "Alt text",
         "title": "50%x50%",
+        "tokens": [
+          {
+            "escaped": false,
+            "raw": "Alt text",
+            "text": "Alt text",
+            "type": "text",
+          },
+        ],
         "type": "image",
       },
     ],
