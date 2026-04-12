@@ -6,7 +6,7 @@ import { mathmlToDocxChildren } from './mathml-to-docx'
 import { MarkdownDocx } from '../MarkdownDocx'
 import { BlockKatex, IExtension, InlineKatex } from './types'
 
-const inlineRule = /^(\${1,2})(?!\$)((?:\\.|[^\\\n])*?(?:\\.|[^\\\n\$]))\1(?=[\s?!\.,:;)\]–—？！。，：-]|$)/;
+const inlineRule = /^(\${1,2})(?!\$)((?:\\.|[^\\\n])*?(?:\\.|[^\\\n\$]))\1(?=[\s?!\.,:;%)\]–—？！。，：-]|$)/;
 const inlineRuleNonStandard = /^(\${1,2})(?!\$)((?:\\.|[^\\\n])*?(?:\\.|[^\\\n\$]))\1/; // Non-standard, even if there are no spaces before and after $ or $$, try to parse
 
 const blockRule = /^(\${1,2})\n((?:\\[^]|[^\\])+?)\n\1(?:\n|$)/;

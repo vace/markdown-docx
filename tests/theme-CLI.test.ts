@@ -1,9 +1,10 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { execSync } from 'child_process'
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 
-const tmpDir = '/tmp/markdown-docx-test'
+const tmpDir = path.join(os.tmpdir(), 'markdown-docx-test')
 const inputFile = path.join(tmpDir, 'test.md')
 const outputFile = path.join(tmpDir, 'test.docx')
 
@@ -23,33 +24,25 @@ afterEach(() => {
 describe('CLI --theme flag', () => {
   it('creates docx with --theme JSON for bodySize', () => {
     const themeJson = JSON.stringify({ bodySize: 14 })
-    execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --theme '${themeJson}'`, {
-      cwd: '/home/tsehla/projects/other/markdown-docx'
-    })
+    execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --theme '${themeJson}'`)
     expect(fs.existsSync(outputFile)).toBe(true)
   })
 
   it('creates docx with --theme JSON for lineSpacing', () => {
     const themeJson = JSON.stringify({ lineSpacing: 1.5 })
-    execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --theme '${themeJson}'`, {
-      cwd: '/home/tsehla/projects/other/markdown-docx'
-    })
+    execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --theme '${themeJson}'`)
     expect(fs.existsSync(outputFile)).toBe(true)
   })
 
   it('creates docx with --theme JSON containing multiple properties', () => {
     const themeJson = JSON.stringify({ bodySize: 14, lineSpacing: 1.5, heading1: 'FF0000' })
-    execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --theme '${themeJson}'`, {
-      cwd: '/home/tsehla/projects/other/markdown-docx'
-    })
+    execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --theme '${themeJson}'`)
     expect(fs.existsSync(outputFile)).toBe(true)
   })
 
   it('throws error for invalid JSON in --theme flag', () => {
     expect(() => {
-      execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --theme '{"bodySize": invalid}'`, {
-        cwd: '/home/tsehla/projects/other/markdown-docx'
-      })
+      execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --theme '{"bodySize": invalid}'`)
     }).toThrow()
   })
 })
@@ -64,9 +57,7 @@ describe('CLI --config flag', () => {
       }
     }))
 
-    execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --config ${configFile}`, {
-      cwd: '/home/tsehla/projects/other/markdown-docx'
-    })
+    execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --config ${configFile}`)
     expect(fs.existsSync(outputFile)).toBe(true)
 
     fs.unlinkSync(configFile)
@@ -74,9 +65,7 @@ describe('CLI --config flag', () => {
 
   it('throws error for missing config file', () => {
     expect(() => {
-      execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --config /nonexistent/config.json`, {
-        cwd: '/home/tsehla/projects/other/markdown-docx'
-      })
+      execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --config /nonexistent/config.json`)
     }).toThrow()
   })
 })
@@ -92,9 +81,7 @@ describe('CLI precedence: --theme overrides --config', () => {
     }))
 
     const themeJson = JSON.stringify({ bodySize: 18 })
-    execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --config ${configFile} --theme '${themeJson}'`, {
-      cwd: '/home/tsehla/projects/other/markdown-docx'
-    })
+    execSync(`node bin/markdown-docx.mjs --input ${inputFile} --output ${outputFile} --config ${configFile} --theme '${themeJson}'`)
     expect(fs.existsSync(outputFile)).toBe(true)
 
     fs.unlinkSync(configFile)
@@ -104,7 +91,6 @@ describe('CLI precedence: --theme overrides --config', () => {
 describe('CLI help subcommand', () => {
   it('markdown-docx help theme outputs theme property names', () => {
     const output = execSync('node bin/markdown-docx.mjs help theme', {
-      cwd: '/home/tsehla/projects/other/markdown-docx',
       encoding: 'utf-8'
     })
     expect(output).toContain('heading1')
@@ -116,7 +102,6 @@ describe('CLI help subcommand', () => {
 
   it('markdown-docx help config outputs config field names', () => {
     const output = execSync('node bin/markdown-docx.mjs help config', {
-      cwd: '/home/tsehla/projects/other/markdown-docx',
       encoding: 'utf-8'
     })
     expect(output).toContain('ignoreImage')
@@ -128,7 +113,6 @@ describe('CLI help subcommand', () => {
 
   it('markdown-docx help with no topic lists available topics', () => {
     const output = execSync('node bin/markdown-docx.mjs help', {
-      cwd: '/home/tsehla/projects/other/markdown-docx',
       encoding: 'utf-8'
     })
     expect(output).toContain('theme')
@@ -139,7 +123,6 @@ describe('CLI help subcommand', () => {
     let stderr = ''
     try {
       execSync('node bin/markdown-docx.mjs help unknown-topic', {
-        cwd: '/home/tsehla/projects/other/markdown-docx',
         stdio: ['pipe', 'pipe', 'pipe'],
         encoding: 'utf-8'
       })
