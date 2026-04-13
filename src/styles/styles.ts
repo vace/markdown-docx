@@ -14,11 +14,11 @@ export function createDefaultStyle(theme: IMarkdownTheme): IStylesOptions['defau
   return {
     document: {
       run: {
-        size: (theme.bodySize ?? 12) * 2, // Convert pt to half-points
+        size: (theme.bodySize ?? defaultTheme.bodySize) * 2, // Convert pt to half-points
       },
       paragraph: {
         spacing: {
-          line: Math.round((theme.lineSpacing ?? 1.0) * 240), // Convert to twips
+          line: Math.round((theme.lineSpacing ?? defaultTheme.lineSpacing) * 240), // Convert to twips
           lineRule: "auto"
         }
       }
