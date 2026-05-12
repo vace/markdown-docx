@@ -37,6 +37,13 @@
     "codeSize": 11,
     "spaceSize": 6,
     "lineSpacing": 1.0,
-    "linkUnderline": true
+    "linkUnderline": true,
+    "_marginNote": "Margins accept pt or cm units. Shorthand: 1 value=all, 2=top/bottom + left/right, 3=top + left/right + bottom, 4=top right bottom left. Verbose properties override the shorthand.",
+    "margin": null,
+    "marginTop": null,
+    "marginRight": null,
+    "marginBottom": null,
+    "marginLeft": null,
+    "collapseEmptyLines": false
   }
 }

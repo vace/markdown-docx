@@ -171,12 +171,10 @@ const doc = await markdownDocx(markdown, {
 
 You can customize the appearance of the generated document by providing a theme configuration:
 
-Example:
-
 ```ts
 const docx = await markdownToDocx(markdownText, {
   theme: {
-    // interface IMarkdownTheme Colors (hex values without #)
+    // Colors (hex values without #)
     heading1: "5B21B6",
     heading2: "7C3AED",
     heading3: "8B5CF6",
@@ -187,17 +185,80 @@ const docx = await markdownToDocx(markdownText, {
     code: "EC4899",
     blockquote: "6B7280",
     del: "EF4444",
+
+    // Font sizes (in points)
     heading1Size: 66,
     heading2Size: 52,
     heading3Size: 42,
     spaceSize: 18,
     codeSize: 20,
     linkUnderline: false,
+    bodySize: 14,
+    lineSpacing: 1.5,
+
+    // Page margins — CSS shorthand (pt or cm), or verbose properties
+    margin: "2cm 2.5cm",        // top/bottom 2cm, left/right 2.5cm
+    // marginTop: "3cm",        // verbose properties override shorthand
+    // marginRight: 72,         // plain number = pt
+    // marginBottom: "2cm",
+    // marginLeft: 72,
+
+    // Remove blank-line paragraphs between content blocks
+    collapseEmptyLines: false,
+
+    linkUnderline: true,
   }
 })
 ```
 
-All theme properties are optional - you can override only the properties you want to customize.
+All theme properties are optional — override only what you need. See [`examples/sample-config.json`](./examples/sample-config.json) for a complete list with defaults.
+
+#### Theme property reference
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `heading1`–`heading6` | `string` | (various) | Hex color (no `#`) for each heading level |
+| `link` | `string` | `"0563C1"` | Hex color for hyperlinks |
+| `code` | `string` | `"032F62"` | Hex color for code blocks |
+| `codespan` | `string` | `"70AD47"` | Hex color for inline code |
+| `codeBackground` | `string` | `"f6f6f7"` | Background fill for code blocks |
+| `blockquote` | `string` | `"666666"` | Text color for blockquotes |
+| `blockquoteBackground` | `string` | `"F9F9F9"` | Background fill for blockquotes |
+| `del` | `string` | `"FF0000"` | Hex color for strikethrough text |
+| `hr` | `string` | `"D9D9D9"` | Hex color for horizontal rules |
+| `html` | `string` | `"4472C4"` | Hex color for raw HTML blocks |
+| `heading1Size`–`heading6Size` | `number` | 18/16/14/13/12/12 | Font size in pt for each heading |
+| `bodySize` | `number` | `12` | Base body font size in pt |
+| `codeSize` | `number` | `11` | Font size in pt for code blocks |
+| `lineSpacing` | `number` | `1.0` | Line spacing multiplier (e.g. `1.5` = 150%) |
+| `linkUnderline` | `boolean` | `true` | Whether links are underlined |
+| `margin` | `string \| number` | — | Page margin shorthand (see below) |
+| `marginTop` | `number \| string` | — | Top margin; overrides `margin` |
+| `marginRight` | `number \| string` | — | Right margin; overrides `margin` |
+| `marginBottom` | `number \| string` | — | Bottom margin; overrides `margin` |
+| `marginLeft` | `number \| string` | — | Left margin; overrides `margin` |
+| `collapseEmptyLines` | `boolean` | `false` | Omit blank-line separator paragraphs |
+
+#### Page margins
+
+Margins follow CSS shorthand notation. Values may be plain numbers (treated as **pt**) or strings with a `pt` or `cm` suffix.
+
+| Pattern | Meaning |
+|---|---|
+| `"2cm"` or `72` | All sides equal |
+| `"2cm 1.5cm"` | Top & bottom = 2 cm, left & right = 1.5 cm |
+| `"2cm 1.5cm 1cm"` | Top 2 cm, left/right 1.5 cm, bottom 1 cm |
+| `"2cm 1.5cm 1cm 1.5cm"` | Top, right, bottom, left |
+
+Verbose properties (`marginTop`, `marginRight`, `marginBottom`, `marginLeft`) override the shorthand when both are specified. They accept either a plain number (pt) or a string with `pt`/`cm` suffix.
+
+```ts
+theme: {
+  margin: "2cm",        // base: 2 cm on all sides
+  marginTop: "3cm",     // override top only
+  marginLeft: 72,       // override left to 72 pt
+}
+```
 
 
 ## Command Line Interface
