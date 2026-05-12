@@ -5,7 +5,7 @@ import { renderBlocks, renderTokens } from './renders'
 import { createDocumentStyle, numbering, styles } from './styles'
 import { tokenize } from './tokenize'
 import { IBlockAttr, IBlockToken, IInlineToken, ITextAttr, MarkdownDocxOptions, MarkdownImageItem } from './types'
-import { getImageTokens } from './utils'
+import { getImageTokens, resolvePageMargins } from './utils'
 
 export class MarkdownDocx {
 
@@ -56,6 +56,8 @@ export class MarkdownDocx {
     this.footnotes = {}
 
     const section = await this.toSection()
+    const pageMargins = this.options.theme ? resolvePageMargins(this.options.theme) : null
+    const sectionProperties = pageMargins ? { page: { margin: pageMargins } } : undefined
     const doc = new Document({
       numbering,
       styles: createDocumentStyle({ theme: this.options.theme}),
@@ -64,6 +66,7 @@ export class MarkdownDocx {
       footnotes: this.footnotes,
       sections: [
         {
+          properties: sectionProperties,
           children: section,
         }
       ],

@@ -1,7 +1,7 @@
-import { AlignmentType, HeadingLevel } from 'docx'
+import { AlignmentType, HeadingLevel, IPageMarginAttributes } from 'docx'
 import { Tokens } from 'marked'
 
-import { IBlockAttr, MarkdownImageType } from './types'
+import { IBlockAttr, IMarkdownTheme, MarkdownImageType } from './types'
 
 export function getHeadingLevel(level?: number) {
   if (level == null) {
@@ -118,4 +118,63 @@ export function getImageExtension(filename: string = '', mime?: string | null): 
 
 export function isHttp (src: string) {
   return /^https?:\/\//.test(src)
+}
+
+// 1 pt = 20 twips (the unit docx uses for page margins)
+const PT_TO_TWIPS = 20
+// 1 cm = 28.3465 pt (exactly 720/25.4 twips per cm)
+const CM_TO_TWIPS = (720 / 25.4)
+
+function parseMarginValue(val: string | number): number {
+  if (typeof val === 'number') return Math.round(val * PT_TO_TWIPS)
+  const s = val.toString().trim()
+  const cmMatch = s.match(/^([\d.]+)\s*cm$/i)
+  if (cmMatch) return Math.round(parseFloat(cmMatch[1]) * CM_TO_TWIPS)
+  const num = parseFloat(s.replace(/pt$/i, '').trim())
+  return isNaN(num) ? 0 : Math.round(num * PT_TO_TWIPS)
+}
+
+/**
+ * Resolve page margin twip values from a theme's margin properties.
+ * Returns null when no margin properties are set.
+ */
+export function resolvePageMargins(theme: Partial<IMarkdownTheme>): IPageMarginAttributes | null {
+  const hasShorthand = theme.margin != null
+  const hasVerbose =
+    theme.marginTop != null ||
+    theme.marginRight != null ||
+    theme.marginBottom != null ||
+    theme.marginLeft != null
+
+  if (!hasShorthand && !hasVerbose) return null
+
+  let top = 0, right = 0, bottom = 0, left = 0
+
+  if (hasShorthand) {
+    const m = theme.margin!
+    const parts = typeof m === 'number' ? [m] : m.trim().split(/\s+/)
+    if (parts.length === 1) {
+      top = right = bottom = left = parseMarginValue(parts[0])
+    } else if (parts.length === 2) {
+      top = bottom = parseMarginValue(parts[0])
+      right = left = parseMarginValue(parts[1])
+    } else if (parts.length === 3) {
+      top = parseMarginValue(parts[0])
+      right = left = parseMarginValue(parts[1])
+      bottom = parseMarginValue(parts[2])
+    } else {
+      top = parseMarginValue(parts[0])
+      right = parseMarginValue(parts[1])
+      bottom = parseMarginValue(parts[2])
+      left = parseMarginValue(parts[3])
+    }
+  }
+
+  // Verbose properties override shorthand
+  if (theme.marginTop != null) top = parseMarginValue(theme.marginTop)
+  if (theme.marginRight != null) right = parseMarginValue(theme.marginRight)
+  if (theme.marginBottom != null) bottom = parseMarginValue(theme.marginBottom)
+  if (theme.marginLeft != null) left = parseMarginValue(theme.marginLeft)
+
+  return { top, right, bottom, left }
 }
