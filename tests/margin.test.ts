@@ -147,7 +147,7 @@ describe('resolvePageMargins', () => {
     const result = resolvePageMargins({ marginTop: 36 })!
     expect(result).not.toBeNull()
     expect(result.top).toBe(pt(36))
-    expect(result.left).toBe(0)
+    expect(result.left).toBeUndefined()
   })
 
   it('fractional cm values are rounded to the nearest twip', () => {

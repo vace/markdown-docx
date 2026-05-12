@@ -2,7 +2,7 @@ import {
   FileChild, IParagraphStylePropertiesOptions, IRunStylePropertiesOptions, ParagraphChild
 } from 'docx'
 
-import { MarkdownDocx } from '../MarkdownDocx'
+import type { MarkdownDocx } from '../MarkdownDocx'
 import { IBlockAttr, ITextAttr } from './attr'
 import { IBlockToken, IInlineToken } from './token'
 

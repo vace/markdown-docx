@@ -158,33 +158,34 @@ export function resolvePageMargins(theme: Partial<IMarkdownTheme>): IPageMarginA
 
   if (!hasShorthand && !hasVerbose) return null
 
-  let top = 0, right = 0, bottom = 0, left = 0
+  const margins: Partial<IPageMarginAttributes> = {}
 
   if (hasShorthand) {
     const m = theme.margin!
     const parts = typeof m === 'number' ? [m] : m.trim().split(/\s+/)
-    if (parts.length === 1) {
-      top = right = bottom = left = parseMarginValue(parts[0])
-    } else if (parts.length === 2) {
-      top = bottom = parseMarginValue(parts[0])
-      right = left = parseMarginValue(parts[1])
-    } else if (parts.length === 3) {
-      top = parseMarginValue(parts[0])
-      right = left = parseMarginValue(parts[1])
-      bottom = parseMarginValue(parts[2])
+    const values = parts.map(p => parseMarginValue(p))
+    if (values.length === 1) {
+      margins.top = margins.right = margins.bottom = margins.left = values[0]
+    } else if (values.length === 2) {
+      margins.top = margins.bottom = values[0]
+      margins.right = margins.left = values[1]
+    } else if (values.length === 3) {
+      margins.top = values[0]
+      margins.right = margins.left = values[1]
+      margins.bottom = values[2]
     } else {
-      top = parseMarginValue(parts[0])
-      right = parseMarginValue(parts[1])
-      bottom = parseMarginValue(parts[2])
-      left = parseMarginValue(parts[3])
+      margins.top = values[0]
+      margins.right = values[1]
+      margins.bottom = values[2]
+      margins.left = values[3]
     }
   }
 
   // Verbose properties override shorthand
-  if (theme.marginTop != null) top = parseMarginValue(theme.marginTop)
-  if (theme.marginRight != null) right = parseMarginValue(theme.marginRight)
-  if (theme.marginBottom != null) bottom = parseMarginValue(theme.marginBottom)
-  if (theme.marginLeft != null) left = parseMarginValue(theme.marginLeft)
+  if (theme.marginTop != null) margins.top = parseMarginValue(theme.marginTop)
+  if (theme.marginRight != null) margins.right = parseMarginValue(theme.marginRight)
+  if (theme.marginBottom != null) margins.bottom = parseMarginValue(theme.marginBottom)
+  if (theme.marginLeft != null) margins.left = parseMarginValue(theme.marginLeft)
 
-  return { top, right, bottom, left }
+  return margins as IPageMarginAttributes
 }

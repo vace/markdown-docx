@@ -12,7 +12,6 @@ export type IBlockToken =
   | Tokens.HTML
   | Tokens.Def
   | Tokens.Table
-  | Tokens.Heading
   | Tokens.Paragraph
   | Tokens.Text
   // plugin

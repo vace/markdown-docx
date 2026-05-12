@@ -205,8 +205,6 @@ const docx = await markdownToDocx(markdownText, {
 
     // Remove blank-line paragraphs between content blocks
     collapseEmptyLines: false,
-
-    linkUnderline: true,
   }
 })
 ```
