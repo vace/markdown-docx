@@ -45,11 +45,12 @@ export type IMarkdownTheme = {
 
   /**
    * Page margins. Accepts a CSS-style shorthand string or a plain number (treated as pt).
-   * Supported units: pt (points) and cm (centimetres).
+   * Supported units: pt (points), cm (centimetres), and in/inch (inches).
    * Shorthand patterns:
    *   "72"                   → all sides 72 pt
    *   "72pt"                 → all sides 72 pt
    *   "2cm"                  → all sides 2 cm
+   *   "1in"                  → all sides 1 inch
    *   "2cm 1.5cm"            → top/bottom 2 cm, left/right 1.5 cm
    *   "2cm 1.5cm 1cm"        → top 2cm, left/right 1.5cm, bottom 1cm
    *   "2cm 1.5cm 1cm 1.5cm"  → top right bottom left

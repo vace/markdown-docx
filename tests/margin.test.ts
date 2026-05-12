@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { resolvePageMargins } from '../src/utils'
 
-const PT = 20          // 1 pt = 20 twips
-const CM = 720 / 25.4  // 1 cm in twips ≈ 28.3465
+const PT = 20           // 1 pt = 20 twips
+const CM = 1440 / 2.54  // 1 cm in twips: 1 inch = 1440 twips, 1 inch = 2.54 cm → ≈ 566.93
 
 function pt(n: number) { return Math.round(n * PT) }
 function cm(n: number) { return Math.round(n * CM) }

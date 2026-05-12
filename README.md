@@ -241,21 +241,21 @@ All theme properties are optional — override only what you need. See [`example
 
 #### Page margins
 
-Margins follow CSS shorthand notation. Values may be plain numbers (treated as **pt**) or strings with a `pt` or `cm` suffix.
+Margins follow CSS shorthand notation. Values may be plain numbers (treated as **pt**) or strings with a `pt`, `cm`, or `in`/`inch` suffix.
 
 | Pattern | Meaning |
 |---|---|
-| `"2cm"` or `72` | All sides equal |
+| `"2cm"` or `"1in"` or `72` | All sides equal |
 | `"2cm 1.5cm"` | Top & bottom = 2 cm, left & right = 1.5 cm |
 | `"2cm 1.5cm 1cm"` | Top 2 cm, left/right 1.5 cm, bottom 1 cm |
 | `"2cm 1.5cm 1cm 1.5cm"` | Top, right, bottom, left |
 
-Verbose properties (`marginTop`, `marginRight`, `marginBottom`, `marginLeft`) override the shorthand when both are specified. They accept either a plain number (pt) or a string with `pt`/`cm` suffix.
+Verbose properties (`marginTop`, `marginRight`, `marginBottom`, `marginLeft`) override the shorthand when both are specified. They accept either a plain number (pt) or a string with `pt`/`cm`/`in` suffix.
 
 ```ts
 theme: {
   margin: "2cm",        // base: 2 cm on all sides
-  marginTop: "3cm",     // override top only
+  marginTop: "1in",     // override top to 1 inch
   marginLeft: 72,       // override left to 72 pt
 }
 ```

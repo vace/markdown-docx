@@ -122,14 +122,24 @@ export function isHttp (src: string) {
 
 // 1 pt = 20 twips (the unit docx uses for page margins)
 const PT_TO_TWIPS = 20
-// 1 cm = 28.3465 pt (exactly 720/25.4 twips per cm)
-const CM_TO_TWIPS = (720 / 25.4)
+// 1 inch = 1440 twips
+const IN_TO_TWIPS = 1440
+// 1 inch = 2.54 cm => 1 cm = 1440/2.54 ≈ 566.93 twips
+const CM_TO_TWIPS = (1440 / 2.54)
 
 function parseMarginValue(val: string | number): number {
   if (typeof val === 'number') return Math.round(val * PT_TO_TWIPS)
   const s = val.toString().trim()
+  
+  // Try centimeter
   const cmMatch = s.match(/^([\d.]+)\s*cm$/i)
   if (cmMatch) return Math.round(parseFloat(cmMatch[1]) * CM_TO_TWIPS)
+  
+  // Try inch
+  const inMatch = s.match(/^([\d.]+)\s*(?:in|inch)$/i)
+  if (inMatch) return Math.round(parseFloat(inMatch[1]) * IN_TO_TWIPS)
+  
+  // Default to points
   const num = parseFloat(s.replace(/pt$/i, '').trim())
   return isNaN(num) ? 0 : Math.round(num * PT_TO_TWIPS)
 }

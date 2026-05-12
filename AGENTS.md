@@ -146,6 +146,5 @@ The `MarkdownDocx` instance is threaded through all render functions as `render`
 | Modifying `themes.ts` defaults | Defaults go in `defaultTheme`; interface changes go in `IMarkdownTheme` |
 | Using `theme.spaceSize` for run font size | Space paragraphs inherit body size — do not set `run.size` on `space` style |
 | Forgetting to merge with `defaultTheme` | Always `{ ...defaultTheme, ...userTheme }` before reading theme values |
-| Hardcoding twip values | Use the helpers in `utils.ts`; pt × 20 = twips, cm × (720/25.4) = twips |
 | Not returning `false` for skipped blocks | Return `false` (silent skip) not `null` (logs warning) |
 | Breaking circular import between `MarkdownDocx` and `types/style.ts` | `IMarkdownRenderFunction` in `style.ts` imports `MarkdownDocx` — this is intentional and already present |
