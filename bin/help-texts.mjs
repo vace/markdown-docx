@@ -47,6 +47,12 @@ SIZES & SPACING                DEFAULT    DESCRIPTION
   spaceSize                    6          Paragraph spacing (pt)
   lineSpacing                  1.0        Line spacing multiplier (1.0 = single, 1.5 = 150%)
 
+FONTS                          DEFAULT    DESCRIPTION
+  bodyFont                     (unset)    Body/paragraph font (e.g., "Times New Roman")
+  headingFont                  (unset)    Font for all heading levels (e.g., "Arial")
+  codeFont                     (unset)    Font for code blocks, inline code, HTML, tags (falls back to "Courier New")
+  blockquoteFont               (unset)    Font for blockquotes (e.g., "Georgia")
+
 BOOLEANS                       DEFAULT    DESCRIPTION
   linkUnderline                true       Whether hyperlinks are underlined
 

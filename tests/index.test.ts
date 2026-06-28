@@ -49,6 +49,10 @@ describe('markdown-docx', () => {
         spaceSize: 18,
         codeSize: 20,
         linkUnderline: false,
+        bodyFont: "Times New Roman",
+        headingFont: "Arial",
+        codeFont: "Fira Code",
+        blockquoteFont: "Georgia",
       }
     })
 

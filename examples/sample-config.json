@@ -37,6 +37,10 @@
     "codeSize": 11,
     "spaceSize": 6,
     "lineSpacing": 1.0,
-    "linkUnderline": true
+    "linkUnderline": true,
+    "bodyFont": "Times New Roman",
+    "headingFont": "Arial",
+    "codeFont": "Fira Code",
+    "blockquoteFont": "Georgia"
   }
 }

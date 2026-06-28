@@ -214,4 +214,12 @@ export type IMarkdownTheme = {
   bodySize?: number        // Font size in points (e.g., 14 for 14pt). Optional, uses library default if omitted.
   lineSpacing?: number     // Line spacing multiplier (e.g., 1.5 for 150%). Optional, uses library default if omitted.
 
+  /**
+   * Font family customization
+   */
+  bodyFont?: string        // Font for body/paragraph text (e.g., "Arial", "Times New Roman"). Optional.
+  headingFont?: string     // Font for headings. Optional.
+  codeFont?: string        // Font for code blocks, inline code, HTML, and tags. Optional, falls back to "Courier New" in code when unset.
+  blockquoteFont?: string  // Font for blockquotes. Optional.
+
 }
