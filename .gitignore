@@ -36,6 +36,7 @@ node_modules
 dist
 
 # Documentation
+docs/superpowers/
 docs/api/
 docs/.nojekyll
 

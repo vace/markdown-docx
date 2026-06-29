@@ -28,6 +28,7 @@ export function renderBlocks(render: MarkdownDocx, blocks: IBlockToken[], attr: 
 function renderBlock(render: MarkdownDocx, block: IBlockToken, attr: IBlockAttr): FileChild | FileChild[] | false | null {
   switch (block.type) {
     case 'space':
+      if (render.options.theme?.collapseEmptyLines) return false
       return new Paragraph({
         text: '',
         style: classes.Space,

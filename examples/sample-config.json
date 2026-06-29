@@ -37,6 +37,13 @@
     "codeSize": 11,
     "spaceSize": 6,
     "lineSpacing": 1.0,
-    "linkUnderline": true
+    "linkUnderline": true,
+    "_marginNote": "Margins accept pt, cm, or in/inch units. Shorthand: 1 value=all, 2=top/bottom + left/right, 3=top + left/right + bottom, 4=top right bottom left. Verbose properties override the shorthand. Examples: \"2cm\", \"1in\", \"72\", \"1in 0.5in\"",
+    "margin": null,
+    "marginTop": null,
+    "marginRight": null,
+    "marginBottom": null,
+    "marginLeft": null,
+    "collapseEmptyLines": false
   }
 }

@@ -1,7 +1,7 @@
-import { AlignmentType, HeadingLevel } from 'docx'
+import { AlignmentType, HeadingLevel, IPageMarginAttributes } from 'docx'
 import { Tokens } from 'marked'
 
-import { IBlockAttr, MarkdownImageType } from './types'
+import { IBlockAttr, IMarkdownTheme, MarkdownImageType } from './types'
 
 export function getHeadingLevel(level?: number) {
   if (level == null) {
@@ -118,4 +118,79 @@ export function getImageExtension(filename: string = '', mime?: string | null): 
 
 export function isHttp (src: string) {
   return /^https?:\/\//.test(src)
+}
+
+// 1 pt = 20 twips (the unit docx uses for page margins)
+const PT_TO_TWIPS = 20
+// 1 inch = 1440 twips
+const IN_TO_TWIPS = 1440
+// 1 inch = 2.54 cm => 1 cm = 1440/2.54 ≈ 566.93 twips
+const CM_TO_TWIPS = (1440 / 2.54)
+
+function parseMarginValue(val: string | number): number {
+  if (typeof val === 'number') return Math.round(val * PT_TO_TWIPS)
+  const s = val.toString().trim()
+  
+  // Try centimeter
+  const cmMatch = s.match(/^([\d.]+)\s*cm$/i)
+  if (cmMatch) return Math.round(parseFloat(cmMatch[1]) * CM_TO_TWIPS)
+  
+  // Try inch
+  const inMatch = s.match(/^([\d.]+)\s*(?:in|inch)$/i)
+  if (inMatch) return Math.round(parseFloat(inMatch[1]) * IN_TO_TWIPS)
+  
+  // Default to points
+  const num = parseFloat(s.replace(/pt$/i, '').trim())
+  return isNaN(num) ? 0 : Math.round(num * PT_TO_TWIPS)
+}
+
+/**
+ * Resolve page margin twip values from a theme's margin properties.
+ * Returns null when no margin properties are set.
+ */
+export function resolvePageMargins(theme: Partial<IMarkdownTheme>): IPageMarginAttributes | null {
+  const hasShorthand = theme.margin != null
+  const hasVerbose =
+    theme.marginTop != null ||
+    theme.marginRight != null ||
+    theme.marginBottom != null ||
+    theme.marginLeft != null
+
+  if (!hasShorthand && !hasVerbose) return null
+
+  const margins: {
+    top?: number
+    right?: number
+    bottom?: number
+    left?: number
+  } = {}
+
+  if (hasShorthand) {
+    const m = theme.margin!
+    const parts = typeof m === 'number' ? [m] : m.trim().split(/\s+/)
+    const values = parts.map(p => parseMarginValue(p))
+    if (values.length === 1) {
+      margins.top = margins.right = margins.bottom = margins.left = values[0]
+    } else if (values.length === 2) {
+      margins.top = margins.bottom = values[0]
+      margins.right = margins.left = values[1]
+    } else if (values.length === 3) {
+      margins.top = values[0]
+      margins.right = margins.left = values[1]
+      margins.bottom = values[2]
+    } else {
+      margins.top = values[0]
+      margins.right = values[1]
+      margins.bottom = values[2]
+      margins.left = values[3]
+    }
+  }
+
+  // Verbose properties override shorthand
+  if (theme.marginTop != null) margins.top = parseMarginValue(theme.marginTop)
+  if (theme.marginRight != null) margins.right = parseMarginValue(theme.marginRight)
+  if (theme.marginBottom != null) margins.bottom = parseMarginValue(theme.marginBottom)
+  if (theme.marginLeft != null) margins.left = parseMarginValue(theme.marginLeft)
+
+  return margins as IPageMarginAttributes
 }
