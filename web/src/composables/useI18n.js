@@ -84,6 +84,14 @@ const translations = {
   theme_modern: {
     zh: '现代',
     en: 'Modern'
+  },
+  margin: {
+    zh: '页边距',
+    en: 'Page Margin'
+  },
+  margin_placeholder: {
+    zh: '例如: 2cm 或 2cm 1.5cm',
+    en: 'e.g. 2cm or 2cm 1.5cm'
   }
 }
 

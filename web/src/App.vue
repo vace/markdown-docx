@@ -72,8 +72,13 @@ const handleExport = async (options) => {
     ignoreImage: options.ignoreImage,
     ignoreFootnote: options.ignoreFootnote,
     ignoreHtml: options.ignoreHtml,
-    theme: selectedTheme?.theme,
+    theme: {
+      ...selectedTheme?.theme,
+      ...(options.margin ? { margin: options.margin } : {}),
+    },
   }
+
+  console.log('Export options:', exportOptions)
 
   try {
     const buffer = await markdownDocx(markdownContent.value, exportOptions)

@@ -80,6 +80,17 @@
                   ></textarea>
                 </div>
 
+                <div class="mb-4">
+                  <label for="doc-margin" class="block text-sm font-medium text-gray-700 text-left">{{ t('margin') }}</label>
+                  <input
+                    v-model="formData.margin"
+                    type="text"
+                    id="doc-margin"
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    :placeholder="t('margin_placeholder')"
+                  />
+                </div>
+
                 <div class="mt-4 space-y-2">
                   <div class="flex items-start">
                     <div class="flex items-center h-5">
@@ -161,6 +172,7 @@ const formData = reactive({
   name: '',
   title: '',
   description: '',
+  margin: '',
   ignoreImage: false,
   ignoreFootnote: false,
   ignoreHtml: false
