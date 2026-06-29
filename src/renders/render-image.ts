@@ -4,7 +4,6 @@ import { Tokens } from 'marked'
 import { MarkdownDocx } from '../MarkdownDocx'
 import { ITextAttr, MarkdownImageItem } from '../types'
 import { renderText } from './render-text'
-import { renderParagraph } from '.'
 
 /**
  * Maximum image dimensions in "pixels" (at 96 DPI) for an A4 page with 1" margins.
@@ -36,18 +35,10 @@ export function renderImage(render: MarkdownDocx, block: Tokens.Image, attr: ITe
 
   const theme = render.options.theme
   const imageDefaultSize = theme?.imageDefaultSize ?? "actual"
-  const imageHorizontalAlign = theme?.imageHorizontalAlign ?? "left"
 
   // Scale down oversized images to fit page margins ("auto" mode).
   // Explicit sizes (from title attribute) are never scaled.
   const finalSize = scaleImageToFit(width, height, imageDefaultSize, isExplicitSize)
-
-  if (imageHorizontalAlign !== "left" && !attr.isAligned) {
-    return renderParagraph(render, [block], {
-      align: imageHorizontalAlign,
-      ...attr
-    })
-  }
 
   return new ImageRun({
     type: image.type,

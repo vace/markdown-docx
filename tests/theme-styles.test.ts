@@ -7,6 +7,7 @@ import { IMarkdownTheme } from '../src/types'
 import { defaultTheme } from '../src/styles/themes'
 import { MarkdownDocx } from '../src/MarkdownDocx'
 import { renderImage, parseImageTitleSize, scaleImageToFit } from '../src/renders/render-image'
+import { renderParagraph } from '../src/renders/render-paragraph'
 import { MarkdownImageItem } from '../src/types'
 
 vi.mock('docx')
@@ -154,7 +155,6 @@ function createMockImageToken(overrides: Partial<Tokens.Image> = {}): Tokens.Ima
     href: 'https://example.com/test.png',
     title: '',
     text: 'test image',
-    tokens: [],
     ...overrides,
   }
 }
@@ -176,43 +176,56 @@ function createImageRenderer(themeOptions: Partial<IMarkdownTheme> = {}) {
 }
 
 // ---------------------------------------------------------------------------
-// renderImage – imageHorizontalAlign
+// renderParagraph – imageHorizontalAlign integration
 // ---------------------------------------------------------------------------
 
-describe('renderImage horizontal alignment', () => {
+describe('renderParagraph imageHorizontalAlign', () => {
 
-  it('returns ImageRun directly when imageHorizontalAlign is not set (defaults to left)', () => {
-    const render = createImageRenderer()
-    const result = renderImage(render, createMockImageToken(), {})
-    expect(result).toBeInstanceOf(ImageRun)
-  })
-
-  it('returns ImageRun directly when imageHorizontalAlign is explicitly "left"', () => {
-    const render = createImageRenderer({ imageHorizontalAlign: 'left' })
-    const result = renderImage(render, createMockImageToken(), {})
-    expect(result).toBeInstanceOf(ImageRun)
-  })
-
-  it('wraps in Paragraph with center alignment when imageHorizontalAlign is "center"', () => {
+  it('wraps single image in center-aligned Paragraph when imageHorizontalAlign is "center"', () => {
     const render = createImageRenderer({ imageHorizontalAlign: 'center' })
-    const result = renderImage(render, createMockImageToken(), {})
+    const result = renderParagraph(render, [createMockImageToken()] as any, {})
     expect(result).toBeInstanceOf(Paragraph)
     expect(result!.toString()).toContain('alignment="center"')
+    expect(result!.toString()).toContain('<ImageRun')
   })
 
-  it('wraps in Paragraph with right alignment when imageHorizontalAlign is "right"', () => {
+  it('wraps single image in right-aligned Paragraph when imageHorizontalAlign is "right"', () => {
     const render = createImageRenderer({ imageHorizontalAlign: 'right' })
-    const result = renderImage(render, createMockImageToken(), {})
+    const result = renderParagraph(render, [createMockImageToken()] as any, {})
     expect(result).toBeInstanceOf(Paragraph)
     expect(result!.toString()).toContain('alignment="right"')
   })
 
-  it('returns ImageRun directly when isAligned is true regardless of theme alignment', () => {
-    const render = createImageRenderer({ imageHorizontalAlign: 'center' })
-    const result = renderImage(render, createMockImageToken(), { isAligned: true })
-    expect(result).toBeInstanceOf(ImageRun)
-    expect(result!.toString()).not.toContain('<Paragraph')
+  it('does not set alignment when imageHorizontalAlign is not configured', () => {
+    const render = createImageRenderer()
+    const result = renderParagraph(render, [createMockImageToken()] as any, {})
+    expect(result!.toString()).not.toContain('alignment=')
   })
+
+  it('explicit attr.align takes precedence over imageHorizontalAlign', () => {
+    const render = createImageRenderer({ imageHorizontalAlign: 'center' })
+    const result = renderParagraph(render, [createMockImageToken()] as any, { align: 'right' })
+    expect(result!.toString()).toContain('alignment="right"')
+  })
+
+  it('ignores imageHorizontalAlign when tokens are not a single image', () => {
+    const render = createImageRenderer({ imageHorizontalAlign: 'center' })
+    const result = renderParagraph(render, 'plain text', {})
+    expect(result!.toString()).not.toContain('alignment=')
+  })
+
+  it('ignores imageHorizontalAlign when there are multiple tokens', () => {
+    const render = createImageRenderer({ imageHorizontalAlign: 'center' })
+    const result = renderParagraph(render, [createMockImageToken(), createMockImageToken()] as any, {})
+    expect(result!.toString()).not.toContain('alignment=')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// renderImage – basic behavior (alignment is tested above via renderParagraph)
+// ---------------------------------------------------------------------------
+
+describe('renderImage', () => {
 
   it('returns false when ignoreImage is true', () => {
     const renderer = new MarkdownDocx('', { ignoreImage: true })
@@ -221,26 +234,16 @@ describe('renderImage horizontal alignment', () => {
   })
 
   it('falls back to text when image is not in store', () => {
-    const renderer = new MarkdownDocx('', { theme: { imageHorizontalAlign: 'center' } })
+    const renderer = new MarkdownDocx('', {})
     const result = renderImage(renderer, createMockImageToken(), {})
     expect(Array.isArray(result)).toBe(true)
   })
 
-  it('preserves other text attributes when wrapping in aligned Paragraph', () => {
-    const render = createImageRenderer({ imageHorizontalAlign: 'center' })
-    const result = renderImage(render, createMockImageToken(), { style: 'MyStyle' })
-    expect(result).toBeInstanceOf(Paragraph)
-    const str = result!.toString()
-    expect(str).toContain('alignment="center"')
-    expect(str).toContain('style="MyStyle"')
-  })
-
-  it('center-aligned Paragraph contains the ImageRun as child', () => {
-    const render = createImageRenderer({ imageHorizontalAlign: 'center' })
+  it('produces ImageRun with altText from token text', () => {
+    const render = createImageRenderer()
     const result = renderImage(render, createMockImageToken({ text: 'alt text' }), {})
-    const str = result!.toString()
-    expect(str).toContain('<ImageRun')
-    expect(str).toContain('altText-title="alt text"')
+    expect(result).toBeInstanceOf(ImageRun)
+    expect(result!.toString()).toContain('altText-title="alt text"')
   })
 })
 

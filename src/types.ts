@@ -117,8 +117,6 @@ export type ITextAttr = {
   codespan?: boolean
   del?: boolean
   br?: boolean
-
-  isAligned?: boolean
 }
 
 export type IBlockAttr = {

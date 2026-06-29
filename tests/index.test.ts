@@ -54,7 +54,7 @@ describe('markdown-docx', () => {
         codeFont: "Fira Code",
         blockquoteFont: "Georgia",
         imageHorizontalAlign: "center",
-        imageDefaultSize: "fit",
+        imageDefaultSize: "auto",
       }
     })
 

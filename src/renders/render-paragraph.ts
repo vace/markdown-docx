@@ -9,7 +9,11 @@ import { renderTokens } from './render-tokens'
 
 export function renderParagraph(render: MarkdownDocx, tokens: IInlineToken[] | string, attr: IBlockAttr) {
   const heading = getHeadingLevel(attr.heading)
-  const alignment = getTextAlignment(attr.align)
+
+  let alignment = getTextAlignment(attr.align);
+  if (!alignment && tokens.length === 1 && typeof tokens !== "string" && tokens[0]!.type === "image") {
+    alignment = render.options.theme?.imageHorizontalAlign
+  }
 
   const hasList = !attr.listNone && attr.list
 
@@ -25,7 +29,7 @@ export function renderParagraph(render: MarkdownDocx, tokens: IInlineToken[] | s
     style: attr.style
   }
 
-  const children = typeof tokens === 'string' ? renderText(render, tokens, { isAligned: !!alignment }) : renderTokens(render, tokens, { isAligned: !!alignment })
+  const children = typeof tokens === 'string' ? renderText(render, tokens, {}) : renderTokens(render, tokens, {})
 
   if (attr.list?.task) {
     children.unshift(renderCheckbox(render, attr.list.checked))
