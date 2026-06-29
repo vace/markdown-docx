@@ -95,7 +95,7 @@ export function scaleImageToFit(
   imageDefaultSize: "actual" | "auto" | "fit",
   isExplicitSize: boolean = false,
 ): { width: number; height: number } {
-  if (imageDefaultSize === "actual" || isExplicitSize) {
+  if (imageDefaultSize === "actual" || isExplicitSize || width <= 0 || height <= 0) {
     return { width, height }
   }
 
