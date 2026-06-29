@@ -59,6 +59,9 @@ BOOLEANS                       DEFAULT    DESCRIPTION
 ALIGNMENT                      DEFAULT    DESCRIPTION
   imageHorizontalAlign         left       Image horizontal alignment ("left", "center", or "right")
 
+IMAGE SIZING                   DEFAULT    DESCRIPTION
+  imageDefaultSize             actual     Image sizing behavior: "actual" (native size), "auto" (scale down to fit page, no upscale), "fit" (scale to fill page, may upscale)
+
 See examples/sample-config.json for a ready-to-use config file.
 `.trim()
 

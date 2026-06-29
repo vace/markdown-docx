@@ -227,4 +227,14 @@ export type IMarkdownTheme = {
    * Image horizontal alignment
    */
   imageHorizontalAlign?: "left" | "center" | "right"
+
+  /**
+   * Image default sizing behavior
+   * - "actual": use the image's native pixel dimensions (default)
+   * - "auto": scale down only when either dimension overflows the page bounds,
+   *   preserving aspect ratio. Never upscale.
+   * - "fit": scale so one axis reaches the page bound (may upscale small images),
+   *   preserving aspect ratio. Like Word's "fit to page".
+   */
+  imageDefaultSize?: "actual" | "auto" | "fit"
 }

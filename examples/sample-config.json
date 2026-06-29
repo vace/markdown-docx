@@ -42,6 +42,7 @@
     "headingFont": "Arial",
     "codeFont": "Fira Code",
     "blockquoteFont": "Georgia",
-    "imageHorizontalAlign": "center"
+    "imageHorizontalAlign": "center",
+    "imageDefaultSize": "auto"
   }
 }

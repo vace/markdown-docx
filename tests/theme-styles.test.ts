@@ -6,7 +6,7 @@ import { createMarkdownStyle } from '../src/styles/markdown'
 import { IMarkdownTheme } from '../src/types'
 import { defaultTheme } from '../src/styles/themes'
 import { MarkdownDocx } from '../src/MarkdownDocx'
-import { renderImage, parseImageTitleSize } from '../src/renders/render-image'
+import { renderImage, parseImageTitleSize, scaleImageToFit } from '../src/renders/render-image'
 import { MarkdownImageItem } from '../src/types'
 
 vi.mock('docx')
@@ -53,7 +53,7 @@ describe('createDefaultStyle', () => {
     const theme: IMarkdownTheme = { ...defaultTheme, bodySize: undefined }
     const style = createDefaultStyle(theme)
     expect(style.document?.run?.size).toBe(24) // 12pt default → 24 half-points
-
+    
     // lineSpacing defaults to 1.0 (from defaultTheme)
     const theme2: IMarkdownTheme = { ...defaultTheme, lineSpacing: undefined }
     const style2 = createDefaultStyle(theme2)
@@ -144,42 +144,42 @@ describe('createMarkdownStyle font-family', () => {
 })
 
 // ---------------------------------------------------------------------------
+// Helpers for image rendering tests
+// ---------------------------------------------------------------------------
+
+function createMockImageToken(overrides: Partial<Tokens.Image> = {}): Tokens.Image {
+  return {
+    type: 'image',
+    raw: '![test](https://example.com/test.png)',
+    href: 'https://example.com/test.png',
+    title: '',
+    text: 'test image',
+    tokens: [],
+    ...overrides,
+  }
+}
+
+function createMockImageItem(overrides: Partial<MarkdownImageItem> = {}): MarkdownImageItem {
+  return {
+    type: 'png',
+    data: Buffer.from('fake-image-data'),
+    width: 100,
+    height: 200,
+    ...overrides,
+  }
+}
+
+function createImageRenderer(themeOptions: Partial<IMarkdownTheme> = {}) {
+  const renderer = new MarkdownDocx('', { theme: themeOptions })
+  renderer['_imageStore'].set('https://example.com/test.png', createMockImageItem())
+  return renderer
+}
+
+// ---------------------------------------------------------------------------
 // renderImage – imageHorizontalAlign
 // ---------------------------------------------------------------------------
 
 describe('renderImage horizontal alignment', () => {
-
-  // ---------------------------------------------------------------------------
-  // Helpers for image alignment tests
-  // ---------------------------------------------------------------------------
-
-  function createMockImageToken(overrides: Partial<Tokens.Image> = {}): Tokens.Image {
-    return {
-      type: 'image',
-      raw: '![test](https://example.com/test.png)',
-      href: 'https://example.com/test.png',
-      title: '',
-      text: 'test image',
-      tokens: [],
-      ...overrides,
-    }
-  }
-
-  function createMockImageItem(overrides: Partial<MarkdownImageItem> = {}): MarkdownImageItem {
-    return {
-      type: 'png',
-      data: Buffer.from('fake-image-data'),
-      width: 100,
-      height: 200,
-      ...overrides,
-    }
-  }
-
-  function createImageRenderer(themeOptions: Partial<IMarkdownTheme> = {}) {
-    const renderer = new MarkdownDocx('', { theme: themeOptions })
-    renderer['_imageStore'].set('https://example.com/test.png', createMockImageItem())
-    return renderer
-  }
 
   it('returns ImageRun directly when imageHorizontalAlign is not set (defaults to left)', () => {
     const render = createImageRenderer()
@@ -241,5 +241,217 @@ describe('renderImage horizontal alignment', () => {
     const str = result!.toString()
     expect(str).toContain('<ImageRun')
     expect(str).toContain('altText-title="alt text"')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// scaleImageToFit  (max: 602×931 px — A4 with 1" margins at 96 DPI)
+// ---------------------------------------------------------------------------
+
+describe('scaleImageToFit', () => {
+  it('returns original dimensions when imageDefaultSize is "actual"', () => {
+    const result = scaleImageToFit(1200, 800, "actual")
+    expect(result.width).toBe(1200)
+    expect(result.height).toBe(800)
+  })
+
+  it('returns original dimensions when imageDefaultSize is "auto" but image is within bounds', () => {
+    const result = scaleImageToFit(400, 300, "auto")
+    expect(result.width).toBe(400)
+    expect(result.height).toBe(300)
+  })
+
+  it('returns original dimensions when imageDefaultSize is "auto" and image exactly at max width', () => {
+    const result = scaleImageToFit(602, 400, "auto")
+    expect(result.width).toBe(602)
+    expect(result.height).toBe(400)
+  })
+
+  it('scales down by width when image is wider than max', () => {
+    // 1200×800 → ratioW=602/1200=0.5017, ratioH=931/800=1.1638 → use width
+    const result = scaleImageToFit(1200, 800, "auto")
+    expect(result.width).toBe(602)
+    expect(result.height).toBe(401) // 800 * 602/1200 = 401.33 → 401
+  })
+
+  it('scales down proportionally preserving aspect ratio', () => {
+    // 1800×600 → ratioW=602/1800=0.3344, ratioH=931/600=1.5517 → use width
+    const result = scaleImageToFit(1800, 600, "auto")
+    expect(result.width).toBe(602)
+    expect(result.height).toBe(201) // 600 * 602/1800 = 200.67 → 201
+  })
+
+  it('scales down tall images by height constraint in "auto" mode', () => {
+    // "auto" constrains both axes. 800×2000: ratioW=602/800=0.7525, ratioH=931/2000=0.4655 → use height
+    const result = scaleImageToFit(800, 2000, "auto")
+    expect(result.width).toBe(372)  // 800 * 931/2000 = 372.4 → 372
+    expect(result.height).toBe(931)
+  })
+
+  it('rounds dimensions to integers', () => {
+    // 1000×753 → ratioW=602/1000=0.602, ratioH=931/753=1.2364 → use width
+    const result = scaleImageToFit(1000, 753, "auto")
+    expect(result.width).toBe(602)
+    expect(result.height).toBe(453) // Math.round(753 * 602/1000) = Math.round(453.306) = 453
+  })
+
+  it('returns original dimensions when isExplicitSize is true (regardless of mode)', () => {
+    const result = scaleImageToFit(2000, 1500, "auto", true)
+    expect(result.width).toBe(2000)
+    expect(result.height).toBe(1500)
+  })
+
+  it('isExplicitSize takes precedence even when mode is "auto"', () => {
+    const result = scaleImageToFit(2000, 1500, "auto", true)
+    expect(result.width).toBe(2000)
+    expect(result.height).toBe(1500)
+  })
+
+  // ---- "fit" mode: scale to fill bounds (may upscale) ----
+
+  it('upscales small images in "fit" mode to fill one axis', () => {
+    // 600×400 → ratioW=602/600=1.0033, ratioH=931/400=2.3275 → use width
+    const result = scaleImageToFit(600, 400, "fit")
+    expect(result.width).toBe(602)
+    expect(result.height).toBe(401)
+  })
+
+  it('scales down by width when width is the more constraining axis', () => {
+    // 1200×800 → ratioW=0.5017, ratioH=1.1638 → use width
+    const result = scaleImageToFit(1200, 800, "fit")
+    expect(result.width).toBe(602)
+    expect(result.height).toBe(401)
+  })
+
+  it('scales down by height when height is the more constraining axis', () => {
+    // 600×1200 → ratioW=602/600=1.0033, ratioH=931/1200=0.7758 → use height
+    const result = scaleImageToFit(600, 1200, "fit")
+    expect(result.width).toBe(466)  // 600 * 931/1200 = 465.5 → 466
+    expect(result.height).toBe(931)
+  })
+
+  it('scales down a square image that exceeds both width and height equally', () => {
+    // 1000×1000 → ratioW=0.602, ratioH=0.931 → use width
+    const result = scaleImageToFit(1000, 1000, "fit")
+    expect(result.width).toBe(602)
+    expect(result.height).toBe(602)
+  })
+
+  it('scales by width when image is wider than max but height is exactly at max', () => {
+    // 1248×931 → ratioW=602/1248=0.4824, ratioH=931/931=1.0 → use width
+    const result = scaleImageToFit(1248, 931, "fit")
+    expect(result.width).toBe(602)
+    expect(result.height).toBe(449) // 931 * 602/1248 = 449.26 → 449
+  })
+
+  it('scales by height when image is taller than max but width is exactly at max', () => {
+    // 602×1728 → ratioW=1.0, ratioH=931/1728=0.5388 → use height
+    const result = scaleImageToFit(602, 1728, "fit")
+    expect(result.width).toBe(324)  // 602 * 931/1728 = 324.42 → 324
+    expect(result.height).toBe(931)
+  })
+
+  it('upscales small images in "fit" mode when height is the more constraining axis', () => {
+    // 300×500 → ratioW=602/300=2.0067, ratioH=931/500=1.862 → use height
+    const result = scaleImageToFit(300, 500, "fit")
+    expect(result.width).toBe(559)  // 300 * 931/500 = 558.6 → 559
+    expect(result.height).toBe(931)
+  })
+
+  it('rounds dimensions to integers in "fit" mode', () => {
+    // 1000×753 → ratioW=0.602, ratioH=1.2364 → use width
+    const result = scaleImageToFit(1000, 753, "fit")
+    expect(result.width).toBe(602)
+    expect(result.height).toBe(453) // Math.round(753 * 602/1000) = 453
+  })
+})
+
+// ---------------------------------------------------------------------------
+// renderImage – imageDefaultSize integration
+// ---------------------------------------------------------------------------
+
+describe('renderImage imageDefaultSize', () => {
+  it('uses actual width when theme does not set imageDefaultSize (defaults to "actual")', () => {
+    const render = createImageRenderer()
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(ImageRun)
+    expect(result!.toString()).toContain('width="100"')
+    expect(result!.toString()).toContain('height="200"')
+  })
+
+  it('uses actual width when imageDefaultSize is "actual"', () => {
+    const render = createImageRenderer({ imageDefaultSize: 'actual' })
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(ImageRun)
+    expect(result!.toString()).toContain('width="100"')
+    expect(result!.toString()).toContain('height="200"')
+  })
+
+  it('leaves small images unchanged in "auto" mode', () => {
+    const render = createImageRenderer({ imageDefaultSize: 'auto' })
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(ImageRun)
+    expect(result!.toString()).toContain('width="100"')
+    expect(result!.toString()).toContain('height="200"')
+  })
+
+  it('scales down large images in "auto" mode', () => {
+    const render = createImageRenderer({ imageDefaultSize: 'auto' })
+    render['_imageStore'].set('https://example.com/test.png', createMockImageItem({
+      width: 1200,
+      height: 800,
+    }))
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(ImageRun)
+    expect(result!.toString()).toContain('width="602"')
+    expect(result!.toString()).toContain('height="401"')
+  })
+
+  it('does not scale image when title has explicit size (even in "auto" mode)', () => {
+    const render = createImageRenderer({ imageDefaultSize: 'auto' })
+    render['_imageStore'].set('https://example.com/sized.png', createMockImageItem({
+      width: 1200,
+      height: 800,
+    }))
+    const result = renderImage(render, createMockImageToken({
+      href: 'https://example.com/sized.png',
+      title: '600x400',
+    }), {})
+    expect(result).toBeInstanceOf(ImageRun)
+    expect(result!.toString()).toContain('width="600"')
+    expect(result!.toString()).toContain('height="400"')
+  })
+
+  it('upscales small images in "fit" mode', () => {
+    // 100×200 → ratioW=6.02, ratioH=4.655 → use height → 466×931
+    const render = createImageRenderer({ imageDefaultSize: 'fit' })
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(ImageRun)
+    expect(result!.toString()).toContain('width="466"')
+    expect(result!.toString()).toContain('height="931"')
+  })
+
+  it('scales down wide image by width in "fit" mode', () => {
+    const render = createImageRenderer({ imageDefaultSize: 'fit' })
+    render['_imageStore'].set('https://example.com/test.png', createMockImageItem({
+      width: 1200,
+      height: 800,
+    }))
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(ImageRun)
+    expect(result!.toString()).toContain('width="602"')
+    expect(result!.toString()).toContain('height="401"')
+  })
+
+  it('scales down tall image by height in "fit" mode', () => {
+    const render = createImageRenderer({ imageDefaultSize: 'fit' })
+    render['_imageStore'].set('https://example.com/test.png', createMockImageItem({
+      width: 600,
+      height: 1200,
+    }))
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(ImageRun)
+    expect(result!.toString()).toContain('width="466"')
+    expect(result!.toString()).toContain('height="931"')
   })
 })
