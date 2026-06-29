@@ -158,7 +158,12 @@ export function resolvePageMargins(theme: Partial<IMarkdownTheme>): IPageMarginA
 
   if (!hasShorthand && !hasVerbose) return null
 
-  const margins: Partial<IPageMarginAttributes> = {}
+  const margins: {
+    top?: number
+    right?: number
+    bottom?: number
+    left?: number
+  } = {}
 
   if (hasShorthand) {
     const m = theme.margin!
