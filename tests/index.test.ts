@@ -53,6 +53,7 @@ describe('markdown-docx', () => {
         headingFont: "Arial",
         codeFont: "Fira Code",
         blockquoteFont: "Georgia",
+        imageHorizontalAlign: "center",
       }
     })
 

@@ -7,7 +7,7 @@ import { renderCheckbox } from './render-checkbox'
 import { renderText } from './render-text'
 import { renderTokens } from './render-tokens'
 
-export function renderParagraph (render: MarkdownDocx, tokens: IInlineToken[] | string, attr: IBlockAttr) {
+export function renderParagraph(render: MarkdownDocx, tokens: IInlineToken[] | string, attr: IBlockAttr) {
   const heading = getHeadingLevel(attr.heading)
   const alignment = getTextAlignment(attr.align)
 
@@ -25,7 +25,7 @@ export function renderParagraph (render: MarkdownDocx, tokens: IInlineToken[] | 
     style: attr.style
   }
 
-  const children = typeof tokens === 'string' ? renderText(render, tokens, {}) : renderTokens(render, tokens, {})
+  const children = typeof tokens === 'string' ? renderText(render, tokens, { isAligned: !!alignment }) : renderTokens(render, tokens, { isAligned: !!alignment })
 
   if (attr.list?.task) {
     children.unshift(renderCheckbox(render, attr.list.checked))

@@ -1,8 +1,15 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
+import { ImageRun, Paragraph } from 'docx'
+import { Tokens } from 'marked'
 import { createDefaultStyle } from '../src/styles/styles'
 import { createMarkdownStyle } from '../src/styles/markdown'
 import { IMarkdownTheme } from '../src/types'
 import { defaultTheme } from '../src/styles/themes'
+import { MarkdownDocx } from '../src/MarkdownDocx'
+import { renderImage, parseImageTitleSize } from '../src/renders/render-image'
+import { MarkdownImageItem } from '../src/types'
+
+vi.mock('docx')
 
 describe('createDefaultStyle', () => {
   it('converts bodySize (pt) to half-points for docx', () => {
@@ -46,7 +53,7 @@ describe('createDefaultStyle', () => {
     const theme: IMarkdownTheme = { ...defaultTheme, bodySize: undefined }
     const style = createDefaultStyle(theme)
     expect(style.document?.run?.size).toBe(24) // 12pt default → 24 half-points
-    
+
     // lineSpacing defaults to 1.0 (from defaultTheme)
     const theme2: IMarkdownTheme = { ...defaultTheme, lineSpacing: undefined }
     const style2 = createDefaultStyle(theme2)
@@ -133,5 +140,106 @@ describe('createMarkdownStyle font-family', () => {
     expect(styles.codespan.run?.font).toBe('Fira Code')
     expect(styles.html.run?.font).toBe('Fira Code')
     expect(styles.tag.run?.font).toBe('Fira Code')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// renderImage – imageHorizontalAlign
+// ---------------------------------------------------------------------------
+
+describe('renderImage horizontal alignment', () => {
+
+  // ---------------------------------------------------------------------------
+  // Helpers for image alignment tests
+  // ---------------------------------------------------------------------------
+
+  function createMockImageToken(overrides: Partial<Tokens.Image> = {}): Tokens.Image {
+    return {
+      type: 'image',
+      raw: '![test](https://example.com/test.png)',
+      href: 'https://example.com/test.png',
+      title: '',
+      text: 'test image',
+      tokens: [],
+      ...overrides,
+    }
+  }
+
+  function createMockImageItem(overrides: Partial<MarkdownImageItem> = {}): MarkdownImageItem {
+    return {
+      type: 'png',
+      data: Buffer.from('fake-image-data'),
+      width: 100,
+      height: 200,
+      ...overrides,
+    }
+  }
+
+  function createImageRenderer(themeOptions: Partial<IMarkdownTheme> = {}) {
+    const renderer = new MarkdownDocx('', { theme: themeOptions })
+    renderer['_imageStore'].set('https://example.com/test.png', createMockImageItem())
+    return renderer
+  }
+
+  it('returns ImageRun directly when imageHorizontalAlign is not set (defaults to left)', () => {
+    const render = createImageRenderer()
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(ImageRun)
+  })
+
+  it('returns ImageRun directly when imageHorizontalAlign is explicitly "left"', () => {
+    const render = createImageRenderer({ imageHorizontalAlign: 'left' })
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(ImageRun)
+  })
+
+  it('wraps in Paragraph with center alignment when imageHorizontalAlign is "center"', () => {
+    const render = createImageRenderer({ imageHorizontalAlign: 'center' })
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(Paragraph)
+    expect(result!.toString()).toContain('alignment="center"')
+  })
+
+  it('wraps in Paragraph with right alignment when imageHorizontalAlign is "right"', () => {
+    const render = createImageRenderer({ imageHorizontalAlign: 'right' })
+    const result = renderImage(render, createMockImageToken(), {})
+    expect(result).toBeInstanceOf(Paragraph)
+    expect(result!.toString()).toContain('alignment="right"')
+  })
+
+  it('returns ImageRun directly when isAligned is true regardless of theme alignment', () => {
+    const render = createImageRenderer({ imageHorizontalAlign: 'center' })
+    const result = renderImage(render, createMockImageToken(), { isAligned: true })
+    expect(result).toBeInstanceOf(ImageRun)
+    expect(result!.toString()).not.toContain('<Paragraph')
+  })
+
+  it('returns false when ignoreImage is true', () => {
+    const renderer = new MarkdownDocx('', { ignoreImage: true })
+    const result = renderImage(renderer, createMockImageToken(), {})
+    expect(result).toBe(false)
+  })
+
+  it('falls back to text when image is not in store', () => {
+    const renderer = new MarkdownDocx('', { theme: { imageHorizontalAlign: 'center' } })
+    const result = renderImage(renderer, createMockImageToken(), {})
+    expect(Array.isArray(result)).toBe(true)
+  })
+
+  it('preserves other text attributes when wrapping in aligned Paragraph', () => {
+    const render = createImageRenderer({ imageHorizontalAlign: 'center' })
+    const result = renderImage(render, createMockImageToken(), { style: 'MyStyle' })
+    expect(result).toBeInstanceOf(Paragraph)
+    const str = result!.toString()
+    expect(str).toContain('alignment="center"')
+    expect(str).toContain('style="MyStyle"')
+  })
+
+  it('center-aligned Paragraph contains the ImageRun as child', () => {
+    const render = createImageRenderer({ imageHorizontalAlign: 'center' })
+    const result = renderImage(render, createMockImageToken({ text: 'alt text' }), {})
+    const str = result!.toString()
+    expect(str).toContain('<ImageRun')
+    expect(str).toContain('altText-title="alt text"')
   })
 })

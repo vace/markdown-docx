@@ -56,6 +56,9 @@ FONTS                          DEFAULT    DESCRIPTION
 BOOLEANS                       DEFAULT    DESCRIPTION
   linkUnderline                true       Whether hyperlinks are underlined
 
+ALIGNMENT                      DEFAULT    DESCRIPTION
+  imageHorizontalAlign         left       Image horizontal alignment ("left", "center", or "right")
+
 See examples/sample-config.json for a ready-to-use config file.
 `.trim()
 

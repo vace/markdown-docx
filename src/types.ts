@@ -118,6 +118,7 @@ export type ITextAttr = {
   del?: boolean
   br?: boolean
 
+  isAligned?: boolean
 }
 
 export type IBlockAttr = {
@@ -222,4 +223,8 @@ export type IMarkdownTheme = {
   codeFont?: string        // Font for code blocks, inline code, HTML, and tags. Optional, falls back to "Courier New" in code when unset.
   blockquoteFont?: string  // Font for blockquotes. Optional.
 
+  /**
+   * Image horizontal alignment
+   */
+  imageHorizontalAlign?: "left" | "center" | "right"
 }

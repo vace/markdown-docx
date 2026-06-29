@@ -41,6 +41,7 @@
     "bodyFont": "Times New Roman",
     "headingFont": "Arial",
     "codeFont": "Fira Code",
-    "blockquoteFont": "Georgia"
+    "blockquoteFont": "Georgia",
+    "imageHorizontalAlign": "center"
   }
 }

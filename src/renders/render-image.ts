@@ -1,9 +1,11 @@
-import { ImageRun } from 'docx'
+import { ImageRun, Paragraph } from 'docx'
 import { Tokens } from 'marked'
 
 import { MarkdownDocx } from '../MarkdownDocx'
 import { ITextAttr, MarkdownImageItem } from '../types'
 import { renderText } from './render-text'
+import { renderParagraph } from '.'
+
 
 export function renderImage(render: MarkdownDocx, block: Tokens.Image, attr: ITextAttr) {
   if (render.ignoreImage) {
@@ -18,10 +20,21 @@ export function renderImage(render: MarkdownDocx, block: Tokens.Image, attr: ITe
 
   const { width, height, title } = parseImageTitleSize(block, image)
 
+
+  const theme = render.options.theme
+  const imageHorizontalAlign = theme?.imageHorizontalAlign ?? "left"
+
+  if (imageHorizontalAlign !== "left" && !attr.isAligned) {
+    return renderParagraph(render, [block], {
+      align: imageHorizontalAlign,
+      ...attr
+    })
+  }
+
   return new ImageRun({
     type: image.type,
     data: image.data,
-    transformation: { width, height },
+    transformation: { width, height, },
     altText: {
       title: title || block.text,
       description: block.text,
