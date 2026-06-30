@@ -47,6 +47,14 @@ SIZES & SPACING                DEFAULT    DESCRIPTION
   spaceSize                    6          Paragraph spacing (pt)
   lineSpacing                  1.0        Line spacing multiplier (1.0 = single, 1.5 = 150%)
 
+MARGINS                        DEFAULT    DESCRIPTION
+  margin                       (unset)    CSS shorthand: 1 value=all, 2=t/b+l/r, 3=t+l/r+b, 4=t r b l. Units: pt (plain number), "cm", "in"/"inch"
+  marginTop                    (unset)    Top margin; overrides shorthand. Number (pt) or "cm"/"in" string.
+  marginRight                  (unset)    Right margin; overrides shorthand. Number (pt) or "cm"/"in" string.
+  marginBottom                 (unset)    Bottom margin; overrides shorthand. Number (pt) or "cm"/"in" string.
+  marginLeft                   (unset)    Left margin; overrides shorthand. Number (pt) or "cm"/"in" string.
+  collapseEmptyLines           false      Omit blank-line separator paragraphs
+
 FONTS                          DEFAULT    DESCRIPTION
   bodyFont                     (unset)    Body/paragraph font (e.g., "Times New Roman")
   headingFont                  (unset)    Font for all heading levels (e.g., "Arial")
