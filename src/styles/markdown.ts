@@ -10,9 +10,6 @@ export const createMarkdownStyle = (_theme: Partial<IMarkdownTheme>): Record<IMa
   return {
     space: {
       className: classes.Space,
-      run: {
-        size: theme.spaceSize * 2, // convert pt to half-points
-      },
       paragraph: {
         spacing: {
           before: 0,
