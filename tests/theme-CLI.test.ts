@@ -98,6 +98,7 @@ describe('CLI help subcommand', () => {
     expect(output).toContain('bodySize')
     expect(output).toContain('linkUnderline')
     expect(output).toContain('sample-config.json')
+    expect(output).toContain('bodyFont')
   })
 
   it('markdown-docx help config outputs config field names', () => {

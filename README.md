@@ -203,8 +203,21 @@ const docx = await markdownToDocx(markdownText, {
     // marginBottom: "2cm",
     // marginLeft: 72,
 
+    // Font families (optional; uses Word defaults when unset)
+    bodyFont: "Times New Roman",
+    headingFont: "Arial",
+    codeFont: "Fira Code",
+    blockquoteFont: "Georgia",
+
     // Remove blank-line paragraphs between content blocks
     collapseEmptyLines: false,
+
+    // Image sizing: "actual" (use native size), "auto" (scale down only),
+    // or "fit" (scale to page bounds, may upscale). Respects page margins.
+    imageDefaultSize: "auto",
+
+    // Image horizontal alignment within the page
+    imageHorizontalAlign: "center",
   }
 })
 ```
@@ -215,7 +228,12 @@ All theme properties are optional — override only what you need. See [`example
 
 | Property | Type | Default | Description |
 |---|---|---|---|
-| `heading1`–`heading6` | `string` | (various) | Hex color (no `#`) for each heading level |
+| `heading1` | `string` | `"2F5597"` | Hex color (no `#`) for H1 |
+| `heading2` | `string` | `"5B9BD5"` | Hex color (no `#`) for H2 |
+| `heading3` | `string` | `"44546A"` | Hex color (no `#`) for H3 |
+| `heading4` | `string` | `"44546A"` | Hex color (no `#`) for H4 |
+| `heading5` | `string` | `"44546A"` | Hex color (no `#`) for H5 |
+| `heading6` | `string` | `"44546A"` | Hex color (no `#`) for H6 |
 | `link` | `string` | `"0563C1"` | Hex color for hyperlinks |
 | `code` | `string` | `"032F62"` | Hex color for code blocks |
 | `codespan` | `string` | `"70AD47"` | Hex color for inline code |
@@ -225,7 +243,15 @@ All theme properties are optional — override only what you need. See [`example
 | `del` | `string` | `"FF0000"` | Hex color for strikethrough text |
 | `hr` | `string` | `"D9D9D9"` | Hex color for horizontal rules |
 | `html` | `string` | `"4472C4"` | Hex color for raw HTML blocks |
-| `heading1Size`–`heading6Size` | `number` | 18/16/14/13/12/12 | Font size in pt for each heading |
+| `tag` | `string` | `"ED7D31"` | Hex color for tags |
+| `border` | `string` | `"A5A5A5"` | Hex color for table borders |
+| `tableHeaderBackground` | `string` | `"F2F2F2"` | Background fill for table headers |
+| `heading1Size` | `number` | `18` | H1 font size in pt |
+| `heading2Size` | `number` | `16` | H2 font size in pt |
+| `heading3Size` | `number` | `14` | H3 font size in pt |
+| `heading4Size` | `number` | `13` | H4 font size in pt |
+| `heading5Size` | `number` | `12` | H5 font size in pt |
+| `heading6Size` | `number` | `12` | H6 font size in pt |
 | `bodySize` | `number` | `12` | Base body font size in pt |
 | `codeSize` | `number` | `11` | Font size in pt for code blocks |
 | `lineSpacing` | `number` | `1.0` | Line spacing multiplier (e.g. `1.5` = 150%) |
@@ -236,6 +262,12 @@ All theme properties are optional — override only what you need. See [`example
 | `marginBottom` | `number \| string` | — | Bottom margin; overrides `margin` |
 | `marginLeft` | `number \| string` | — | Left margin; overrides `margin` |
 | `collapseEmptyLines` | `boolean` | `false` | Omit blank-line separator paragraphs |
+| `bodyFont` | `string` | — | Font family for body/paragraph text (e.g. `"Times New Roman"`). Uses Word default when unset. |
+| `headingFont` | `string` | — | Font family for all heading levels (e.g. `"Arial"`). Uses Word default when unset. |
+| `codeFont` | `string` | — | Font family for code blocks, inline code, HTML, and tags. Falls back to `"Courier New"` when unset. |
+| `blockquoteFont` | `string` | — | Font family for blockquotes (e.g. `"Georgia"`). Uses Word default when unset. |
+| `imageDefaultSize` | `"actual" \| "auto" \| "fit"` | `"actual"` | Image sizing: `"actual"` (native px), `"auto"` (scale down only to fit margins; never upscale), `"fit"` (scale to page bounds; may upscale) |
+| `imageHorizontalAlign` | `"left" \| "center" \| "right"` | — | Horizontal alignment for images within the page |
 
 #### Page margins
 

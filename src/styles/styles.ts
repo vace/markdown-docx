@@ -15,6 +15,7 @@ export function createDefaultStyle(theme: IMarkdownTheme): IStylesOptions['defau
     document: {
       run: {
         size: (theme.bodySize ?? defaultTheme.bodySize ?? 12) * 2, // Convert pt to half-points
+        font: theme.bodyFont,
       },
       paragraph: {
         spacing: {
