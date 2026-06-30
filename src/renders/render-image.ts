@@ -3,10 +3,15 @@ import { Tokens } from 'marked'
 
 import { MarkdownDocx } from '../MarkdownDocx'
 import { ITextAttr, MarkdownImageItem } from '../types'
+import { getUsablePageDimensions } from '../utils'
 import { renderText } from './render-text'
 
 /**
- * Maximum image dimensions in "pixels" (at 96 DPI) for an A4 page with 1" margins.
+ * Default maximum image dimensions in "pixels" (at 96 DPI) for an A4 page
+ * with 1" margins.  These are used when no theme/margin configuration is
+ * provided; when the theme specifies custom margins, the actual usable area
+ * is computed via `getUsablePageDimensions()`.
+ *
  * A4 = 210mm × 297mm → 8.27" × 11.69" at 96 DPI.
  * Subtract 1" margin on each side (2" total):
  *   Usable width:  8.27" - 2" = 6.27" → 6.27 × 96 ≈ 602px
@@ -16,8 +21,8 @@ import { renderText } from './render-text'
  * - "fit":   scale so one axis reaches exactly its max (may upscale small images).
  *            Like Word's "fit to page".
  */
-const MAX_IMAGE_WIDTH_PX = 602
-const MAX_IMAGE_HEIGHT_PX = 931
+const DEFAULT_MAX_IMAGE_WIDTH_PX = 602
+const DEFAULT_MAX_IMAGE_HEIGHT_PX = 931
 
 
 export function renderImage(render: MarkdownDocx, block: Tokens.Image, attr: ITextAttr) {
@@ -36,9 +41,14 @@ export function renderImage(render: MarkdownDocx, block: Tokens.Image, attr: ITe
   const theme = render.options.theme
   const imageDefaultSize = theme?.imageDefaultSize ?? "actual"
 
-  // Scale down oversized images to fit page margins ("auto" mode).
-  // Explicit sizes (from title attribute) are never scaled.
-  const finalSize = scaleImageToFit(width, height, imageDefaultSize, isExplicitSize)
+  // Compute max dimensions from the theme's page margins (falls back to
+  // default A4 + 1" margins when no margins are configured).
+  const { maxWidthPx, maxHeightPx } = getUsablePageDimensions(theme)
+
+  const finalSize = scaleImageToFit(
+    width, height, imageDefaultSize, isExplicitSize,
+    maxWidthPx, maxHeightPx,
+  )
 
   return new ImageRun({
     type: image.type,
@@ -84,16 +94,26 @@ export function parseImageTitleSize(block: Tokens.Image, image: MarkdownImageIte
 }
 
 /**
- * Scale image dimensions to fit within page margins when imageDefaultSize is "auto".
- * Images wider than MAX_IMAGE_WIDTH_PX are scaled down proportionally.
- * Images already within bounds are left unchanged (no upscaling).
- * Explicit sizes (from title attribute) are never scaled.
+ * Scale image dimensions to fit within page margins when imageDefaultSize
+ * is "auto" or "fit".
+ *
+ * - "auto":  Scale down only when either dimension exceeds its max.
+ *            Never upscale. Both width and height are constrained.
+ * - "fit":   Scale so one axis reaches its max value (may upscale small
+ *            images). Like Word's "fit to page".
+ *
+ * Explicit sizes (from the title attribute) are never scaled.
+ *
+ * @param maxWidthPx  Usable page width in pixels at 96 DPI
+ * @param maxHeightPx Usable page height in pixels at 96 DPI
  */
 export function scaleImageToFit(
   width: number,
   height: number,
   imageDefaultSize: "actual" | "auto" | "fit",
   isExplicitSize: boolean = false,
+  maxWidthPx: number = DEFAULT_MAX_IMAGE_WIDTH_PX,
+  maxHeightPx: number = DEFAULT_MAX_IMAGE_HEIGHT_PX,
 ): { width: number; height: number } {
   if (imageDefaultSize === "actual" || isExplicitSize || width <= 0 || height <= 0) {
     return { width, height }
@@ -101,11 +121,11 @@ export function scaleImageToFit(
 
   if (imageDefaultSize === "auto") {
     // Constrain both width AND height to ≤ max. Scale down only; never upscale.
-    if (width <= MAX_IMAGE_WIDTH_PX && height <= MAX_IMAGE_HEIGHT_PX) {
+    if (width <= maxWidthPx && height <= maxHeightPx) {
       return { width, height }
     }
-    const ratioW = MAX_IMAGE_WIDTH_PX / width
-    const ratioH = MAX_IMAGE_HEIGHT_PX / height
+    const ratioW = maxWidthPx / width
+    const ratioH = maxHeightPx / height
     const ratio = Math.min(ratioW, ratioH)
     return {
       width: Math.round(width * ratio),
@@ -115,8 +135,8 @@ export function scaleImageToFit(
 
   // "fit" mode: scale so one axis reaches exactly its max value.
   // The other axis will be ≤ its max. May scale up small images.
-  const ratioW = MAX_IMAGE_WIDTH_PX / width
-  const ratioH = MAX_IMAGE_HEIGHT_PX / height
+  const ratioW = maxWidthPx / width
+  const ratioH = maxHeightPx / height
   const ratio = Math.min(ratioW, ratioH)
 
   return {
