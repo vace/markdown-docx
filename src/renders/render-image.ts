@@ -1,4 +1,4 @@
-import { ImageRun, Paragraph } from 'docx'
+import { ImageRun } from 'docx'
 import { Tokens } from 'marked'
 
 import { MarkdownDocx } from '../MarkdownDocx'

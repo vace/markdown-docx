@@ -11,8 +11,8 @@ export function renderParagraph(render: MarkdownDocx, tokens: IInlineToken[] | s
   const heading = getHeadingLevel(attr.heading)
 
   let alignment = getTextAlignment(attr.align);
-  if (!alignment && tokens.length === 1 && typeof tokens !== "string" && tokens[0]!.type === "image") {
-    alignment = render.options.theme?.imageHorizontalAlign
+  if (!alignment && typeof tokens !== "string" && tokens.length === 1 && tokens[0]!.type === "image") {
+    alignment = getTextAlignment(render.options.theme?.imageHorizontalAlign)
   }
 
   const hasList = !attr.listNone && attr.list

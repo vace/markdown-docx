@@ -6,7 +6,7 @@ import { createMarkdownStyle } from '../src/styles/markdown'
 import { IMarkdownTheme } from '../src/types'
 import { defaultTheme } from '../src/styles/themes'
 import { MarkdownDocx } from '../src/MarkdownDocx'
-import { renderImage, parseImageTitleSize, scaleImageToFit } from '../src/renders/render-image'
+import { renderImage, scaleImageToFit } from '../src/renders/render-image'
 import { renderParagraph } from '../src/renders/render-paragraph'
 import { MarkdownImageItem } from '../src/types'
 
