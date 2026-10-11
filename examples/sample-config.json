@@ -44,6 +44,12 @@
     "marginRight": null,
     "marginBottom": null,
     "marginLeft": null,
-    "collapseEmptyLines": false
+    "collapseEmptyLines": false,
+    "bodyFont": "Times New Roman",
+    "headingFont": "Arial",
+    "codeFont": "Fira Code",
+    "blockquoteFont": "Georgia",
+    "imageHorizontalAlign": "center",
+    "imageDefaultSize": "auto"
   }
 }

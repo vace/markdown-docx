@@ -7,9 +7,13 @@ import { renderCheckbox } from './render-checkbox'
 import { renderText } from './render-text'
 import { renderTokens } from './render-tokens'
 
-export function renderParagraph (render: MarkdownDocx, tokens: IInlineToken[] | string, attr: IBlockAttr) {
+export function renderParagraph(render: MarkdownDocx, tokens: IInlineToken[] | string, attr: IBlockAttr) {
   const heading = getHeadingLevel(attr.heading)
-  const alignment = getTextAlignment(attr.align)
+
+  let alignment = getTextAlignment(attr.align);
+  if (!alignment && typeof tokens !== "string" && tokens.length === 1 && tokens[0]!.type === "image") {
+    alignment = getTextAlignment(render.options.theme?.imageHorizontalAlign)
+  }
 
   const hasList = !attr.listNone && attr.list
 

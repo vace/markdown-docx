@@ -1,4 +1,4 @@
-import { Document, FileChild, IPropertiesOptions, IStylesOptions, Paragraph, ParagraphChild } from 'docx'
+import { Document, FileChild, IPageMarginAttributes, IPropertiesOptions, IStylesOptions, Paragraph, ParagraphChild } from 'docx'
 import { Tokens } from 'marked'
 
 import { renderBlocks, renderTokens } from './renders'
@@ -57,7 +57,7 @@ export class MarkdownDocx {
 
     const section = await this.toSection()
     const pageMargins = this.options.theme ? resolvePageMargins(this.options.theme) : null
-    const sectionProperties = pageMargins ? { page: { margin: pageMargins } } : undefined
+    const sectionProperties = pageMargins ? { page: { margin: pageMargins as IPageMarginAttributes } } : undefined
     const doc = new Document({
       numbering,
       styles: createDocumentStyle({ theme: this.options.theme}),

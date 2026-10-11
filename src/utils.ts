@@ -1,4 +1,4 @@
-import { AlignmentType, HeadingLevel, IPageMarginAttributes } from 'docx'
+import { AlignmentType, HeadingLevel } from 'docx'
 import { Tokens } from 'marked'
 
 import { IBlockAttr, IMarkdownTheme, MarkdownImageType } from './types'
@@ -126,6 +126,11 @@ const PT_TO_TWIPS = 20
 const IN_TO_TWIPS = 1440
 // 1 inch = 2.54 cm => 1 cm = 1440/2.54 ≈ 566.93 twips
 const CM_TO_TWIPS = (1440 / 2.54)
+// A4 dimensions in twips (used when computing usable page area for images)
+const A4_WIDTH_TWIPS = 11906   // 210 mm
+const A4_HEIGHT_TWIPS = 16838  // 297 mm
+// Word default page margins: 1 inch on all sides
+const DEFAULT_MARGIN_TWIPS = 1440
 
 function parseMarginValue(val: string | number): number {
   if (typeof val === 'number') return Math.round(val * PT_TO_TWIPS)
@@ -144,11 +149,19 @@ function parseMarginValue(val: string | number): number {
   return isNaN(num) ? 0 : Math.round(num * PT_TO_TWIPS)
 }
 
+/** Simple internal type for resolved page margins in twips (plain numbers). */
+export interface ResolvedPageMargins {
+  top?: number
+  right?: number
+  bottom?: number
+  left?: number
+}
+
 /**
  * Resolve page margin twip values from a theme's margin properties.
  * Returns null when no margin properties are set.
  */
-export function resolvePageMargins(theme: Partial<IMarkdownTheme>): IPageMarginAttributes | null {
+export function resolvePageMargins(theme: Partial<IMarkdownTheme>): ResolvedPageMargins | null {
   const hasShorthand = theme.margin != null
   const hasVerbose =
     theme.marginTop != null ||
@@ -158,12 +171,7 @@ export function resolvePageMargins(theme: Partial<IMarkdownTheme>): IPageMarginA
 
   if (!hasShorthand && !hasVerbose) return null
 
-  const margins: {
-    top?: number
-    right?: number
-    bottom?: number
-    left?: number
-  } = {}
+  const margins: ResolvedPageMargins = {}
 
   if (hasShorthand) {
     const m = theme.margin!
@@ -192,5 +200,36 @@ export function resolvePageMargins(theme: Partial<IMarkdownTheme>): IPageMarginA
   if (theme.marginBottom != null) margins.bottom = parseMarginValue(theme.marginBottom)
   if (theme.marginLeft != null) margins.left = parseMarginValue(theme.marginLeft)
 
-  return margins as IPageMarginAttributes
+  return margins
+}
+
+/**
+ * Compute usable page dimensions (width and height in pixels at 96 DPI)
+ * from the theme's margin settings.
+ *
+ * Falls back to Word's default 1-inch margins on A4 when no margin properties
+ * are configured. Used by image auto/fit scaling to determine the maximum
+ * image size that fits within the document's page margins.
+ */
+export function getUsablePageDimensions(theme?: Partial<IMarkdownTheme>): {
+  maxWidthPx: number
+  maxHeightPx: number
+} {
+  const margins = theme ? resolvePageMargins(theme) : null
+
+  // Use explicit margins if set, otherwise fall back to Word default 1" margins
+  const marginLeft = margins?.left ?? DEFAULT_MARGIN_TWIPS
+  const marginRight = margins?.right ?? DEFAULT_MARGIN_TWIPS
+  const marginTop = margins?.top ?? DEFAULT_MARGIN_TWIPS
+  const marginBottom = margins?.bottom ?? DEFAULT_MARGIN_TWIPS
+
+  // Usable area in twips
+  const usableWidthTwips = A4_WIDTH_TWIPS - marginLeft - marginRight
+  const usableHeightTwips = A4_HEIGHT_TWIPS - marginTop - marginBottom
+
+  // Convert twips → inches → pixels at 96 DPI (1 twip = 1/1440 inch)
+  const maxWidthPx = Math.round((usableWidthTwips / IN_TO_TWIPS) * 96)
+  const maxHeightPx = Math.round((usableHeightTwips / IN_TO_TWIPS) * 96)
+
+  return { maxWidthPx, maxHeightPx }
 }

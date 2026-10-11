@@ -67,4 +67,27 @@ export type IMarkdownTheme = {
    * from the output entirely instead of being rendered as empty paragraphs.
    */
   collapseEmptyLines?: boolean
+
+  /**
+   * Font family customization
+   */
+  bodyFont?: string        // Font for body/paragraph text (e.g., "Arial", "Times New Roman"). Optional.
+  headingFont?: string     // Font for headings. Optional.
+  codeFont?: string        // Font for code blocks, inline code, HTML, and tags. Optional, falls back to "Courier New" in code when unset.
+  blockquoteFont?: string  // Font for blockquotes. Optional.
+
+  /**
+   * Image horizontal alignment
+   */
+  imageHorizontalAlign?: "left" | "center" | "right"
+
+  /**
+   * Image default sizing behavior
+   * - "actual": use the image's native pixel dimensions (default)
+   * - "auto": scale down only when either dimension overflows the page bounds,
+   *   preserving aspect ratio. Never upscale.
+   * - "fit": scale so one axis reaches the page bound (may upscale small images),
+   *   preserving aspect ratio. Like Word's "fit to page".
+   */
+  imageDefaultSize?: "actual" | "auto" | "fit"
 }
