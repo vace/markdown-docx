@@ -44,6 +44,16 @@ Strikethrough uses two tildes. ~~Scratch this.~~`)).toMatchSnapshot()
         * Ask for feedback`)).toMatchSnapshot()
   })
 
+  it('render list item with a second paragraph', async () => {
+    const out = await renderTest(`1. one
+
+   more about one
+
+2. two`)
+    expect(out.match(/numbering-level/g)).toHaveLength(2)
+    expect(out).toMatch(/<Paragraph style="MdListItem"><TextRun>more about one<\/TextRun><\/Paragraph>/)
+  })
+
   it('render list special', async () => {
     expect(await renderTest(`1. First ordered list item
 2. Another item Unordered sub-list.
