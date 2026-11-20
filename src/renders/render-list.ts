@@ -32,6 +32,12 @@ export function renderList (render: MarkdownDocx, block: Tokens.List, attr: IBlo
         checked: item.checked,
       }
     }
-    return renderBlocks(render, tokens, attribute)
+    // Only the item's first block gets the list marker; later paragraphs of a
+    // loose item continue it instead of becoming items of their own.
+    const first = tokens.findIndex(token => token.type !== 'space')
+    return tokens.flatMap((token, i) => renderBlocks(render, [token],
+      i === first || token.type === 'list'
+        ? attribute
+        : { ...attribute, list: undefined }))
   }).flat()
 }
