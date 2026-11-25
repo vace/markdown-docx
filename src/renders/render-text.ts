@@ -4,7 +4,8 @@ import { MarkdownDocx } from '../MarkdownDocx'
 import { ITextAttr, Writeable } from '../types'
 
 export function renderText (render: MarkdownDocx, text: string, attr: ITextAttr): TextRun[] {
-  const multipleLines = text.trim().split(/\n/)
+  // Only drop outer newlines: the spaces next to bold, italic or link runs are part of the text.
+  const multipleLines = text.replace(/^\n+|\n+$/g, '').split(/\n/)
   const totalLine = multipleLines.length
 
   const options: Writeable<IRunOptions> = {

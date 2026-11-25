@@ -31,6 +31,11 @@ Combined emphasis with **asterisks and _underscores_**.
 Strikethrough uses two tildes. ~~Scratch this.~~`)).toMatchSnapshot()
   })
 
+  it('keeps the space next to formatting in a wrapped paragraph', async () => {
+    const out = await renderTest('Some **bold** text\ncontinues here.')
+    expect(out).toContain('<TextRun> text</TextRun>')
+  })
+
   it('render list', async () => {
     expect(await renderTest(`
 1. Make my changes
