@@ -1,5 +1,7 @@
 import { ILevelsOptions, INumberingOptions, LevelFormat } from 'docx'
 
+import type { MarkdownDocx } from '../MarkdownDocx'
+
 export const numbering: INumberingOptions = {
   config: [
     {
@@ -54,4 +56,28 @@ function makeBullet(level: number, charset: string) {
   }
 
   return opt
+}
+
+const startReferences = Symbol()
+
+/**
+ * docx starts every numbering instance at its reference's level start, so a
+ * list that starts at another number gets a copy of the reference with that start.
+ */
+export function numberingStartReference (render: MarkdownDocx, level: number, start: number): string {
+  const reference = `numbering-points-${level}-${start}`
+  const references: Map<string, { level: number, start: number }> = render.store.get(startReferences) || new Map()
+  references.set(reference, { level, start })
+  render.store.set(startReferences, references)
+  return reference
+}
+
+export function documentNumbering (render: MarkdownDocx): INumberingOptions {
+  const references: Map<string, { level: number, start: number }> = render.store.get(startReferences) || new Map()
+  const points = numbering.config[0]
+  const extra = [...references].map(([reference, { level, start }]) => ({
+    reference,
+    levels: points.levels.map(l => (l.level === level ? { ...l, start } : l)),
+  }))
+  return { config: [...numbering.config, ...extra] }
 }

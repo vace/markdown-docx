@@ -2,7 +2,7 @@ import { FileChild } from 'docx'
 import { Tokens } from 'marked'
 
 import { MarkdownDocx } from '../MarkdownDocx'
-import { classes } from '../styles'
+import { classes, numberingStartReference } from '../styles'
 import { IBlockAttr, IBlockToken } from '../types'
 import { renderBlocks } from './render-blocks'
 
@@ -15,10 +15,14 @@ export function renderList (render: MarkdownDocx, block: Tokens.List, attr: IBlo
     render.store.set(countSymbol, instance)
   }
 
+  const level = typeof attr.list?.level === 'number' ? attr.list.level + 1 : 0
+  const start = block.ordered && typeof block.start === 'number' && block.start !== 1 ? block.start : undefined
+
   const list: IBlockAttr['list'] = {
-    level: typeof attr.list?.level === 'number' ? attr.list.level + 1 : 0,
+    level,
     type: block.ordered ? 'number' : 'bullet',
     instance: instance,
+    reference: start === undefined ? undefined : numberingStartReference(render, level, start),
   }
 
   return block.items.map(item => {

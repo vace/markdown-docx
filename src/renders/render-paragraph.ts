@@ -23,7 +23,7 @@ export function renderParagraph(render: MarkdownDocx, tokens: IInlineToken[] | s
     bullet: hasList && attr.list?.type === 'bullet' ? { level: Math.min(attr.list.level, 9) } : undefined,
     numbering: hasList && attr.list?.type === 'number' ? {
       level: Math.min(attr.list.level, 9),
-      reference: 'numbering-points',
+      reference: attr.list.reference ?? 'numbering-points',
       instance: attr.list.instance,
     } : undefined,
     style: attr.style

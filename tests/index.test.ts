@@ -1,5 +1,6 @@
 import { Packer } from 'docx'
 import fs from 'node:fs'
+import { createRequire } from 'node:module'
 import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 
@@ -106,5 +107,18 @@ describe('markdown-docx', () => {
     fs.writeFileSync(file, docxBuffer)
     // check file exists
     expect(fs.existsSync(file)).toBe(true)
+  })
+})
+
+describe('Ordered list start', () => {
+  it('numbers lists split by code blocks from their own start', async () => {
+    const md = '1. Install\n\n```\nnpm i\n```\n\n2. Run\n\n```\nnpm start\n```\n\n3. Done\n'
+    const buffer = await Packer.toBuffer(await new MarkdownDocx(md).toDocument())
+    // jszip comes with docx
+    const JSZip = createRequire(createRequire(import.meta.url).resolve('docx'))('jszip')
+    const xml = await (await JSZip.loadAsync(buffer)).file('word/numbering.xml').async('string')
+    const starts = [...xml.matchAll(/<w:startOverride w:val="(\d+)"\/>/g)].map(m => m[1])
+    expect(starts).toContain('2')
+    expect(starts).toContain('3')
   })
 })

@@ -2,7 +2,7 @@ import { Document, FileChild, IPageMarginAttributes, IPropertiesOptions, IStyles
 import { Tokens } from 'marked'
 
 import { renderBlocks, renderTokens } from './renders'
-import { createDocumentStyle, numbering, styles } from './styles'
+import { createDocumentStyle, documentNumbering, styles } from './styles'
 import { tokenize } from './tokenize'
 import { IBlockAttr, IBlockToken, IInlineToken, ITextAttr, MarkdownDocxOptions, MarkdownImageItem } from './types'
 import { getImageTokens, resolvePageMargins } from './utils'
@@ -59,7 +59,7 @@ export class MarkdownDocx {
     const pageMargins = this.options.theme ? resolvePageMargins(this.options.theme) : null
     const sectionProperties = pageMargins ? { page: { margin: pageMargins as IPageMarginAttributes } } : undefined
     const doc = new Document({
-      numbering,
+      numbering: documentNumbering(this),
       styles: createDocumentStyle({ theme: this.options.theme}),
       ...this.options.document,
       ...options,

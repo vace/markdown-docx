@@ -33,6 +33,7 @@ export type IBlockAttr = {
      * @link https://github.com/dolanmiu/docx/issues/3037#issuecomment-3164253396
      */
     instance?: number // numbering instance
+    reference?: string // numbering reference, set for lists that don't start at 1
   }
 
   listNone?: boolean
